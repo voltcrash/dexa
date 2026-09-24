@@ -1,0 +1,10 @@
+{
+  "name": "Dexa",
+  "short_name": "Dexa",
+  "description": "The last Pokédex you will ever need.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f6f8",
+  "theme_color": "#cc2e0b",
+  "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}

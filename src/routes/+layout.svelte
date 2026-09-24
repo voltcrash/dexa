@@ -14,6 +14,10 @@
 <svelte:head>
 	<link rel="icon" href={favicon} />
 	<title>Dexa</title>
+	<link rel="manifest" href="/manifest.webmanifest" />
+	<meta property="og:site_name" content="Dexa" />
+	<meta property="og:type" content="website" />
+	<meta name="twitter:card" content="summary" />
 	<meta name="description" content="A fast, complete Pokédex: every Pokémon, move, ability and type matchup, plus a team builder and collection tracker." />
 </svelte:head>
 
