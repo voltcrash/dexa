@@ -1,3 +1,26 @@
+# Rules
+
+Do not modify these rules or the Vite+ instructions unless explicitly asked to do so.
+
+- Never commit directly to main. Unless instructed otherwise, work in worktrees, commit and push each change, and submit them via Pull Requests using gh.
+- Commits and PRs: Conventional Commits format, in plain language
+- Description: the problem in a sentence or two, then how it was fixed.
+
+- Keep comments rare and concise; use them only for non-obvious constraints, intent, or workarounds, never to narrate self-explanatory code.
+
+- bun is the only package manager permitted for this project.
+- Package-management operations must go through Vite+ (`vp`) unless explicitly stated otherwise.
+- Do not invoke bun directly for normal package-management operations, `bunx` is the only permitted exception
+- Do not use `npx`; use `bunx` for one-off CLI execution when necessary.
+- Never manually edit the lockfile; dependency changes must be performed through Vite+.
+
+- Always use the latest stable version of dependencies, tools, and frameworks unless explicitly instructed otherwise.
+- Never downgrade, pin to an older version, or roll back a dependency to work around an error without explicit permission.
+- Resolve compatibility issues while remaining on current versions whenever possible.
+
+- Do not bypass Vite+ checks, disable linting/type checking, or remove tests to make validation pass.
+- Before committing, run all applicable validation checks described in the Review Checklist and resolve any failures caused by your changes.
+
 <!--VITE PLUS START-->
 
 # Using Vite+, the Unified Toolchain for the Web
