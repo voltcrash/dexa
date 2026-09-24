@@ -6,6 +6,7 @@ import {
   formatWeight,
   genderRatio,
   titleCase,
+  versionName,
 } from "./format.js";
 import { generationFromName, generationOfSpecies } from "./generations.js";
 
@@ -14,6 +15,11 @@ describe("format", () => {
     expect(titleCase("solar-beam")).toBe("Solar Beam");
     expect(titleCase("mr-mime")).toBe("Mr. Mime");
     expect(titleCase("nidoran-f")).toBe("Nidoran♀");
+  });
+
+  it("names game versions", () => {
+    expect(versionName("lets-go-pikachu")).toBe("Let’s Go, Pikachu!");
+    expect(versionName("alpha-sapphire")).toBe("Alpha Sapphire");
   });
 
   it("pads dex numbers", () => {

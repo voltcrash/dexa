@@ -27,6 +27,22 @@ export function titleCase(slug: string): string {
     .join(" ");
 }
 
+const VERSION_NAMES: Record<string, string> = {
+  firered: "FireRed",
+  leafgreen: "LeafGreen",
+  heartgold: "HeartGold",
+  soulsilver: "SoulSilver",
+  "lets-go-pikachu": "Let’s Go, Pikachu!",
+  "lets-go-eevee": "Let’s Go, Eevee!",
+  "legends-arceus": "Legends: Arceus",
+  "legends-za": "Legends: Z-A",
+};
+
+/** Display name of a game version such as `lets-go-pikachu`. */
+export function versionName(slug: string): string {
+  return VERSION_NAMES[slug] ?? titleCase(slug);
+}
+
 export function englishName(names: LocalizedName[], fallbackSlug: string): string {
   return names.find((n) => n.language.name === "en")?.name ?? titleCase(fallbackSlug);
 }
