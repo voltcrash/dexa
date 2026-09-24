@@ -4,6 +4,7 @@
 	import { navItems } from "$lib/nav.js";
 	import { cn } from "$lib/utils.js";
 	import Logo from "./logo.svelte";
+	import SearchTrigger from "./search-trigger.svelte";
 	import ThemeToggle from "./theme-toggle.svelte";
 
 	let { actions }: { actions?: Snippet } = $props();
@@ -41,6 +42,7 @@
 		</nav>
 
 		<div class="ml-auto flex items-center gap-1">
+			<SearchTrigger />
 			{@render actions?.()}
 			<ThemeToggle />
 		</div>
