@@ -4,10 +4,11 @@ import { toListEntry } from "$lib/dex/list.js";
 import { pokeapi } from "$lib/pokeapi/client.js";
 import type { ApiEvolutionChain, ApiPokemon, ApiPokemonSpecies } from "$lib/pokeapi/types.js";
 import { buildEvolutionTree } from "$lib/pokemon/evolution-tree.js";
+import { buildLearnset, type Learnset } from "$lib/pokemon/learnset.js";
 import { cleanFlavorText, titleCase, versionName } from "$lib/pokemon/format.js";
 import type { FlavorEntry, PokemonDetail } from "$lib/pokemon/detail.js";
 import { STAT_KEYS } from "$lib/pokemon/types.js";
-import { abilitiesBySlug, formsOfSpecies, pokemon, pokemonBySlug } from "./dex.js";
+import { abilitiesBySlug, formsOfSpecies, movesBySlug, pokemon, pokemonBySlug } from "./dex.js";
 
 const defaults = pokemon.filter((p) => p.isDefault);
 const defaultsBySpecies = new Map(defaults.map((p) => [p.speciesId, p]));
@@ -79,8 +80,18 @@ export async function getPokemonDetail(
       hatchCycles: species.hatch_counter,
     },
     evolution: chain ? buildEvolutionTree(chain.chain, (id) => defaultsBySpecies.get(id)) : null,
+    learnset: buildLearnset(api, (slug) => movesBySlug.get(slug)),
     cries: api.cries,
     prev: neighbour(-1),
     next: neighbour(1),
   };
+}
+
+export async function getLearnset(
+  entry: DexEntry,
+  versionGroup: string | undefined,
+  fetchFn: typeof fetch,
+): Promise<Learnset> {
+  const api = await pokeapi<ApiPokemon>(`pokemon/${entry.id}`, fetchFn);
+  return buildLearnset(api, (slug) => movesBySlug.get(slug), versionGroup);
 }
