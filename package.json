@@ -10,7 +10,15 @@
     "prepare": "svelte-kit sync || echo ''",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-    "data:sync": "bun scripts/sync-pokedex.ts"
+    "data:sync": "bun scripts/sync-pokedex.ts",
+    "db:generate": "bunx --bun drizzle-kit generate",
+    "db:migrate": "bunx --bun drizzle-kit migrate",
+    "db:push": "bunx --bun drizzle-kit push",
+    "db:studio": "bunx --bun drizzle-kit studio"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.1.0",
+    "drizzle-orm": "^0.45.3"
   },
   "devDependencies": {
     "@fontsource-variable/onest": "^5.3.1",
@@ -24,6 +32,7 @@
     "@types/node": "^26.6.2",
     "bits-ui": "^2.19.3",
     "cn": "^0.4.0",
+    "drizzle-kit": "^0.31.11",
     "mode-watcher": "^1.1.0",
     "shadcn-svelte": "^1.7.0",
     "svelte": "^5.56.1",
