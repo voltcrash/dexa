@@ -1,8 +1,4 @@
-<script lang="ts">
-	import { Button } from "$lib/components/ui/button/index.js";
-</script>
-
-<main class="p-8">
-	<h1 class="text-2xl font-semibold">dexa</h1>
-	<Button class="mt-4">Explore</Button>
-</main>
+<section class="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+	<h1 class="font-display text-4xl font-semibold tracking-tight">Every Pokémon, one search away.</h1>
+	<p class="mt-4 max-w-prose text-muted-foreground">The full National Pokédex is on its way.</p>
+</section>
