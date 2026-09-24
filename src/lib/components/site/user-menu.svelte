@@ -1,4 +1,5 @@
 <script lang="ts">
+	import LibraryIcon from "@lucide/svelte/icons/library-big";
 	import LogOutIcon from "@lucide/svelte/icons/log-out";
 	import { goto, invalidateAll } from "$app/navigation";
 	import { authClient } from "$lib/auth-client.js";
@@ -45,6 +46,10 @@
 				<p class="truncate text-xs text-muted-foreground">{user.email}</p>
 			</DropdownMenu.Label>
 			<DropdownMenu.Separator />
+			<DropdownMenu.Item onSelect={() => goto("/collection")}>
+				<LibraryIcon />
+				Your collection
+			</DropdownMenu.Item>
 			<DropdownMenu.Item onSelect={signOut}>
 				<LogOutIcon />
 				Sign out

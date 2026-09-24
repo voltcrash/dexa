@@ -6,6 +6,7 @@
 	import { Toggle } from "$lib/components/ui/toggle/index.js";
 	import type { PokemonDetail } from "$lib/pokemon/detail.js";
 	import { dexNumber, formatHeight, formatWeight } from "$lib/pokemon/format.js";
+	import CollectionButtons from "./collection-buttons.svelte";
 	import CryButton from "./cry-button.svelte";
 	import FlavorText from "./flavor-text.svelte";
 	import GenderRatio from "./gender-ratio.svelte";
@@ -73,6 +74,10 @@
 				<UsersIcon />
 				Add to team
 			</Button>
+		</div>
+
+		<div class="mt-5">
+			<CollectionButtons pokemonId={entry.id} name={entry.name} />
 		</div>
 
 		<div class="mt-8">

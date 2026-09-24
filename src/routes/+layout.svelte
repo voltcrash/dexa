@@ -2,6 +2,7 @@
 	import "./layout.css";
 	import { ModeWatcher } from "mode-watcher";
 	import favicon from "$lib/assets/favicon.svg";
+	import CollectionSync from "$lib/components/site/collection-sync.svelte";
 	import CommandPalette from "$lib/components/site/command-palette.svelte";
 	import SiteFooter from "$lib/components/site/site-footer.svelte";
 	import SiteHeader from "$lib/components/site/site-header.svelte";
@@ -19,6 +20,9 @@
 <ModeWatcher themeColors={{ light: "#f5f6f8", dark: "#0f1528" }} />
 <Toaster position="bottom-center" />
 <CommandPalette />
+{#if data.accountsEnabled}
+	<CollectionSync />
+{/if}
 
 <a
 	href="#main"
