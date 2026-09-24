@@ -7,7 +7,7 @@
 	import SiteHeader from "$lib/components/site/site-header.svelte";
 	import { Toaster } from "$lib/components/ui/sonner/index.js";
 
-	let { children } = $props();
+	let { children, data } = $props();
 </script>
 
 <svelte:head>
@@ -28,7 +28,7 @@
 </a>
 
 <div class="flex min-h-dvh flex-col">
-	<SiteHeader />
+	<SiteHeader accountsEnabled={data.accountsEnabled} />
 	<main id="main" class="flex-1">
 		{@render children()}
 	</main>

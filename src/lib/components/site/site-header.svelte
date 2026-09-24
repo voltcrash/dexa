@@ -6,8 +6,9 @@
 	import Logo from "./logo.svelte";
 	import SearchTrigger from "./search-trigger.svelte";
 	import ThemeToggle from "./theme-toggle.svelte";
+	import UserMenu from "./user-menu.svelte";
 
-	let { actions }: { actions?: Snippet } = $props();
+	let { actions, accountsEnabled = false }: { actions?: Snippet; accountsEnabled?: boolean } = $props();
 
 	function isActive(href: string) {
 		if (href === "/") return page.url.pathname === "/" || page.url.pathname.startsWith("/pokemon");
@@ -45,6 +46,9 @@
 			<SearchTrigger />
 			{@render actions?.()}
 			<ThemeToggle />
+			{#if accountsEnabled}
+				<UserMenu />
+			{/if}
 		</div>
 	</div>
 
