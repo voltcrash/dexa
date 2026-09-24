@@ -105,7 +105,7 @@
 					{#each detail.abilities as ability (ability.slug)}
 						<div>
 							<p class="font-medium">
-								{ability.name}
+								<a href="/abilities/{ability.slug}" class="hover:underline hover:underline-offset-4">{ability.name}</a>
 								{#if ability.hidden}
 									<span class="ml-1 text-xs font-normal text-muted-foreground">Hidden ability</span>
 								{/if}
