@@ -38,7 +38,7 @@
 				variant="outline"
 				size="sm"
 				aria-label="Show shiny coloring"
-				class="bg-background/80 backdrop-blur data-[state=on]:bg-background data-[state=on]:text-primary"
+				class="bg-background/80 backdrop-blur"
 			>
 				<SparklesIcon />
 				Shiny
