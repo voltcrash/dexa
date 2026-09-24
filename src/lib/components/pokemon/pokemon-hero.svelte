@@ -1,4 +1,5 @@
 <script lang="ts">
+	import ScaleIcon from "@lucide/svelte/icons/scale";
 	import SparklesIcon from "@lucide/svelte/icons/sparkles";
 	import UsersIcon from "@lucide/svelte/icons/users";
 	import { Button } from "$lib/components/ui/button/index.js";
@@ -64,7 +65,11 @@
 			{#each entry.types as type (type)}
 				<TypeBadge {type} size="lg" href="/?type={type}" />
 			{/each}
-			<Button href="/team?add={entry.slug}" variant="outline" size="sm" class="ml-auto">
+			<Button href="/compare?p={entry.slug}" variant="outline" size="sm" class="ml-auto">
+				<ScaleIcon />
+				Compare
+			</Button>
+			<Button href="/team?add={entry.slug}" variant="outline" size="sm">
 				<UsersIcon />
 				Add to team
 			</Button>
