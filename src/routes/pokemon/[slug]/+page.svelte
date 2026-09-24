@@ -2,10 +2,12 @@
 	import ArrowLeftIcon from "@lucide/svelte/icons/arrow-left";
 	import ArrowRightIcon from "@lucide/svelte/icons/arrow-right";
 	import DetailSection from "$lib/components/pokemon/detail-section.svelte";
+	import EvolutionChain from "$lib/components/pokemon/evolution-chain.svelte";
 	import FormList from "$lib/components/pokemon/form-list.svelte";
 	import PokemonHero from "$lib/components/pokemon/pokemon-hero.svelte";
 	import StatBars from "$lib/components/pokemon/stat-bars.svelte";
 	import TrainingBreeding from "$lib/components/pokemon/training-breeding.svelte";
+	import TypeMatchups from "$lib/components/pokemon/type-matchups.svelte";
 	import { dexNumber } from "$lib/pokemon/format.js";
 	import { artworkUrl } from "$lib/pokemon/sprites.js";
 
@@ -17,9 +19,11 @@
 	const sections = $derived(
 		[
 			{ id: "stats", label: "Stats" },
+			{ id: "matchups", label: "Matchups" },
+			detail.evolution ? { id: "evolution", label: "Evolution" } : false,
 			detail.forms.length > 1 && { id: "forms", label: "Forms" },
 			{ id: "training", label: "Training" },
-		].filter((s) => s !== false),
+		].filter((s): s is { id: string; label: string } => Boolean(s)),
 	);
 </script>
 
@@ -71,6 +75,16 @@
 				<StatBars stats={entry.stats} />
 			</div>
 		</DetailSection>
+
+		<DetailSection id="matchups" title="Type matchups" description="Multipliers use the current type chart. Abilities that change damage taken can be applied.">
+			<TypeMatchups types={entry.types} abilities={detail.abilities} />
+		</DetailSection>
+
+		{#if detail.evolution}
+			<DetailSection id="evolution" title="Evolution">
+				<EvolutionChain root={detail.evolution} currentSpeciesId={entry.speciesId} />
+			</DetailSection>
+		{/if}
 
 		{#if detail.forms.length > 1}
 			<DetailSection id="forms" title="Forms" description="Alternate forms have their own types, stats and abilities.">
