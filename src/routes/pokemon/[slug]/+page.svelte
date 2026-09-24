@@ -4,6 +4,7 @@
 	import DetailSection from "$lib/components/pokemon/detail-section.svelte";
 	import EvolutionChain from "$lib/components/pokemon/evolution-chain.svelte";
 	import FormList from "$lib/components/pokemon/form-list.svelte";
+	import LearnsetTable from "$lib/components/pokemon/learnset-table.svelte";
 	import PokemonHero from "$lib/components/pokemon/pokemon-hero.svelte";
 	import StatBars from "$lib/components/pokemon/stat-bars.svelte";
 	import TrainingBreeding from "$lib/components/pokemon/training-breeding.svelte";
@@ -22,6 +23,7 @@
 			{ id: "matchups", label: "Matchups" },
 			detail.evolution ? { id: "evolution", label: "Evolution" } : false,
 			detail.forms.length > 1 && { id: "forms", label: "Forms" },
+			{ id: "moves", label: "Moves" },
 			{ id: "training", label: "Training" },
 		].filter((s): s is { id: string; label: string } => Boolean(s)),
 	);
@@ -91,6 +93,12 @@
 				<FormList forms={detail.forms} currentId={entry.id} />
 			</DetailSection>
 		{/if}
+
+		<DetailSection id="moves" title="Moves" description="Moves this Pokémon can learn in the selected game. STAB marks attacks that share its type.">
+			{#key entry.id}
+				<LearnsetTable initial={detail.learnset} slug={entry.slug} types={entry.types} />
+			{/key}
+		</DetailSection>
 
 		<DetailSection id="training" title="Training and breeding">
 			<TrainingBreeding {detail} />
