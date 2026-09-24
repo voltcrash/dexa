@@ -2,13 +2,15 @@ import { error } from "@sveltejs/kit";
 import type { DexEntry } from "$lib/data/types.js";
 import { toListEntry } from "$lib/dex/list.js";
 import { pokeapi } from "$lib/pokeapi/client.js";
-import type { ApiPokemon, ApiPokemonSpecies } from "$lib/pokeapi/types.js";
+import type { ApiEvolutionChain, ApiPokemon, ApiPokemonSpecies } from "$lib/pokeapi/types.js";
+import { buildEvolutionTree } from "$lib/pokemon/evolution-tree.js";
 import { cleanFlavorText, titleCase, versionName } from "$lib/pokemon/format.js";
 import type { FlavorEntry, PokemonDetail } from "$lib/pokemon/detail.js";
 import { STAT_KEYS } from "$lib/pokemon/types.js";
 import { abilitiesBySlug, formsOfSpecies, pokemon, pokemonBySlug } from "./dex.js";
 
 const defaults = pokemon.filter((p) => p.isDefault);
+const defaultsBySpecies = new Map(defaults.map((p) => [p.speciesId, p]));
 
 function flavorEntries(species: ApiPokemonSpecies): FlavorEntry[] {
   const byText = new Map<string, string[]>();
@@ -35,6 +37,10 @@ export async function getPokemonDetail(
     pokeapi<ApiPokemon>(`pokemon/${entry.id}`, fetchFn),
     pokeapi<ApiPokemonSpecies>(`pokemon-species/${entry.speciesId}`, fetchFn),
   ]);
+
+  const chain = species.evolution_chain
+    ? await pokeapi<ApiEvolutionChain>(species.evolution_chain.url, fetchFn).catch(() => null)
+    : null;
 
   const index = defaults.findIndex((p) => p.speciesId === entry.speciesId);
   const neighbour = (offset: number) => {
@@ -72,6 +78,7 @@ export async function getPokemonDetail(
       genderRate: species.gender_rate,
       hatchCycles: species.hatch_counter,
     },
+    evolution: chain ? buildEvolutionTree(chain.chain, (id) => defaultsBySpecies.get(id)) : null,
     cries: api.cries,
     prev: neighbour(-1),
     next: neighbour(1),

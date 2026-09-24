@@ -1,5 +1,6 @@
 import type { DexEntry } from "$lib/data/types.js";
 import type { DexListEntry } from "$lib/dex/list.js";
+import type { EvolutionNode } from "./evolution-tree.js";
 
 export interface FlavorEntry {
   text: string;
@@ -25,6 +26,7 @@ export interface PokemonDetail {
     genderRate: number;
     hatchCycles: number | null;
   };
+  evolution: EvolutionNode | null;
   cries: { latest: string | null; legacy: string | null };
   prev: DexListEntry | null;
   next: DexListEntry | null;

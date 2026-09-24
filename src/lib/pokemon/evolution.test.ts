@@ -58,3 +58,21 @@ describe("stats", () => {
     expect(statRanges([1, 90, 45, 30, 30, 40], 100)[0]).toEqual([1, 1]);
   });
 });
+
+describe("buildEvolutionTree", () => {
+  it("builds branches and dedupes conditions", async () => {
+    const { buildEvolutionTree, countNodes } = await import("./evolution-tree.js");
+    const link = (id: number, details: ApiEvolutionDetail[], evolves_to: never[] = []) => ({
+      is_baby: false,
+      species: { name: `s${id}`, url: `https://pokeapi.co/api/v2/pokemon-species/${id}/` },
+      evolution_details: details,
+      evolves_to,
+    });
+    const stone = detail({ trigger: ref("use-item"), item: ref("water-stone") });
+    const chain = link(133, [], [link(134, [stone, stone]), link(135, [])] as never[]);
+    const lookup = (id: number) => ({ slug: `p${id}`, name: `P${id}`, types: ["normal"] }) as never;
+    const tree = buildEvolutionTree(chain as never, lookup);
+    expect(tree && countNodes(tree)).toBe(3);
+    expect(tree?.children[0].conditions).toEqual(["Use Water Stone"]);
+  });
+});
