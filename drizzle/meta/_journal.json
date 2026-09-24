@@ -15,6 +15,13 @@
       "when": 1790257327221,
       "tag": "0001_collection",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1790273623089,
+      "tag": "0002_teams",
+      "breakpoints": true
     }
   ]
 }
