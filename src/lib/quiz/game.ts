@@ -21,7 +21,11 @@ export function pickRandom<T extends Pick<DexListEntry, "speciesId">>(
 /** Reveal letters of a name one hint at a time, keeping spaces and punctuation visible. */
 export function nameHint(name: string, revealed: number): string {
   let shown = 0;
-  return [...name]
+  const graphemes = Array.from(
+    new Intl.Segmenter("en", { granularity: "grapheme" }).segment(name),
+    (s) => s.segment,
+  );
+  return graphemes
     .map((char) => {
       if (!/[\p{L}\p{N}]/u.test(char)) return char;
       shown++;
