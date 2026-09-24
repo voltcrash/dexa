@@ -8,4 +8,5 @@ export const navItems: NavItem[] = [
   { href: "/types", label: "Types" },
   { href: "/team", label: "Team builder" },
   { href: "/compare", label: "Compare" },
+  { href: "/quiz", label: "Quiz" },
 ];
