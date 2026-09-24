@@ -15,6 +15,7 @@ describe("format", () => {
     expect(titleCase("solar-beam")).toBe("Solar Beam");
     expect(titleCase("mr-mime")).toBe("Mr. Mime");
     expect(titleCase("nidoran-f")).toBe("Nidoran♀");
+    expect(titleCase("selected-pokemon")).toBe("Selected Pokémon");
   });
 
   it("names game versions", () => {

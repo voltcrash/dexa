@@ -23,7 +23,7 @@
 			<span class="font-display text-lg font-semibold tracking-tight">dexa</span>
 		</a>
 
-		<nav aria-label="Main" class="hidden md:block">
+		<nav aria-label="Main" class="hidden lg:block">
 			<ul class="flex items-center gap-1">
 				{#each navItems as item (item.href)}
 					<li>
@@ -52,7 +52,7 @@
 		</div>
 	</div>
 
-	<nav aria-label="Main" class="border-t md:hidden">
+	<nav aria-label="Main" class="border-t lg:hidden">
 		<ul class="flex gap-1 overflow-x-auto px-3 py-1.5 [scrollbar-width:none]">
 			{#each navItems as item (item.href)}
 				<li class="shrink-0">

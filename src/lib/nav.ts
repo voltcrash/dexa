@@ -5,6 +5,7 @@ export interface NavItem {
 
 export const navItems: NavItem[] = [
   { href: "/", label: "Pokédex" },
+  { href: "/moves", label: "Moves" },
   { href: "/types", label: "Types" },
   { href: "/team", label: "Team builder" },
   { href: "/compare", label: "Compare" },

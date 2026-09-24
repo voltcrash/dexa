@@ -117,7 +117,7 @@
 									{/if}
 									<td class="px-4 py-2.5">
 										<p class="font-medium">
-											{move.name}
+											<a href="/moves/{move.slug}" class="hover:underline hover:underline-offset-4">{move.name}</a>
 											{#if isStab(move)}
 												<span class="ml-1 text-xs font-normal text-muted-foreground" title="Same-type attack bonus">STAB</span>
 											{/if}

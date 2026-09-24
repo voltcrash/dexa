@@ -24,7 +24,8 @@ export function titleCase(slug: string): string {
     .split("-")
     .filter(Boolean)
     .map((part) => part[0].toUpperCase() + part.slice(1))
-    .join(" ");
+    .join(" ")
+    .replace(/\bPokemon\b/g, "Pokémon");
 }
 
 const VERSION_NAMES: Record<string, string> = {
