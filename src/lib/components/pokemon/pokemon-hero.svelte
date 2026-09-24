@@ -1,5 +1,7 @@
 <script lang="ts">
 	import SparklesIcon from "@lucide/svelte/icons/sparkles";
+	import UsersIcon from "@lucide/svelte/icons/users";
+	import { Button } from "$lib/components/ui/button/index.js";
 	import { Toggle } from "$lib/components/ui/toggle/index.js";
 	import type { PokemonDetail } from "$lib/pokemon/detail.js";
 	import { dexNumber, formatHeight, formatWeight } from "$lib/pokemon/format.js";
@@ -58,10 +60,14 @@
 		{#if detail.genus}
 			<p class="mt-2 text-lg text-muted-foreground">{detail.genus}</p>
 		{/if}
-		<div class="mt-5 flex flex-wrap gap-2">
+		<div class="mt-5 flex flex-wrap items-center gap-2">
 			{#each entry.types as type (type)}
 				<TypeBadge {type} size="lg" href="/?type={type}" />
 			{/each}
+			<Button href="/team?add={entry.slug}" variant="outline" size="sm" class="ml-auto">
+				<UsersIcon />
+				Add to team
+			</Button>
 		</div>
 
 		<div class="mt-8">
