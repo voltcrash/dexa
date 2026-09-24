@@ -1,0 +1,192 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn-svelte/tailwind.css";
+@import "@fontsource-variable/onest";
+@import "@fontsource-variable/unbounded";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --radius: 0.75rem;
+
+  --background: #f5f6f8;
+  --foreground: #1c2340;
+  --card: #ffffff;
+  --card-foreground: #1c2340;
+  --popover: #ffffff;
+  --popover-foreground: #1c2340;
+  --primary: #cc2e0b;
+  --primary-foreground: #ffffff;
+  --secondary: #e9ecf2;
+  --secondary-foreground: #1c2340;
+  --muted: #eceef3;
+  --muted-foreground: #5b6478;
+  --accent: #e6e9f0;
+  --accent-foreground: #1c2340;
+  --destructive: #c8102e;
+  --border: #dde1e8;
+  --input: #d3d8e1;
+  --ring: #cc2e0b;
+
+  /* Canonical type palette; text color on each is chosen for contrast. */
+  --type-normal: #a8a77a;
+  --type-fire: #ee8130;
+  --type-water: #6390f0;
+  --type-electric: #f7d02c;
+  --type-grass: #7ac74c;
+  --type-ice: #96d9d6;
+  --type-fighting: #c22e28;
+  --type-poison: #a33ea1;
+  --type-ground: #e2bf65;
+  --type-flying: #a98ff3;
+  --type-psychic: #f95587;
+  --type-bug: #a6b91a;
+  --type-rock: #b6a136;
+  --type-ghost: #735797;
+  --type-dragon: #6f35fc;
+  --type-dark: #705746;
+  --type-steel: #b7b7ce;
+  --type-fairy: #d685ad;
+  --type-stellar: #40b5a5;
+  --type-unknown: #68a090;
+
+  --tint: var(--type-normal);
+
+  /* Categorical series for comparisons, validated for color vision deficiency. */
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+  --series-4: #eda100;
+}
+
+.dark {
+  --background: #0f1528;
+  --foreground: #e8ebf3;
+  --card: #161d33;
+  --card-foreground: #e8ebf3;
+  --popover: #1a2239;
+  --popover-foreground: #e8ebf3;
+  --primary: #ff6a47;
+  --primary-foreground: #0f1528;
+  --secondary: #1f2842;
+  --secondary-foreground: #e8ebf3;
+  --muted: #1b2339;
+  --muted-foreground: #98a1b8;
+  --accent: #232d49;
+  --accent-foreground: #e8ebf3;
+  --destructive: #ff5c6c;
+  --border: #262f4a;
+  --input: #2e3855;
+  --ring: #ff6a47;
+
+  --series-1: #3987e5;
+  --series-2: #d95926;
+  --series-3: #199e70;
+  --series-4: #c98500;
+}
+
+@theme inline {
+  --font-sans: "Onest Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Unbounded Variable", "Onest Variable", ui-sans-serif, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 10px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-tint: var(--tint);
+
+  --color-type-normal: var(--type-normal);
+  --color-type-fire: var(--type-fire);
+  --color-type-water: var(--type-water);
+  --color-type-electric: var(--type-electric);
+  --color-type-grass: var(--type-grass);
+  --color-type-ice: var(--type-ice);
+  --color-type-fighting: var(--type-fighting);
+  --color-type-poison: var(--type-poison);
+  --color-type-ground: var(--type-ground);
+  --color-type-flying: var(--type-flying);
+  --color-type-psychic: var(--type-psychic);
+  --color-type-bug: var(--type-bug);
+  --color-type-rock: var(--type-rock);
+  --color-type-ghost: var(--type-ghost);
+  --color-type-dragon: var(--type-dragon);
+  --color-type-dark: var(--type-dark);
+  --color-type-steel: var(--type-steel);
+  --color-type-fairy: var(--type-fairy);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    color-scheme: light;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "ss01";
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-ring;
+  }
+}
+
+@utility font-display {
+  font-family: var(--font-display);
+  font-feature-settings: "tnum";
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* A soft field of the current tint, used behind artwork. */
+@utility tint-field {
+  background:
+    radial-gradient(
+      circle at 50% 55%,
+      color-mix(in oklab, var(--tint) 38%, transparent) 0%,
+      color-mix(in oklab, var(--tint) 14%, transparent) 55%,
+      transparent 72%
+    ),
+    color-mix(in oklab, var(--tint) 12%, var(--card));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

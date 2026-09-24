@@ -24,3 +24,6 @@ vite.config.ts.timestamp-*
 !.vscode/
 !.vscode/settings.json
 !.vscode/extensions.json
+
+# PokéAPI response cache for scripts/sync-pokedex.ts
+/.cache
