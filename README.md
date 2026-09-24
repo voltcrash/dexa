@@ -1,42 +1,26 @@
-# sv
+# dexa
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+The last Pokédex you will ever need.
 
-## Creating a project
+Built with SvelteKit, Tailwind CSS, shadcn-svelte, and data from [PokéAPI](https://pokeapi.co). Deployed on Vercel.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Getting started
 
-```sh
-# create a new project
-npx sv create my-app
-```
-
-To recreate this project with the same configuration:
+This project uses [Vite+](https://viteplus.dev) (`vp`) with bun as the package manager.
 
 ```sh
-# recreate this project
-npx sv@0.17.1 create --template minimal --types ts --no-install ./
+vp install
+vp dev
 ```
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## Validation
 
 ```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+vp check      # format, lint, type check
+vp run check  # svelte-check for .svelte files
+vp test       # unit tests
 ```
 
-## Building
+## Deployment
 
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+The app deploys to Vercel with `@sveltejs/adapter-vercel`. Import the repository in Vercel and it builds with `vp build`.
