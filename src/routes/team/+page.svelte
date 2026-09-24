@@ -1,12 +1,13 @@
 <script lang="ts">
 	import LinkIcon from "@lucide/svelte/icons/link";
-	import { onMount } from "svelte";
+	import { onMount, untrack } from "svelte";
 	import { toast } from "svelte-sonner";
 	import { replaceState } from "$app/navigation";
 	import { page } from "$app/state";
 	import PokemonPicker from "$lib/components/pokemon/pokemon-picker.svelte";
 	import TypeBadge from "$lib/components/pokemon/type-badge.svelte";
 	import DefenseTable from "$lib/components/team/defense-table.svelte";
+	import SavedTeams from "$lib/components/team/saved-teams.svelte";
 	import TeamSlot from "$lib/components/team/team-slot.svelte";
 	import { Button } from "$lib/components/ui/button/index.js";
 	import { loadDexList } from "$lib/dex/client.js";
@@ -22,11 +23,14 @@
 		teamOffense,
 		type TeamMember,
 	} from "$lib/team/analysis.js";
+	import type { SavedTeam } from "$lib/team/saved.js";
 
 	let { data } = $props();
 
 	let team = $derived<TeamMember[]>([...data.members]);
 	let pickerOpen = $state(false);
+	let savedId = $state<string | null>(page.url.searchParams.get("t"));
+	let dex = $state<Map<string, DexListEntry>>(new Map());
 
 	const defense = $derived(teamDefense(team));
 	const weaknesses = $derived(sharedWeaknesses(defense));
@@ -43,6 +47,7 @@
 
 	// Without ?p, pick up the team last edited on this device; ?add= appends one Pokémon.
 	onMount(async () => {
+		loadDexList().then((list) => (dex = new Map(list.map((e) => [e.slug, e]))));
 		const params = page.url.searchParams;
 		const add = params.get("add");
 		if (params.has("p") && !add) return;
@@ -68,8 +73,30 @@
 		} catch {
 			// Storage can be unavailable in private windows; the URL still holds the team.
 		}
-		const query = next.map((m) => m.slug).join(",");
-		replaceState(query ? `?p=${query}` : page.url.pathname, page.state);
+		if (next.length === 0) savedId = null;
+		writeUrl();
+	}
+
+	function writeUrl() {
+		const params = new URLSearchParams();
+		if (team.length) params.set("p", team.map((m) => m.slug).join(","));
+		if (savedId) params.set("t", savedId);
+		const search = params.toString().replaceAll("%2C", ",");
+		replaceState(search ? `?${search}` : page.url.pathname, page.state);
+	}
+
+	// Saving or deleting a team changes savedId from the child; mirror it into the URL.
+	let lastSavedId = untrack(() => savedId);
+	$effect(() => {
+		if (savedId === lastSavedId) return;
+		lastSavedId = savedId;
+		untrack(writeUrl);
+	});
+
+	function openSaved(saved: SavedTeam) {
+		savedId = saved.id;
+		sync(saved.members.flatMap((slug) => (dex.has(slug) ? [toMember(dex.get(slug)!)] : [])));
+		window.scrollTo({ top: 0, behavior: "smooth" });
 	}
 
 	function add(entry: DexListEntry) {
@@ -123,6 +150,12 @@
 			</li>
 		{/each}
 	</ul>
+
+	{#if page.data.accountsEnabled}
+		<div class="mt-8">
+			<SavedTeams {team} bind:savedId idsBySlug={(slug) => dex.get(slug)?.id} onopen={openSaved} />
+		</div>
+	{/if}
 
 	{#if team.length}
 		<div class="mt-14 grid gap-14">
