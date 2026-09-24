@@ -3,4 +3,7 @@ export interface NavItem {
   label: string;
 }
 
-export const navItems: NavItem[] = [{ href: "/", label: "Pokédex" }];
+export const navItems: NavItem[] = [
+  { href: "/", label: "Pokédex" },
+  { href: "/types", label: "Types" },
+];
