@@ -14,7 +14,7 @@
 <section {id} aria-labelledby="{id}-title" class="scroll-mt-36">
 	<div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
 		<div>
-			<h2 id="{id}-title" class="font-display text-2xl font-semibold tracking-tight">{title}</h2>
+			<h2 id="{id}-title" class="section-title">{title}</h2>
 			{#if description}
 				<p class="mt-1 max-w-prose text-sm text-muted-foreground">{description}</p>
 			{/if}

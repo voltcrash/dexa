@@ -89,7 +89,7 @@
 
 <div class="mx-auto max-w-7xl px-4 pt-10 pb-8 sm:px-6">
 	<div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
-		<h1 class="font-display text-4xl font-semibold tracking-tight sm:text-5xl">Pokédex</h1>
+		<h1 class="page-title">Pokédex</h1>
 		<p class="text-muted-foreground tabular">{count.format(data.speciesCount)} species across nine generations</p>
 	</div>
 
@@ -104,7 +104,7 @@
 				aria-label="Search Pokémon"
 				autocomplete="off"
 				spellcheck={false}
-				class="h-12 rounded-xl bg-card pr-10 pl-11 text-base md:text-base"
+				class="h-11 rounded-lg bg-card pr-10 pl-11 text-base md:text-base"
 			/>
 			{#if query.q}
 				<button

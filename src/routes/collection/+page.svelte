@@ -72,14 +72,14 @@
 </svelte:head>
 
 <div class="mx-auto max-w-7xl px-4 pt-10 pb-8 sm:px-6">
-	<h1 class="font-display text-4xl font-semibold tracking-tight sm:text-5xl">Your collection</h1>
+	<h1 class="page-title">Your collection</h1>
 
 	{#if !data.configured}
 		<p class="mt-6 text-muted-foreground">Accounts aren’t set up on this deployment, so collections can’t be saved.</p>
 	{:else if !species.length || collection.status !== "ready"}
 		<div class="mt-8 grid gap-4">
-			<Skeleton class="h-24 w-full rounded-2xl" />
-			<Skeleton class="h-64 w-full rounded-2xl" />
+			<Skeleton class="h-24 w-full rounded-lg" />
+			<Skeleton class="h-64 w-full rounded-lg" />
 		</div>
 	{:else}
 		<p class="mt-3 max-w-prose text-muted-foreground">
@@ -87,7 +87,7 @@
 		</p>
 
 		<section aria-labelledby="progress-title" class="mt-8 grid gap-6 lg:grid-cols-[1.2fr_1fr]">
-			<div class="rounded-2xl border bg-card p-6">
+			<div class="rounded-lg border bg-card p-6">
 				<h2 id="progress-title" class="sr-only">Progress</h2>
 				<p class="font-display text-5xl font-semibold tabular">
 					{count.format(caughtCount)}
@@ -106,7 +106,7 @@
 					</div>
 				</dl>
 			</div>
-			<div class="rounded-2xl border bg-card p-6">
+			<div class="rounded-lg border bg-card p-6">
 				<h3 class="font-medium">By generation</h3>
 				<dl class="mt-4 grid gap-2.5">
 					{#each byGeneration as row (row.gen.id)}
@@ -142,7 +142,7 @@
 							onclick={() => collection.toggle(entry.id, 'caught')}
 							style:--tint="var(--type-{entry.types[0]})"
 							class={cn(
-								"flex w-full flex-col items-center rounded-xl border p-2 text-center transition-colors",
+								"flex w-full flex-col items-center rounded-lg border p-2 text-center transition-colors",
 								state.caught ? "tint-field border-transparent" : "bg-card hover:border-foreground/30",
 							)}
 						>

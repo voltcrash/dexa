@@ -92,7 +92,7 @@
 
 		{#each methods as m (m)}
 			<Tabs.Content value={m} class="mt-4">
-				<div class="overflow-x-auto rounded-xl border bg-card {loading ? 'opacity-60' : ''}">
+				<div class="overflow-x-auto rounded-lg border bg-card {loading ? 'opacity-60' : ''}">
 					<table class="w-full min-w-[40rem] text-sm">
 						<thead class="border-b text-left text-xs text-muted-foreground">
 							<tr>

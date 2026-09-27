@@ -7,7 +7,7 @@
 
 {#if ratio}
 	<div class="grid gap-1.5">
-		<div class="flex h-2 overflow-hidden rounded-full bg-muted" aria-hidden="true">
+		<div class="flex h-2 overflow-hidden rounded-sm bg-muted" aria-hidden="true">
 			<div class="bg-[#3d7dd8]" style:width="{ratio.male}%"></div>
 			<div class="bg-[#e0569b]" style:width="{ratio.female}%"></div>
 		</div>

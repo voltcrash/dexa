@@ -30,7 +30,7 @@
 				<ArrowLeftIcon class="size-4" />
 				All moves
 			</a>
-			<h1 class="mt-4 font-display text-4xl font-semibold tracking-tight sm:text-6xl">{move.name}</h1>
+			<h1 class="mt-4 page-title">{move.name}</h1>
 			<div class="mt-4 flex flex-wrap items-center gap-2">
 				<TypeBadge type={move.type} size="lg" href="/moves?type={move.type}" />
 				<DamageClassIcon value={move.damageClass} class="h-8 px-3 text-sm" />
@@ -51,7 +51,7 @@
 	</div>
 
 	<section aria-labelledby="learned-title" class="mx-auto max-w-7xl px-4 py-12 sm:px-6">
-		<h2 id="learned-title" class="font-display text-2xl font-semibold tracking-tight">
+		<h2 id="learned-title" class="section-title">
 			Learned by {data.learnedBy.length} Pokémon
 		</h2>
 		{#if data.learnedBy.length}

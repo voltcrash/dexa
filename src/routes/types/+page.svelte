@@ -33,14 +33,14 @@
 </svelte:head>
 
 <div class="mx-auto max-w-7xl px-4 pt-10 pb-8 sm:px-6">
-	<h1 class="font-display text-4xl font-semibold tracking-tight sm:text-5xl">Type chart</h1>
+	<h1 class="page-title">Type chart</h1>
 	<p class="mt-3 max-w-prose text-muted-foreground">
 		Rows attack, columns defend. Pick one or two defending types to see how every attack lands against that combination.
 	</p>
 
-	<section aria-labelledby="calculator-title" class="mt-10 rounded-2xl border bg-card p-5 sm:p-6">
+	<section aria-labelledby="calculator-title" class="mt-10 rounded-lg border bg-card p-5 sm:p-6">
 		<div class="flex flex-wrap items-center justify-between gap-3">
-			<h2 id="calculator-title" class="font-display text-xl font-semibold">Defense calculator</h2>
+			<h2 id="calculator-title" class="section-title">Defense calculator</h2>
 			{#if defenders.length}
 				<Button variant="ghost" size="sm" onclick={() => setDefenders([])}>Clear</Button>
 			{/if}

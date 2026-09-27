@@ -16,11 +16,11 @@
 		aria-current={current ? "page" : undefined}
 		style:--tint="var(--type-{node.types[0]})"
 		class={cn(
-			"group flex w-40 shrink-0 flex-col items-center gap-1 rounded-2xl border border-transparent p-3 text-center transition-colors hover:border-(--tint)",
+			"group flex w-40 shrink-0 flex-col items-center gap-1 rounded-lg border border-transparent p-3 text-center transition-colors hover:border-(--tint)",
 			current && "border-(--tint) bg-card",
 		)}
 	>
-		<div class="tint-field w-full rounded-xl p-2">
+		<div class="tint-field w-full rounded-md p-2">
 			<PokemonArt id={node.speciesId} name={node.name} width={192} widths={[192, 256]} sizes="140px" />
 		</div>
 		<span class="mt-1 text-xs text-muted-foreground tabular">{dexNumber(node.speciesId)}</span>

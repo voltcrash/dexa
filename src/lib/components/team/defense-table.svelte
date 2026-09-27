@@ -19,7 +19,7 @@
 	}
 </script>
 
-<div class="overflow-x-auto rounded-2xl border bg-card">
+<div class="overflow-x-auto rounded-lg border bg-card">
 	<table class="w-full min-w-[36rem] text-sm">
 		<caption class="sr-only">Damage each team member takes from each attacking type</caption>
 		<thead class="border-b text-xs text-muted-foreground">

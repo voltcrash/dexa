@@ -100,10 +100,10 @@
 </script>
 
 {#if signedIn}
-	<section aria-labelledby="saved-title" class="rounded-2xl border bg-card p-5 sm:p-6">
+	<section aria-labelledby="saved-title" class="rounded-lg border bg-card p-5 sm:p-6">
 		<div class="flex flex-wrap items-center justify-between gap-3">
 			<div>
-				<h2 id="saved-title" class="font-display text-xl font-semibold">Your teams</h2>
+				<h2 id="saved-title" class="section-title">Your teams</h2>
 				{#if current}
 					<p class="mt-1 text-sm text-muted-foreground">Editing “{current.name}”.</p>
 				{/if}
