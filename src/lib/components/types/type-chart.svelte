@@ -21,7 +21,7 @@
 	}
 </script>
 
-<div class="overflow-x-auto rounded-2xl border bg-card p-3">
+<div class="overflow-x-auto rounded-lg border bg-card p-3">
 	<table class="mx-auto border-separate border-spacing-0.5 text-xs" onmouseleave={() => (hover = null)}>
 		<caption class="sr-only">Damage multiplier of each attacking type (rows) against each defending type (columns)</caption>
 		<thead>

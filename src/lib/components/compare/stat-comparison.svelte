@@ -31,15 +31,15 @@
 	<div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
 		{#each rows as row (row.label)}
 			{@const best = Math.max(...row.values)}
-			<figure class="rounded-2xl border bg-card p-4">
+			<figure class="rounded-lg border bg-card p-4">
 				<figcaption class="text-sm font-medium">{row.label}</figcaption>
 				<ul class="mt-3 grid gap-1.5">
 					{#each series as s, i (s.name)}
 						{@const value = row.values[i]}
 						<li class="group grid grid-cols-[1fr_2.5rem] items-center gap-2" title="{s.name}: {value} {row.label}">
-							<span class="h-2 overflow-hidden rounded-full bg-muted">
+							<span class="h-2 overflow-hidden rounded-sm bg-muted">
 								<span
-									class="block h-full rounded-full transition-[width] duration-500"
+									class="block h-full rounded-sm transition-[width] duration-500"
 									style:width="{(value / row.max) * 100}%"
 									style:background-color={s.color}
 								></span>

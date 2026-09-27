@@ -91,7 +91,7 @@
 
 <div class="mx-auto max-w-3xl px-4 pt-10 pb-8 sm:px-6">
 	<div class="flex flex-wrap items-end justify-between gap-4">
-		<h1 class="font-display text-4xl font-semibold tracking-tight sm:text-5xl">Who’s that Pokémon?</h1>
+		<h1 class="page-title">Who’s that Pokémon?</h1>
 		<dl class="flex gap-6 text-sm">
 			<div>
 				<dt class="text-muted-foreground">Streak</dt>
@@ -129,7 +129,7 @@
 	</div>
 
 	<div
-		class="relative mt-6 overflow-hidden rounded-[2.5rem] p-6 sm:p-8 transition-colors duration-500 {outcome === 'playing' ? 'bg-secondary' : 'tint-field'}"
+		class="relative mt-6 overflow-hidden rounded-lg p-6 sm:p-8 transition-colors duration-500 {outcome === 'playing' ? 'bg-secondary' : 'tint-field'}"
 		style:--tint={current ? `var(--type-${current.types[0]})` : undefined}
 	>
 		{#if current}

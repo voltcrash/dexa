@@ -31,3 +31,13 @@ export function statRanges(stats: BaseStats, level: number): [number, number][] 
     ];
   });
 }
+
+/** Lower bound of each rating band, from poor (1) to exceptional (6). */
+const STAT_BANDS = [0, 50, 80, 100, 120, 150] as const;
+
+/** Rating band of a base stat, used to color stat bars from 1 (poor) to 6 (exceptional). */
+export function statBand(base: number): 1 | 2 | 3 | 4 | 5 | 6 {
+  let band = 1;
+  for (let i = 0; i < STAT_BANDS.length; i++) if (base >= STAT_BANDS[i]) band = i + 1;
+  return band as 1 | 2 | 3 | 4 | 5 | 6;
+}

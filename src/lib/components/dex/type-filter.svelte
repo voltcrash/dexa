@@ -16,7 +16,7 @@
 <div
 	role="group"
 	aria-label="Filter by type"
-	class="-mx-4 flex gap-1.5 overflow-x-auto px-4 pb-1 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0"
+	class="-mx-4 flex gap-1 overflow-x-auto px-4 pb-1 [scrollbar-width:none] sm:mx-0 sm:grid sm:grid-cols-6 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-9"
 >
 	{#each TYPES as type (type)}
 		{@const active = selected.includes(type)}
@@ -26,14 +26,14 @@
 			onclick={() => toggle(type)}
 			style:--chip="var(--type-{type})"
 			class={cn(
-				"inline-flex h-7 shrink-0 items-center gap-1.5 rounded-full border px-2.5 text-xs font-medium transition-colors",
+				"inline-flex h-8 shrink-0 items-center gap-2 rounded-sm border px-2.5 text-xs font-medium transition-colors",
 				active
 					? cn("border-transparent bg-(--chip)", typeTextClass(type))
 					: "bg-card text-muted-foreground hover:border-(--chip) hover:text-foreground",
 			)}
 		>
 			<span
-				class={cn("size-2 rounded-full", active ? "bg-current opacity-60" : "bg-(--chip)")}
+				class={cn("h-3 w-1 rounded-full", active ? "bg-current opacity-50" : "bg-(--chip)")}
 				aria-hidden="true"
 			></span>
 			{titleCase(type)}

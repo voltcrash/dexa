@@ -48,13 +48,13 @@
 </svelte:head>
 
 <div class="mx-auto max-w-md px-4 py-16 sm:px-6">
-	<h1 class="font-display text-3xl font-semibold tracking-tight">
+	<h1 class="page-title">
 		{mode === "sign-in" ? "Sign in to Dexa" : "Create your Dexa account"}
 	</h1>
 	<p class="mt-2 text-muted-foreground">Track the Pokémon you’ve caught and keep your teams on every device.</p>
 
 	{#if !data.configured}
-		<p class="mt-8 rounded-xl border bg-card p-4 text-sm">
+		<p class="mt-8 rounded-lg border bg-card p-4 text-sm">
 			Accounts aren’t set up on this deployment. Set <code>DATABASE_URL</code> and <code>BETTER_AUTH_SECRET</code> to
 			enable them.
 		</p>

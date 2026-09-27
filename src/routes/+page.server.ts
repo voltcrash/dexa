@@ -10,6 +10,7 @@ export const load: PageServerLoad = ({ url, setHeaders }) => {
   setHeaders({ "cache-control": "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400" });
   return {
     query,
+    view: url.searchParams.get("view") === "grid" ? ("grid" as const) : ("list" as const),
     initial: results.slice(0, INITIAL_COUNT),
     total: results.length,
     speciesCount: pokemonList.filter((p) => p.isDefault).length,

@@ -1,15 +1,19 @@
 <script lang="ts">
+	import LayoutGridIcon from "@lucide/svelte/icons/layout-grid";
+	import ListIcon from "@lucide/svelte/icons/list";
 	import SearchIcon from "@lucide/svelte/icons/search";
 	import XIcon from "@lucide/svelte/icons/x";
 	import { onMount } from "svelte";
 	import { replaceState } from "$app/navigation";
 	import { page } from "$app/state";
+	import DexTable from "$lib/components/dex/dex-table.svelte";
 	import DexTile from "$lib/components/dex/dex-tile.svelte";
 	import FilterControls from "$lib/components/dex/filter-controls.svelte";
 	import TypeFilter from "$lib/components/dex/type-filter.svelte";
 	import { Button } from "$lib/components/ui/button/index.js";
 	import * as Empty from "$lib/components/ui/empty/index.js";
 	import { Input } from "$lib/components/ui/input/index.js";
+	import * as ToggleGroup from "$lib/components/ui/toggle-group/index.js";
 	import { loadDexList } from "$lib/dex/client.js";
 	import {
 		DEFAULT_QUERY,
@@ -30,6 +34,7 @@
 	let query = $derived<DexQuery>({ ...data.query });
 	let all = $state<DexListEntry[] | null>(null);
 	let limit = $state(PAGE_SIZE);
+	let view = $derived(data.view);
 
 	const results = $derived(all ? queryDex(all, query) : data.initial);
 	const total = $derived(all ? results.length : data.total);
@@ -40,11 +45,23 @@
 		loadDexList().then((entries) => (all = entries));
 	});
 
+	function syncUrl() {
+		const params = toSearchParams(query);
+		if (view === "grid") params.set("view", "grid");
+		const search = params.toString().replaceAll("%2C", ",");
+		replaceState(search ? `?${search}` : page.url.pathname, page.state);
+	}
+
 	function update(next: Partial<DexQuery>) {
 		query = { ...query, ...next };
 		limit = PAGE_SIZE;
-		const search = toSearchParams(query).toString().replaceAll("%2C", ",");
-		replaceState(search ? `?${search}` : page.url.pathname, page.state);
+		syncUrl();
+	}
+
+	function setView(next: string) {
+		if (next !== "list" && next !== "grid") return;
+		view = next;
+		syncUrl();
 	}
 
 	function highlight(entry: DexListEntry) {
@@ -72,7 +89,7 @@
 
 <div class="mx-auto max-w-7xl px-4 pt-10 pb-8 sm:px-6">
 	<div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
-		<h1 class="font-display text-4xl font-semibold tracking-tight sm:text-5xl">Pokédex</h1>
+		<h1 class="page-title">Pokédex</h1>
 		<p class="text-muted-foreground tabular">{count.format(data.speciesCount)} species across nine generations</p>
 	</div>
 
@@ -87,7 +104,7 @@
 				aria-label="Search Pokémon"
 				autocomplete="off"
 				spellcheck={false}
-				class="h-12 rounded-xl bg-card pr-10 pl-11 text-base md:text-base"
+				class="h-11 rounded-lg bg-card pr-10 pl-11 text-base md:text-base"
 			/>
 			{#if query.q}
 				<button
@@ -105,23 +122,37 @@
 		<FilterControls {query} onchange={update} />
 	</div>
 
-	<div class="mt-6 flex h-8 items-center gap-3 text-sm text-muted-foreground" aria-live="polite">
-		<span class="tabular">{count.format(total)} {total === 1 ? "result" : "results"}</span>
+	<div class="mt-6 flex h-8 items-center gap-3 text-sm text-muted-foreground">
+		<span class="tabular" aria-live="polite">{count.format(total)} {total === 1 ? "result" : "results"}</span>
 		{#if isFiltered(query)}
 			<Button variant="link" size="sm" class="h-auto px-0" onclick={() => update({ ...DEFAULT_QUERY, sort: query.sort, desc: query.desc })}>
 				Clear filters
 			</Button>
 		{/if}
+		<ToggleGroup.Root type="single" variant="outline" size="sm" value={view} onValueChange={setView} aria-label="Layout" class="ml-auto">
+			<ToggleGroup.Item value="list" aria-label="List" title="List">
+				<ListIcon />
+			</ToggleGroup.Item>
+			<ToggleGroup.Item value="grid" aria-label="Grid" title="Grid">
+				<LayoutGridIcon />
+			</ToggleGroup.Item>
+		</ToggleGroup.Root>
 	</div>
 
 	{#if visible.length}
-		<ul class="mt-2 grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-			{#each visible as entry, index (entry.id)}
-				<li>
-					<DexTile {entry} highlight={highlight(entry)} eager={index < 12} />
-				</li>
-			{/each}
-		</ul>
+		{#if view === "list"}
+			<div class="mt-2">
+				<DexTable entries={visible} {query} eager={12} onsort={(sort, desc) => update({ sort, desc })} />
+			</div>
+		{:else}
+			<ul class="mt-2 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+				{#each visible as entry, index (entry.id)}
+					<li>
+						<DexTile {entry} highlight={highlight(entry)} eager={index < 12} />
+					</li>
+				{/each}
+			</ul>
+		{/if}
 		{#if all && limit < results.length}
 			<div {@attach loadMore} class="h-px" aria-hidden="true"></div>
 		{/if}

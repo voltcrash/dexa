@@ -25,7 +25,7 @@
 				<ArrowLeftIcon class="size-4" />
 				All abilities
 			</a>
-			<h1 class="mt-4 font-display text-4xl font-semibold tracking-tight sm:text-6xl">{data.ability.name}</h1>
+			<h1 class="mt-4 page-title">{data.ability.name}</h1>
 			<p class="mt-2 text-muted-foreground">
 				Introduced in Generation {GENERATIONS[data.ability.generation - 1]?.numeral ?? data.ability.generation}
 			</p>
@@ -39,7 +39,7 @@
 	<div class="mx-auto grid max-w-7xl gap-12 px-4 py-12 sm:px-6">
 		{#each groups as group (group.id)}
 			<section aria-labelledby="{group.id}-title">
-				<h2 id="{group.id}-title" class="font-display text-2xl font-semibold tracking-tight">
+				<h2 id="{group.id}-title" class="section-title">
 					{group.title}
 					<span class="text-lg font-medium text-muted-foreground tabular">{group.entries.length}</span>
 				</h2>

@@ -41,13 +41,13 @@
 </svelte:head>
 
 <div class="mx-auto max-w-7xl px-4 pt-10 pb-8 sm:px-6">
-	<h1 class="font-display text-4xl font-semibold tracking-tight sm:text-5xl">Compare</h1>
+	<h1 class="page-title">Compare</h1>
 	<p class="mt-3 max-w-prose text-muted-foreground">Put up to four Pokémon side by side.</p>
 
 	<ul class="mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
 		{#each entries as entry, i (entry.slug)}
 			<li class="relative" style:--tint="var(--type-{entry.types[0]})">
-				<a href="/pokemon/{entry.slug}" class="tint-field block rounded-2xl p-[10%]">
+				<a href="/pokemon/{entry.slug}" class="tint-field block rounded-lg p-[10%]">
 					<PokemonArt id={entry.id} name={entry.name} width={256} widths={[256, 384]} sizes="(min-width: 1024px) 280px, 45vw" />
 				</a>
 				<div class="mt-3 flex items-center gap-2 px-1">
@@ -63,7 +63,7 @@
 				<button
 					type="button"
 					onclick={() => setSlugs(entries.filter((e) => e.slug !== entry.slug).map((e) => e.slug))}
-					class="absolute top-2 right-2 grid size-7 place-items-center rounded-full bg-background/85 text-muted-foreground backdrop-blur hover:text-foreground"
+					class="absolute top-2 right-2 grid size-7 place-items-center rounded-md bg-card text-muted-foreground hover:text-foreground"
 					aria-label="Remove {entry.name}"
 				>
 					<XIcon class="size-4" />
@@ -75,7 +75,7 @@
 				<button
 					type="button"
 					onclick={() => (pickerOpen = true)}
-					class="flex aspect-square w-full flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed text-sm text-muted-foreground transition-colors hover:border-primary hover:text-foreground"
+					class="flex aspect-square w-full flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed text-sm text-muted-foreground transition-colors hover:border-primary hover:text-foreground"
 				>
 					<PlusIcon class="size-6" />
 					Add Pokémon
@@ -87,14 +87,14 @@
 	{#if entries.length}
 		<div class="mt-14 grid gap-14">
 			<section aria-labelledby="stats-title">
-				<h2 id="stats-title" class="font-display text-2xl font-semibold tracking-tight">Base stats</h2>
+				<h2 id="stats-title" class="section-title">Base stats</h2>
 				<div class="mt-5">
 					<StatComparison {series} />
 				</div>
 			</section>
 
 			<section aria-labelledby="matchups-title">
-				<h2 id="matchups-title" class="font-display text-2xl font-semibold tracking-tight">Type matchups</h2>
+				<h2 id="matchups-title" class="section-title">Type matchups</h2>
 				<p class="mt-1 text-sm text-muted-foreground">Damage each Pokémon takes from every attacking type.</p>
 				<div class="mt-5">
 					<DefenseTable team={entries} rows={teamDefense(entries)} />
@@ -102,8 +102,8 @@
 			</section>
 
 			<section aria-labelledby="profile-title">
-				<h2 id="profile-title" class="font-display text-2xl font-semibold tracking-tight">Profile</h2>
-				<div class="mt-5 overflow-x-auto rounded-2xl border bg-card">
+				<h2 id="profile-title" class="section-title">Profile</h2>
+				<div class="mt-5 overflow-x-auto rounded-lg border bg-card">
 					<table class="w-full min-w-[36rem] text-sm">
 						<thead class="border-b text-left text-xs text-muted-foreground">
 							<tr>

@@ -32,7 +32,7 @@
 
 <div class="mx-auto max-w-5xl px-4 pt-10 pb-8 sm:px-6">
 	<div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
-		<h1 class="font-display text-4xl font-semibold tracking-tight sm:text-5xl">Abilities</h1>
+		<h1 class="page-title">Abilities</h1>
 		<p class="text-muted-foreground tabular">{data.abilities.length} abilities</p>
 	</div>
 
@@ -45,14 +45,14 @@
 			placeholder="Search abilities"
 			aria-label="Search abilities"
 			autocomplete="off"
-			class="h-12 rounded-xl bg-card pl-11 text-base md:text-base"
+			class="h-11 rounded-lg bg-card pl-11 text-base md:text-base"
 		/>
 	</div>
 
 	<p class="mt-6 text-sm text-muted-foreground tabular" aria-live="polite">
 		{results.length} {results.length === 1 ? "result" : "results"}
 	</p>
-	<ul class="mt-3 divide-y rounded-xl border bg-card">
+	<ul class="mt-3 divide-y rounded-lg border bg-card">
 		{#each results as ability (ability.slug)}
 			<li>
 				<a href="/abilities/{ability.slug}" class="flex items-start justify-between gap-6 px-4 py-3 hover:bg-secondary/60">

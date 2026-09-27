@@ -19,7 +19,7 @@
 	}
 </script>
 
-<div class="overflow-x-auto rounded-2xl border bg-card">
+<div class="overflow-x-auto rounded-lg border bg-card">
 	<table class="w-full min-w-[36rem] text-sm">
 		<caption class="sr-only">Damage each team member takes from each attacking type</caption>
 		<thead class="border-b text-xs text-muted-foreground">
@@ -38,7 +38,7 @@
 				<tr class={cn(danger && "bg-[#c8102e]/6")}>
 					<th scope="row" class="px-3 py-1.5 text-left">
 						<span
-							class={cn("inline-flex h-6 w-20 items-center rounded-full px-2.5 text-xs font-medium", typeTextClass(row.attack))}
+							class={cn("inline-flex h-6 w-20 items-center justify-center rounded-sm px-2 text-xs font-medium", typeTextClass(row.attack))}
 							style:background-color="var(--type-{row.attack})"
 						>
 							{titleCase(row.attack)}

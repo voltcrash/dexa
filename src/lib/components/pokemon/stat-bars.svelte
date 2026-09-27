@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as ToggleGroup from "$lib/components/ui/toggle-group/index.js";
-	import { MAX_BASE_STAT, statRanges } from "$lib/pokemon/stats.js";
+	import { MAX_BASE_STAT, statBand, statRanges } from "$lib/pokemon/stats.js";
 	import { STAT_KEYS, STAT_LABELS, type BaseStats } from "$lib/pokemon/types.js";
 
 	let { stats }: { stats: BaseStats } = $props();
@@ -26,7 +26,7 @@
 		</ToggleGroup.Root>
 	</div>
 
-	<table class="w-full border-separate border-spacing-y-2 text-sm">
+	<table class="w-full text-sm">
 		<thead class="sr-only">
 			<tr>
 				<th scope="col">Stat</th>
@@ -37,16 +37,17 @@
 		</thead>
 		<tbody>
 			{#each STAT_KEYS as key, i (key)}
-				<tr>
-					<th scope="row" class="w-20 pr-3 text-left font-normal text-muted-foreground">
+				<tr class="border-b">
+					<th scope="row" class="w-20 py-2 pr-3 text-left font-normal text-muted-foreground">
 						{STAT_LABELS[key].long}
 					</th>
 					<td class="w-10 pr-3 text-right font-semibold tabular">{stats[i]}</td>
 					<td>
-						<div class="h-2.5 overflow-hidden rounded-full bg-muted">
+						<div class="h-2 overflow-hidden rounded-sm bg-muted">
 							<div
-								class="h-full rounded-full bg-tint transition-[width] duration-500"
+								class="h-full rounded-sm transition-[width] duration-500"
 								style:width="{Math.min(100, (stats[i] / MAX_BASE_STAT) * 100)}%"
+								style:background-color="var(--stat-{statBand(stats[i])})"
 							></div>
 						</div>
 					</td>
@@ -56,8 +57,8 @@
 				</tr>
 			{/each}
 			<tr>
-				<th scope="row" class="pt-2 pr-3 text-left font-medium">Total</th>
-				<td class="pt-2 pr-3 text-right font-semibold tabular">{total}</td>
+				<th scope="row" class="py-2 pr-3 text-left font-medium">Total</th>
+				<td class="py-2 pr-3 text-right font-semibold tabular">{total}</td>
 				<td colspan="2"></td>
 			</tr>
 		</tbody>

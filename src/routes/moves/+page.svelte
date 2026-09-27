@@ -64,7 +64,7 @@
 
 <div class="mx-auto max-w-7xl px-4 pt-10 pb-8 sm:px-6">
 	<div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
-		<h1 class="font-display text-4xl font-semibold tracking-tight sm:text-5xl">Moves</h1>
+		<h1 class="page-title">Moves</h1>
 		<p class="text-muted-foreground tabular">{data.moves.length} moves</p>
 	</div>
 
@@ -78,7 +78,7 @@
 				placeholder="Search moves"
 				aria-label="Search moves"
 				autocomplete="off"
-				class="h-12 rounded-xl bg-card pl-11 text-base md:text-base"
+				class="h-11 rounded-lg bg-card pl-11 text-base md:text-base"
 			/>
 		</div>
 		<TypeFilter selected={query.types} onchange={(types) => update({ types: types.slice(-1) })} />
@@ -120,7 +120,7 @@
 		{results.length} {results.length === 1 ? "result" : "results"}
 	</p>
 
-	<div class="mt-3 overflow-x-auto rounded-xl border bg-card">
+	<div class="mt-3 overflow-x-auto rounded-lg border bg-card">
 		<table class="w-full min-w-[44rem] text-sm">
 			<thead class="border-b text-left text-xs text-muted-foreground">
 				<tr>

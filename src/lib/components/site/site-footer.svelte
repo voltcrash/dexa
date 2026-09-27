@@ -1,4 +1,4 @@
-<footer class="mt-24 border-t">
+<footer class="mt-20 border-t bg-card">
 	<div
 		class="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-8 text-sm text-muted-foreground sm:px-6 md:flex-row md:justify-between"
 	>

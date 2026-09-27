@@ -95,7 +95,7 @@
 			<Command.Group heading="Types">
 				{#each types as type (type)}
 					<Command.Item value="type-{type}" onSelect={() => open(`/?type=${type}`)}>
-						<span class="size-3 rounded-full" style:background-color="var(--type-{type})"></span>
+						<span class="h-3.5 w-1 rounded-full" style:background-color="var(--type-{type})"></span>
 						All {titleCase(type)} Pokémon
 					</Command.Item>
 				{/each}

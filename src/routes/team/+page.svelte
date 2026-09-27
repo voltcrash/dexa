@@ -13,7 +13,7 @@
 	import { loadDexList } from "$lib/dex/client.js";
 	import type { DexListEntry } from "$lib/dex/list.js";
 	import { STAT_KEYS, STAT_LABELS } from "$lib/pokemon/types.js";
-	import { MAX_BASE_STAT } from "$lib/pokemon/stats.js";
+	import { MAX_BASE_STAT, statBand } from "$lib/pokemon/stats.js";
 	import {
 		TEAM_SIZE,
 		averageStats,
@@ -122,7 +122,7 @@
 <div class="mx-auto max-w-7xl px-4 pt-10 pb-8 sm:px-6">
 	<div class="flex flex-wrap items-end justify-between gap-4">
 		<div>
-			<h1 class="font-display text-4xl font-semibold tracking-tight sm:text-5xl">Team builder</h1>
+			<h1 class="page-title">Team builder</h1>
 			<p class="mt-3 max-w-prose text-muted-foreground">
 				Pick up to six Pokémon. Dexa checks which attacks your team struggles against and which types it can hit hard.
 			</p>
@@ -160,9 +160,9 @@
 	{#if team.length}
 		<div class="mt-14 grid gap-14">
 			<section aria-labelledby="summary-title">
-				<h2 id="summary-title" class="font-display text-2xl font-semibold tracking-tight">Summary</h2>
+				<h2 id="summary-title" class="section-title">Summary</h2>
 				<div class="mt-5 grid gap-6 md:grid-cols-2">
-					<div class="rounded-2xl border bg-card p-5">
+					<div class="rounded-lg border bg-card p-5">
 						<h3 class="font-medium">Shared weaknesses</h3>
 						{#if weaknesses.length}
 							<p class="mt-1 text-sm text-muted-foreground">
@@ -177,7 +177,7 @@
 							<p class="mt-1 text-sm text-muted-foreground">No attacking type hits several members without an answer.</p>
 						{/if}
 					</div>
-					<div class="rounded-2xl border bg-card p-5">
+					<div class="rounded-lg border bg-card p-5">
 						<h3 class="font-medium">Not covered by same-type attacks</h3>
 						{#if uncovered.length}
 							<p class="mt-1 text-sm text-muted-foreground">
@@ -196,7 +196,7 @@
 			</section>
 
 			<section aria-labelledby="defense-title">
-				<h2 id="defense-title" class="font-display text-2xl font-semibold tracking-tight">Defensive matchups</h2>
+				<h2 id="defense-title" class="section-title">Defensive matchups</h2>
 				<p class="mt-1 max-w-prose text-sm text-muted-foreground">
 					Damage each member takes from every attacking type. Highlighted rows are shared weaknesses.
 				</p>
@@ -206,14 +206,14 @@
 			</section>
 
 			<section aria-labelledby="stats-title">
-				<h2 id="stats-title" class="font-display text-2xl font-semibold tracking-tight">Average base stats</h2>
+				<h2 id="stats-title" class="section-title">Average base stats</h2>
 				<dl class="mt-5 grid max-w-3xl gap-2.5">
 					{#each STAT_KEYS as key, i (key)}
 						<div class="grid grid-cols-[5rem_2.5rem_1fr] items-center gap-3 text-sm">
 							<dt class="text-muted-foreground">{STAT_LABELS[key].long}</dt>
 							<dd class="text-right font-semibold tabular">{averages[i]}</dd>
-							<dd class="h-2.5 overflow-hidden rounded-full bg-muted">
-								<div class="h-full rounded-full bg-primary" style:width="{(averages[i] / MAX_BASE_STAT) * 100}%"></div>
+							<dd class="h-2 overflow-hidden rounded-sm bg-muted">
+								<div class="h-full rounded-sm" style:width="{(averages[i] / MAX_BASE_STAT) * 100}%" style:background-color="var(--stat-{statBand(averages[i])})"></div>
 							</dd>
 						</div>
 					{/each}

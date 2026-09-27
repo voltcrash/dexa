@@ -4,7 +4,7 @@
   "description": "The last Pokédex you will ever need.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f5f6f8",
-  "theme_color": "#cc2e0b",
+  "background_color": "#f3f4f6",
+  "theme_color": "#16181d",
   "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
 }

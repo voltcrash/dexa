@@ -11,7 +11,7 @@
 
 <div class="mx-auto flex max-w-2xl flex-col items-start px-4 py-24 sm:px-6">
 	<p class="font-display text-6xl font-semibold text-muted-foreground/50 tabular">{page.status}</p>
-	<h1 class="mt-4 font-display text-3xl font-semibold tracking-tight">
+	<h1 class="mt-4 page-title">
 		{notFound ? "This page isn’t in the Pokédex" : "Something went wrong"}
 	</h1>
 	<p class="mt-3 text-muted-foreground">
