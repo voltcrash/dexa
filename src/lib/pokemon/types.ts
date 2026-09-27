@@ -29,7 +29,7 @@ export function isTypeName(value: string): value is TypeName {
 const LIGHT_TEXT_TYPES = new Set<TypeName>(["fighting", "poison", "ghost", "dragon", "dark"]);
 
 export function typeTextClass(type: TypeName): string {
-  return LIGHT_TEXT_TYPES.has(type) ? "text-white" : "text-[#1c2340]";
+  return LIGHT_TEXT_TYPES.has(type) ? "text-white" : "text-[#16181d]";
 }
 
 export function typeColorVar(type: string): string {

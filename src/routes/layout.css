@@ -1,32 +1,32 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn-svelte/tailwind.css";
-@import "@fontsource-variable/onest";
-@import "@fontsource-variable/unbounded";
+@import "@fontsource-variable/archivo/wdth.css";
 
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --radius: 0.75rem;
+  --radius: 0.5rem;
 
-  --background: #f5f6f8;
-  --foreground: #1c2340;
+  /* Chrome stays neutral so type colors are the only hues on the page. */
+  --background: #f3f4f6;
+  --foreground: #16181d;
   --card: #ffffff;
-  --card-foreground: #1c2340;
+  --card-foreground: #16181d;
   --popover: #ffffff;
-  --popover-foreground: #1c2340;
-  --primary: #cc2e0b;
+  --popover-foreground: #16181d;
+  --primary: #16181d;
   --primary-foreground: #ffffff;
-  --secondary: #e9ecf2;
-  --secondary-foreground: #1c2340;
-  --muted: #eceef3;
-  --muted-foreground: #5b6478;
-  --accent: #e6e9f0;
-  --accent-foreground: #1c2340;
+  --secondary: #e8eaee;
+  --secondary-foreground: #16181d;
+  --muted: #eceef1;
+  --muted-foreground: #5c6370;
+  --accent: #e4e7eb;
+  --accent-foreground: #16181d;
   --destructive: #c8102e;
-  --border: #dde1e8;
-  --input: #d3d8e1;
-  --ring: #cc2e0b;
+  --border: #dcdfe4;
+  --input: #d0d4da;
+  --ring: #2f6feb;
 
   /* Canonical type palette; text color on each is chosen for contrast. */
   --type-normal: #a8a77a;
@@ -60,24 +60,24 @@
 }
 
 .dark {
-  --background: #0f1528;
-  --foreground: #e8ebf3;
-  --card: #161d33;
-  --card-foreground: #e8ebf3;
-  --popover: #1a2239;
-  --popover-foreground: #e8ebf3;
-  --primary: #ff6a47;
-  --primary-foreground: #0f1528;
-  --secondary: #1f2842;
-  --secondary-foreground: #e8ebf3;
-  --muted: #1b2339;
-  --muted-foreground: #98a1b8;
-  --accent: #232d49;
-  --accent-foreground: #e8ebf3;
+  --background: #131417;
+  --foreground: #e9eaec;
+  --card: #1b1d21;
+  --card-foreground: #e9eaec;
+  --popover: #212328;
+  --popover-foreground: #e9eaec;
+  --primary: #e9eaec;
+  --primary-foreground: #131417;
+  --secondary: #24262b;
+  --secondary-foreground: #e9eaec;
+  --muted: #202226;
+  --muted-foreground: #989da7;
+  --accent: #282b31;
+  --accent-foreground: #e9eaec;
   --destructive: #ff5c6c;
-  --border: #262f4a;
-  --input: #2e3855;
-  --ring: #ff6a47;
+  --border: #2b2e34;
+  --input: #363940;
+  --ring: #6ea0ff;
 
   --series-1: #3987e5;
   --series-2: #d95926;
@@ -86,14 +86,13 @@
 }
 
 @theme inline {
-  --font-sans: "Onest Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Unbounded Variable", "Onest Variable", ui-sans-serif, sans-serif;
+  --font-sans: "Archivo Variable", ui-sans-serif, system-ui, sans-serif;
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  --radius-2xl: calc(var(--radius) + 10px);
+  --radius-xl: calc(var(--radius) + 2px);
+  --radius-2xl: calc(var(--radius) + 4px);
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -151,7 +150,6 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    font-feature-settings: "ss01";
   }
 
   :focus-visible {
@@ -159,25 +157,23 @@
   }
 }
 
+/* Archivo's width axis: expanded for headings, condensed for dense figures. */
 @utility font-display {
-  font-family: var(--font-display);
-  font-feature-settings: "tnum";
+  font-stretch: 118%;
+  font-variant-numeric: tabular-nums;
+}
+
+@utility font-condensed {
+  font-stretch: 82%;
 }
 
 @utility tabular {
   font-variant-numeric: tabular-nums;
 }
 
-/* A soft field of the current tint, used behind artwork. */
+/* A flat wash of the current tint, used behind artwork. */
 @utility tint-field {
-  background:
-    radial-gradient(
-      circle at 50% 55%,
-      color-mix(in oklab, var(--tint) 38%, transparent) 0%,
-      color-mix(in oklab, var(--tint) 14%, transparent) 55%,
-      transparent 72%
-    ),
-    color-mix(in oklab, var(--tint) 12%, var(--card));
+  background: color-mix(in oklab, var(--tint) 16%, var(--card));
 }
 
 @media (prefers-reduced-motion: reduce) {

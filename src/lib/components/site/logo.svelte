@@ -5,8 +5,7 @@
 </script>
 
 <svg viewBox="0 0 32 32" aria-hidden="true" class={cn("size-7 shrink-0", className)}>
-	<rect width="32" height="32" rx="9" class="fill-primary" />
-	<circle cx="16" cy="16" r="9" fill="#fff" />
-	<circle cx="16" cy="16" r="5.5" fill="#3d7dd8" />
-	<circle cx="14" cy="14" r="1.8" fill="#fff" opacity=".85" />
+	<rect width="32" height="32" rx="7" class="fill-foreground" />
+	<circle cx="16" cy="16" r="8.5" fill="none" stroke-width="3" class="stroke-background" />
+	<circle cx="16" cy="16" r="3.5" fill="#e3350d" />
 </svg>

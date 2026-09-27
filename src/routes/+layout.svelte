@@ -21,7 +21,7 @@
 	<meta name="description" content="A fast, complete Pokédex: every Pokémon, move, ability and type matchup, plus a team builder and collection tracker." />
 </svelte:head>
 
-<ModeWatcher themeColors={{ light: "#f5f6f8", dark: "#0f1528" }} />
+<ModeWatcher themeColors={{ light: "#f3f4f6", dark: "#131417" }} />
 <Toaster position="bottom-center" />
 <CommandPalette />
 {#if data.accountsEnabled}
