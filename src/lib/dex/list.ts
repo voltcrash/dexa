@@ -1,5 +1,6 @@
 import type { DexEntry } from "$lib/data/types.js";
 import { STAT_KEYS, isTypeName, type StatKey, type TypeName } from "$lib/pokemon/types.js";
+import { matchesFilters, parseSearch, wantsForms } from "./filters.js";
 import { matchScore, parseDexNumber } from "./search.js";
 
 /** The slim entry sent to the browser for browsing and search. */
@@ -14,15 +15,20 @@ export type DexListEntry = Pick<
   | "types"
   | "stats"
   | "generation"
+  | "height"
+  | "weight"
   | "legendary"
   | "mythical"
   | "baby"
   | "final"
->;
+> & {
+  /** Ability slugs, hidden ability included. */
+  abilities: string[];
+};
 
 export function toListEntry(entry: DexEntry): DexListEntry {
   const { id, slug, name, speciesId, form, isDefault, types, stats, generation } = entry;
-  const { legendary, mythical, baby, final } = entry;
+  const { height, weight, legendary, mythical, baby, final } = entry;
   return {
     id,
     slug,
@@ -33,6 +39,9 @@ export function toListEntry(entry: DexEntry): DexListEntry {
     types,
     stats,
     generation,
+    height,
+    weight,
+    abilities: entry.abilities.map((a) => a.slug),
     legendary,
     mythical,
     baby,
@@ -128,24 +137,32 @@ function compare(a: DexListEntry, b: DexListEntry, sort: SortKey, desc: boolean)
   return a.speciesId - b.speciesId || a.id - b.id;
 }
 
-/** Filter, search and sort entries. Search relevance wins over the chosen sort. */
+/**
+ * Filter, search and sort entries. The search text may carry filters such as `spe>100`;
+ * name relevance wins over the chosen sort.
+ */
 export function queryDex(entries: readonly DexListEntry[], query: DexQuery): DexListEntry[] {
-  const dexNumber = parseDexNumber(query.q);
+  const search = parseSearch(query.q);
+  const text = search.text.trim();
+  const dexNumber = parseDexNumber(text);
+  // Alternate forms surface for name searches and form filters even when forms are hidden.
+  const forms = query.forms || Boolean(text) || wantsForms(search.filters);
   const scored: { entry: DexListEntry; score: number }[] = [];
 
   for (const entry of entries) {
-    if (!query.forms && !entry.isDefault && !query.q) continue;
+    if (!forms && !entry.isDefault) continue;
     if (query.types.some((t) => !entry.types.includes(t))) continue;
     if (query.gens.length && !query.gens.includes(entry.generation)) continue;
     if (query.tags.length && !query.tags.every((tag) => entry[tag])) continue;
+    if (!matchesFilters(entry, search.filters)) continue;
 
     let score = 0;
     if (dexNumber !== null) {
       if (entry.speciesId !== dexNumber) continue;
-    } else if (query.q) {
-      const match = matchScore(query.q, entry.name);
+    } else if (text) {
+      const match = matchScore(text, entry.name);
       if (match === null) continue;
-      // Alternate forms only surface for searches when forms are hidden, and rank after defaults.
+      // With forms hidden, forms found by name rank after default forms.
       score = match * 2 + (entry.isDefault ? 0 : 1);
     }
     scored.push({ entry, score });
