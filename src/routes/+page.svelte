@@ -10,6 +10,8 @@
 	import DexTile from "$lib/components/dex/dex-tile.svelte";
 	import DexWall from "$lib/components/dex/dex-wall.svelte";
 	import FilterControls from "$lib/components/dex/filter-controls.svelte";
+	import SearchFilters from "$lib/components/dex/search-filters.svelte";
+	import SearchTips from "$lib/components/dex/search-tips.svelte";
 	import TypeFilter from "$lib/components/dex/type-filter.svelte";
 	import { Button } from "$lib/components/ui/button/index.js";
 	import * as Empty from "$lib/components/ui/empty/index.js";
@@ -122,7 +124,7 @@
 			type="search"
 			value={query.q}
 			oninput={(event) => update({ q: event.currentTarget.value })}
-			placeholder="Search by name or number"
+			placeholder="Search by name, number or filters like spe>100 type:fire"
 			aria-label="Search Pokémon"
 			autocomplete="off"
 			spellcheck={false}
@@ -139,8 +141,14 @@
 			</button>
 		{/if}
 	</div>
+	<div class="mt-2 flex items-start gap-2">
+		<div class="min-w-0 flex-1">
+			<SearchFilters q={query.q} onchange={(q) => update({ q })} />
+		</div>
+		<SearchTips onpick={(example) => update({ q: `${query.q.trim()} ${example}`.trim() })} />
+	</div>
 
-	<section aria-label="Dex wall" class="mt-4 rounded-lg border bg-card p-4 sm:p-5">
+	<section aria-label="Dex wall" class="mt-2 rounded-lg border bg-card p-4 sm:p-5">
 		<div class="mb-4 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
 			<p class="text-muted-foreground tabular" aria-live="polite">
 				{#if matches}
