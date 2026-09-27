@@ -1,5 +1,6 @@
 <script lang="ts">
 	import PokemonArt from "$lib/components/pokemon/pokemon-art.svelte";
+	import StatShape from "$lib/components/pokemon/stat-shape.svelte";
 	import TypeBadge from "$lib/components/pokemon/type-badge.svelte";
 	import type { DexListEntry } from "$lib/dex/list.js";
 	import { dexNumber } from "$lib/pokemon/format.js";
@@ -29,7 +30,8 @@
 			</span>
 		{/if}
 	</div>
-	<div class="px-1.5 pt-2 pb-1">
+	<div class="relative px-1.5 pt-2 pb-1">
+		<StatShape stats={entry.stats} class="absolute top-2 right-1.5 size-7" />
 		<p class="text-xs text-muted-foreground tabular font-condensed">{dexNumber(entry.speciesId)}</p>
 		<p class="leading-snug font-medium text-balance group-hover:underline group-hover:underline-offset-4">
 			{entry.name}
