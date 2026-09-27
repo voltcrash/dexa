@@ -13,7 +13,7 @@
 	import { loadDexList } from "$lib/dex/client.js";
 	import type { DexListEntry } from "$lib/dex/list.js";
 	import { STAT_KEYS, STAT_LABELS } from "$lib/pokemon/types.js";
-	import { MAX_BASE_STAT } from "$lib/pokemon/stats.js";
+	import { MAX_BASE_STAT, statBand } from "$lib/pokemon/stats.js";
 	import {
 		TEAM_SIZE,
 		averageStats,
@@ -212,8 +212,8 @@
 						<div class="grid grid-cols-[5rem_2.5rem_1fr] items-center gap-3 text-sm">
 							<dt class="text-muted-foreground">{STAT_LABELS[key].long}</dt>
 							<dd class="text-right font-semibold tabular">{averages[i]}</dd>
-							<dd class="h-2.5 overflow-hidden rounded-full bg-muted">
-								<div class="h-full rounded-full bg-primary" style:width="{(averages[i] / MAX_BASE_STAT) * 100}%"></div>
+							<dd class="h-2 overflow-hidden rounded-sm bg-muted">
+								<div class="h-full rounded-sm" style:width="{(averages[i] / MAX_BASE_STAT) * 100}%" style:background-color="var(--stat-{statBand(averages[i])})"></div>
 							</dd>
 						</div>
 					{/each}

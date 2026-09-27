@@ -52,6 +52,14 @@
 
   --tint: var(--type-normal);
 
+  /* Base stat rating bands, poor to exceptional. */
+  --stat-1: #e5533d;
+  --stat-2: #ef8a3a;
+  --stat-3: #e6bd2e;
+  --stat-4: #8fc049;
+  --stat-5: #35ad88;
+  --stat-6: #3a8fd6;
+
   /* Categorical series for comparisons, validated for color vision deficiency. */
   --series-1: #2a78d6;
   --series-2: #eb6834;
