@@ -12,11 +12,11 @@
 
 	const classes = $derived(
 		cn(
-			"inline-flex items-center justify-center rounded-full font-medium whitespace-nowrap",
+			"inline-flex items-center justify-center rounded-sm font-medium whitespace-nowrap",
 			typeTextClass(type),
-			size === "sm" && "h-5 px-2 text-[0.6875rem]",
-			size === "md" && "h-6 px-2.5 text-xs",
-			size === "lg" && "h-8 px-3.5 text-sm",
+			size === "sm" && "h-5 min-w-14 px-1.5 text-[0.6875rem]",
+			size === "md" && "h-6 min-w-16 px-2 text-xs",
+			size === "lg" && "h-8 min-w-20 px-3 text-sm",
 			className,
 		),
 	);

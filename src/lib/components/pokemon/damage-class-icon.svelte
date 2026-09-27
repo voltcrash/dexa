@@ -12,7 +12,7 @@
 </script>
 
 <span
-	class={cn("inline-flex h-5 items-center gap-1 rounded-full px-2 text-[0.6875rem] font-medium", {
+	class={cn("inline-flex h-5 items-center gap-1 rounded-sm px-1.5 text-[0.6875rem] font-medium", {
 		"bg-[#f4d9cf] text-[#8a2f12] dark:bg-[#4a2418] dark:text-[#ffb59c]": value === "physical",
 		"bg-[#d7e2f7] text-[#233f86] dark:bg-[#1c2d52] dark:text-[#a8c2ff]": value === "special",
 		"bg-muted text-muted-foreground": value === "status",
