@@ -85,6 +85,30 @@
   --series-4: #c98500;
 }
 
+/* A deep wash of the current type behind light text. Pair with .dark so dark: variants apply inside. */
+.dark.type-band {
+  --band: color-mix(in oklab, var(--tint) 50%, #0d0e11);
+  --background: var(--band);
+  --foreground: #ffffff;
+  --muted-foreground: color-mix(in oklab, #ffffff 74%, var(--band));
+  --muted: color-mix(in oklab, #ffffff 10%, var(--band));
+  --secondary: color-mix(in oklab, #ffffff 14%, var(--band));
+  --secondary-foreground: #ffffff;
+  --border: color-mix(in oklab, #ffffff 22%, var(--band));
+  --input: color-mix(in oklab, #ffffff 30%, var(--band));
+  --primary: #ffffff;
+  --primary-foreground: #16181d;
+  background: var(--band);
+  color: var(--foreground);
+}
+
+/* Fixing lightness keeps every type equally dark without draining its hue. */
+@supports (color: oklch(from red l c h)) {
+  .dark.type-band {
+    --band: oklch(from var(--tint) 0.38 calc(c * 0.55) h);
+  }
+}
+
 @theme inline {
   --font-sans: "Archivo Variable", ui-sans-serif, system-ui, sans-serif;
 

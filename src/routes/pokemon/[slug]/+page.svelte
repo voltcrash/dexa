@@ -1,10 +1,9 @@
 <script lang="ts">
-	import ArrowLeftIcon from "@lucide/svelte/icons/arrow-left";
-	import ArrowRightIcon from "@lucide/svelte/icons/arrow-right";
 	import DetailSection from "$lib/components/pokemon/detail-section.svelte";
 	import EvolutionChain from "$lib/components/pokemon/evolution-chain.svelte";
 	import FormList from "$lib/components/pokemon/form-list.svelte";
 	import LearnsetTable from "$lib/components/pokemon/learnset-table.svelte";
+	import PokemonAbout from "$lib/components/pokemon/pokemon-about.svelte";
 	import PokemonHero from "$lib/components/pokemon/pokemon-hero.svelte";
 	import StatBars from "$lib/components/pokemon/stat-bars.svelte";
 	import TrainingBreeding from "$lib/components/pokemon/training-breeding.svelte";
@@ -19,6 +18,7 @@
 
 	const sections = $derived(
 		[
+			{ id: "about", label: "About" },
 			{ id: "stats", label: "Stats" },
 			{ id: "matchups", label: "Matchups" },
 			detail.evolution ? { id: "evolution", label: "Evolution" } : false,
@@ -37,33 +37,13 @@
 </svelte:head>
 
 <article style:--tint="var(--type-{entry.types[0]})">
-	<div class="border-b bg-[color-mix(in_oklab,var(--tint)_7%,var(--background))]">
-		<nav aria-label="Adjacent Pokémon" class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 pt-5 text-sm sm:px-6">
-			{#if detail.prev}
-				<a href="/pokemon/{detail.prev.slug}" class="flex items-center gap-1.5 text-muted-foreground hover:text-foreground" data-sveltekit-preload-data="hover">
-					<ArrowLeftIcon class="size-4" />
-					<span class="tabular">{dexNumber(detail.prev.speciesId)}</span>
-					<span class="hidden sm:inline">{detail.prev.name}</span>
-				</a>
-			{:else}
-				<span></span>
-			{/if}
-			{#if detail.next}
-				<a href="/pokemon/{detail.next.slug}" class="flex items-center gap-1.5 text-muted-foreground hover:text-foreground" data-sveltekit-preload-data="hover">
-					<span class="hidden sm:inline">{detail.next.name}</span>
-					<span class="tabular">{dexNumber(detail.next.speciesId)}</span>
-					<ArrowRightIcon class="size-4" />
-				</a>
-			{/if}
-		</nav>
-		<PokemonHero {detail} />
-	</div>
+	<PokemonHero {detail} />
 
-	<nav aria-label="Sections" class="sticky top-14 z-30 border-b bg-background/90 backdrop-blur-md">
-		<ul class="mx-auto flex max-w-7xl gap-1 overflow-x-auto px-4 py-2 [scrollbar-width:none] sm:px-6">
+	<nav aria-label="Sections" class="sticky top-[6.125rem] z-30 border-b bg-card lg:top-14">
+		<ul class="mx-auto flex max-w-7xl gap-6 overflow-x-auto px-4 [scrollbar-width:none] sm:px-6">
 			{#each sections as section (section.id)}
 				<li class="shrink-0">
-					<a href="#{section.id}" class="block rounded-md px-3 py-1.5 text-sm text-muted-foreground hover:bg-secondary hover:text-foreground">
+					<a href="#{section.id}" class="block border-y-2 border-transparent py-2.5 text-sm text-muted-foreground hover:border-b-(--tint) hover:text-foreground">
 						{section.label}
 					</a>
 				</li>
@@ -71,7 +51,11 @@
 		</ul>
 	</nav>
 
-	<div class="mx-auto grid max-w-7xl gap-16 px-4 py-12 sm:px-6">
+	<div class="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)] gap-14 px-4 py-10 sm:px-6">
+		<DetailSection id="about" title="About">
+			<PokemonAbout {detail} />
+		</DetailSection>
+
 		<DetailSection id="stats" title="Base stats">
 			<div class="max-w-3xl">
 				<StatBars stats={entry.stats} />
