@@ -1,10 +1,12 @@
 <script lang="ts">
 	import DicesIcon from "@lucide/svelte/icons/dices";
 	import FileTextIcon from "@lucide/svelte/icons/file-text";
+	import ListFilterIcon from "@lucide/svelte/icons/list-filter";
 	import { goto } from "$app/navigation";
 	import TypeBadge from "$lib/components/pokemon/type-badge.svelte";
 	import * as Command from "$lib/components/ui/command/index.js";
 	import { loadDexList } from "$lib/dex/client.js";
+	import { parseSearch } from "$lib/dex/filters.js";
 	import { DEFAULT_QUERY, queryDex, type DexListEntry } from "$lib/dex/list.js";
 	import { matchScore } from "$lib/dex/search.js";
 	import { optimizedImage } from "$lib/images.js";
@@ -27,7 +29,9 @@
 		if (!palette.open) search = "";
 	});
 
-	const pokemon = $derived(search.trim() ? queryDex(entries, { ...DEFAULT_QUERY, q: search }).slice(0, 8) : []);
+	const matches = $derived(search.trim() ? queryDex(entries, { ...DEFAULT_QUERY, q: search }) : []);
+	const pokemon = $derived(matches.slice(0, 8));
+	const filtered = $derived(parseSearch(search).filters.length > 0);
 	const types = $derived(search.trim() ? TYPES.filter((t) => matchScore(search, t) !== null).slice(0, 3) : []);
 	const pages = $derived(navItems.filter((item) => !search.trim() || matchScore(search, item.label) !== null));
 
@@ -61,9 +65,18 @@
 	description="Find a Pokémon, type or page"
 	class="sm:max-w-xl"
 >
-	<Command.Input bind:value={search} placeholder="Search Pokémon, types and pages" />
+	<Command.Input bind:value={search} placeholder="Search Pokémon, types and pages, or try spe>100" />
 	<Command.List class="max-h-[min(60vh,28rem)]">
 		<Command.Empty>No matches. Try a name or a dex number such as 25.</Command.Empty>
+
+		{#if filtered && matches.length}
+			<Command.Group heading="Filters">
+				<Command.Item value="all-matches" onSelect={() => open(`/?q=${encodeURIComponent(search.trim())}`)}>
+					<ListFilterIcon />
+					See all {matches.length} matches in the Pokédex
+				</Command.Item>
+			</Command.Group>
+		{/if}
 
 		{#if pokemon.length}
 			<Command.Group heading="Pokémon">
