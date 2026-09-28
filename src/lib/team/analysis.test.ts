@@ -4,6 +4,7 @@ import {
   parseTeam,
   sharedWeaknesses,
   teamDefense,
+  suggestTeammates,
   teamOffense,
   type TeamMember,
 } from "./analysis.js";
@@ -52,5 +53,31 @@ describe("team analysis", () => {
       "c",
       "d",
     ]);
+  });
+});
+
+describe("suggestTeammates", () => {
+  it("prefers Pokémon that resist the team's shared weaknesses", () => {
+    const pool = [
+      { ...member("rhydon", ["ground", "rock"], [105, 130, 120, 45, 45, 40]), speciesId: 112 },
+      { ...member("magnezone", ["electric", "steel"], [70, 70, 115, 130, 90, 60]), speciesId: 462 },
+      { ...member("pidgeot", ["normal", "flying"], [83, 80, 75, 70, 70, 101]), speciesId: 18 },
+    ];
+    const [first, ...rest] = suggestTeammates(team, pool);
+    expect(first.entry.slug).toBe("magnezone");
+    expect(first.covers).toEqual(expect.arrayContaining(["rock", "ice"]));
+    // Pidgeot adds a fourth Rock weakness and patches nothing.
+    expect(rest.map((s) => s.entry.slug)).not.toContain("pidgeot");
+  });
+
+  it("skips species already on the team and full teams", () => {
+    const pool = [{ ...member("charizard", ["fire", "flying"]), speciesId: 1 }];
+    expect(suggestTeammates(team, pool)).toEqual([]);
+    expect(
+      suggestTeammates(
+        Array.from({ length: 6 }, () => team[0]),
+        pool,
+      ),
+    ).toEqual([]);
   });
 });
