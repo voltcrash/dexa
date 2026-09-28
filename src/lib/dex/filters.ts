@@ -1,4 +1,5 @@
 import { effectiveness } from "$lib/pokemon/matchups.js";
+import { isRoleTerm, roleMatches, statRole } from "$lib/pokemon/role.js";
 import { GENERATIONS } from "$lib/pokemon/generations.js";
 import { titleCase } from "$lib/pokemon/format.js";
 import {
@@ -35,7 +36,8 @@ type FilterBody =
   | { kind: "weak" | "resist" | "immune"; type: TypeName }
   | { kind: "gen"; from: number; to: number }
   | { kind: "is"; flag: IsFlag }
-  | { kind: "ability"; slug: string };
+  | { kind: "ability"; slug: string }
+  | { kind: "role"; term: string };
 
 /** A filter read from a search, with the token it came from. */
 export type Filter = FilterBody & { raw: string; negate: boolean };
@@ -70,7 +72,9 @@ const MEASURES: Record<string, Measure> = {
   wt: "weight",
 };
 
-const KEYS: Record<string, "type" | "weak" | "resist" | "immune" | "gen" | "is" | "ability"> = {
+type Key = "type" | "weak" | "resist" | "immune" | "gen" | "is" | "ability" | "role";
+
+const KEYS: Record<string, Key> = {
   type: "type",
   t: "type",
   weak: "weak",
@@ -84,6 +88,7 @@ const KEYS: Record<string, "type" | "weak" | "resist" | "immune" | "gen" | "is" 
   is: "is",
   ability: "ability",
   a: "ability",
+  role: "role",
 };
 
 const IS_ALIASES: Record<string, IsFlag> = {
@@ -167,6 +172,8 @@ function parseToken(token: string): FilterBody | null | undefined {
     }
     case "ability":
       return { kind: "ability", slug: value.replace(/[\s_]+/g, "-") };
+    case "role":
+      return isRoleTerm(value) ? { kind: "role", term: value.replace(/[\s_]+/g, "-") } : null;
   }
 }
 
@@ -249,6 +256,8 @@ function test(entry: DexListEntry, filter: Filter): boolean {
       return hasFlag(entry, filter.flag);
     case "ability":
       return entry.abilities.some((slug) => normalize(slug) === normalize(filter.slug));
+    case "role":
+      return roleMatches(statRole(entry.stats), filter.term);
   }
 }
 
@@ -323,6 +332,10 @@ export function describeFilter(filter: Filter): string {
       return not ? `Not ${FLAG_LABELS[filter.flag].toLowerCase()}` : FLAG_LABELS[filter.flag];
     case "ability":
       return `${not ? "Without" : "Has"} ${titleCase(filter.slug)}`;
+    case "role": {
+      const role = filter.term.replace(/-/g, " ");
+      return not ? `Not ${role}` : `${role[0].toUpperCase()}${role.slice(1)}`;
+    }
   }
 }
 
@@ -343,6 +356,10 @@ export const SEARCH_EXAMPLES = [
   {
     query: "is:legendary",
     description: `Also ${IS_FLAGS.filter((f) => f !== "legendary").join(", ")}`,
+  },
+  {
+    query: "role:sweeper",
+    description: "Role from base stats, like wall, tank or special-sweeper",
   },
   { query: "height>2", description: "Height in metres or weight in kilograms" },
   { query: "-type:flying", description: "Put - before any filter to exclude it" },
