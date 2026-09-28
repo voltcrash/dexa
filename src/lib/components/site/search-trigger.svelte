@@ -15,7 +15,7 @@
 	variant="outline"
 	size="sm"
 	onclick={() => (palette.open = true)}
-	class="hidden w-60 justify-start gap-2 bg-background text-muted-foreground sm:flex dark:bg-background"
+	class="hidden w-60 justify-start gap-2 lg:w-44 xl:w-60 bg-background text-muted-foreground sm:flex dark:bg-background"
 >
 	<SearchIcon />
 	Search Pokémon

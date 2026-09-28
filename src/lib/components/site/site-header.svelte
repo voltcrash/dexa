@@ -17,14 +17,14 @@
 </script>
 
 <header class="sticky top-0 z-40 border-b bg-card">
-	<div class="mx-auto flex h-14 max-w-7xl items-center gap-8 px-4 sm:px-6">
+	<div class="mx-auto flex h-14 max-w-7xl items-center gap-6 px-4 sm:px-6 xl:gap-8">
 		<a href="/" class="flex items-center gap-2 rounded-md" aria-label="Dexa home">
 			<Logo class="size-6" />
 			<span class="font-display text-lg font-bold tracking-tight">dexa</span>
 		</a>
 
 		<nav aria-label="Main" class="hidden self-stretch lg:block">
-			<ul class="flex h-full items-stretch gap-5">
+			<ul class="flex h-full items-stretch gap-4 xl:gap-5">
 				{#each navItems as item (item.href)}
 					<li>
 						<a
