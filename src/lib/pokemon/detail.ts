@@ -1,6 +1,7 @@
 import type { DexEntry } from "$lib/data/types.js";
 import type { DexListEntry } from "$lib/dex/list.js";
 import type { EvolutionNode } from "./evolution-tree.js";
+import type { Counter, StatTwin } from "./insights.js";
 import type { Learnset } from "./learnset.js";
 
 export interface FlavorEntry {
@@ -32,4 +33,8 @@ export interface PokemonDetail {
   cries: { latest: string | null; legacy: string | null };
   prev: DexListEntry | null;
   next: DexListEntry | null;
+  /** Percent of species each base stat beats, in STAT_KEYS order, then the total. */
+  percentiles: number[];
+  twins: StatTwin<DexListEntry>[];
+  counters: Counter<DexListEntry>[];
 }

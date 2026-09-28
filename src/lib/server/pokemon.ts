@@ -7,11 +7,31 @@ import { buildEvolutionTree } from "$lib/pokemon/evolution-tree.js";
 import { buildLearnset, type Learnset } from "$lib/pokemon/learnset.js";
 import { cleanFlavorText, titleCase, versionName } from "$lib/pokemon/format.js";
 import type { FlavorEntry, PokemonDetail } from "$lib/pokemon/detail.js";
+import {
+  closestStats,
+  findCounters,
+  statDistribution,
+  statPercentiles,
+} from "$lib/pokemon/insights.js";
 import { STAT_KEYS } from "$lib/pokemon/types.js";
-import { abilitiesBySlug, formsOfSpecies, movesBySlug, pokemon, pokemonBySlug } from "./dex.js";
+import {
+  abilitiesBySlug,
+  formsOfSpecies,
+  movesBySlug,
+  pokemon,
+  pokemonBySlug,
+  pokemonList,
+} from "./dex.js";
 
 const defaults = pokemon.filter((p) => p.isDefault);
 const defaultsBySpecies = new Map(defaults.map((p) => [p.speciesId, p]));
+
+const allSpecies = pokemonList.filter((p) => p.isDefault);
+const distribution = statDistribution(allSpecies);
+// Counters are drawn from fully evolved, everyday Pokémon that someone could actually bring.
+const counterPool = allSpecies.filter(
+  (p) => p.final && !p.legendary && !p.mythical && p.stats.reduce((a, b) => a + b, 0) >= 450,
+);
 
 function flavorEntries(species: ApiPokemonSpecies): FlavorEntry[] {
   const byText = new Map<string, string[]>();
@@ -84,6 +104,9 @@ export async function getPokemonDetail(
     cries: api.cries,
     prev: neighbour(-1),
     next: neighbour(1),
+    percentiles: statPercentiles(entry.stats, distribution),
+    twins: closestStats(entry, allSpecies),
+    counters: findCounters(entry, counterPool),
   };
 }
 
