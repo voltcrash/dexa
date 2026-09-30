@@ -11,5 +11,6 @@ export const navItems: NavItem[] = [
   { href: "/types", label: "Types" },
   { href: "/team", label: "Team builder" },
   { href: "/compare", label: "Compare" },
+  { href: "/daily", label: "Daily" },
   { href: "/quiz", label: "Quiz" },
 ];
