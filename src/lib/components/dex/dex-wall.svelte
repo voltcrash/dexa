@@ -1,13 +1,11 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import PokemonArt from "$lib/components/pokemon/pokemon-art.svelte";
-	import StatShape from "$lib/components/pokemon/stat-shape.svelte";
-	import TypeBadge from "$lib/components/pokemon/type-badge.svelte";
-	import { statTotal, type DexListEntry } from "$lib/dex/list.js";
+	import PokemonPeek from "$lib/components/pokemon/pokemon-peek.svelte";
+	import type { DexListEntry } from "$lib/dex/list.js";
 	import { heatBand, type WallColor } from "$lib/dex/wall.js";
 	import { dexNumber, titleCase } from "$lib/pokemon/format.js";
 	import { GENERATIONS } from "$lib/pokemon/generations.js";
-	import { STAT_KEYS, STAT_LABELS, type TypeName } from "$lib/pokemon/types.js";
+	import type { TypeName } from "$lib/pokemon/types.js";
 	import { cn } from "$lib/utils.js";
 
 	let {
@@ -213,46 +211,14 @@
 	</div>
 
 	{#if current && card}
-		{@const total = statTotal(current)}
 		<div
 			class="pointer-events-none absolute z-20 w-64 max-w-full rounded-lg border bg-popover p-3 text-popover-foreground shadow-lg"
 			style:left="{card.left}px"
 			style:top="{card.top}px"
 			style:translate={card.above ? "0 -100%" : undefined}
-			style:--tint="var(--type-{current.types[0]})"
 			aria-hidden="true"
 		>
-			<div class="flex items-center gap-3">
-				<span class="tint-field grid size-16 shrink-0 place-items-center rounded-md p-1">
-					{#key current.id}
-						<PokemonArt id={current.id} name="" width={96} widths={[96, 192]} sizes="64px" eager />
-					{/key}
-				</span>
-				<div class="min-w-0">
-					<p class="text-xs text-muted-foreground tabular font-condensed">{dexNumber(current.speciesId)}</p>
-					<p class="truncate leading-tight font-semibold">{current.name}</p>
-					<div class="mt-1.5 flex gap-1">
-						{#each current.types as type (type)}
-							<TypeBadge {type} size="sm" />
-						{/each}
-					</div>
-				</div>
-			</div>
-			<div class="mt-3 flex items-center gap-3 border-t pt-3">
-				<StatShape stats={current.stats} class="size-12" />
-				<dl class="grid flex-1 grid-cols-3 gap-x-2 gap-y-0.5 text-xs">
-					{#each STAT_KEYS as key, i (key)}
-						<div class={cn("flex justify-between gap-1", color === key && "font-semibold")}>
-							<dt class="text-muted-foreground">{STAT_LABELS[key].short}</dt>
-							<dd class="tabular">{current.stats[i]}</dd>
-						</div>
-					{/each}
-				</dl>
-			</div>
-			<p class={cn("mt-2 flex justify-between text-xs", color === "total" && "font-semibold")}>
-				<span class="text-muted-foreground">Base stat total</span>
-				<span class="tabular">{total}</span>
-			</p>
+			<PokemonPeek entry={current} emphasis={[color]} />
 		</div>
 	{/if}
 </div>
