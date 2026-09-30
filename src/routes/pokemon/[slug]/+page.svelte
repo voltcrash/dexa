@@ -1,4 +1,5 @@
 <script lang="ts">
+	import CounterList from "$lib/components/pokemon/counter-list.svelte";
 	import DetailSection from "$lib/components/pokemon/detail-section.svelte";
 	import EvolutionChain from "$lib/components/pokemon/evolution-chain.svelte";
 	import FormList from "$lib/components/pokemon/form-list.svelte";
@@ -7,6 +8,7 @@
 	import PokemonHero from "$lib/components/pokemon/pokemon-hero.svelte";
 	import StatBars from "$lib/components/pokemon/stat-bars.svelte";
 	import TrainingBreeding from "$lib/components/pokemon/training-breeding.svelte";
+	import TwinList from "$lib/components/pokemon/twin-list.svelte";
 	import TypeMatchups from "$lib/components/pokemon/type-matchups.svelte";
 	import { dexNumber } from "$lib/pokemon/format.js";
 	import { artworkUrl } from "$lib/pokemon/sprites.js";
@@ -21,6 +23,8 @@
 			{ id: "about", label: "About" },
 			{ id: "stats", label: "Stats" },
 			{ id: "matchups", label: "Matchups" },
+			{ id: "counters", label: "Counters" },
+			{ id: "similar", label: "Similar" },
 			detail.evolution ? { id: "evolution", label: "Evolution" } : false,
 			detail.forms.length > 1 && { id: "forms", label: "Forms" },
 			{ id: "moves", label: "Moves" },
@@ -58,12 +62,20 @@
 
 		<DetailSection id="stats" title="Base stats">
 			<div class="max-w-3xl">
-				<StatBars stats={entry.stats} />
+				<StatBars stats={entry.stats} percentiles={detail.percentiles} />
 			</div>
 		</DetailSection>
 
 		<DetailSection id="matchups" title="Type matchups" description="Multipliers use the current type chart. Abilities that change damage taken can be applied.">
 			<TypeMatchups types={entry.types} abilities={detail.abilities} />
+		</DetailSection>
+
+		<DetailSection id="counters" title="Counters" description="Fully evolved, non-legendary Pokémon that resist all of {entry.name}’s same-type attacks and hit it super effectively. Judged on types alone, strongest first.">
+			<CounterList counters={detail.counters} types={entry.types} />
+		</DetailSection>
+
+		<DetailSection id="similar" title="Closest stats" description="Other species whose six base stats are nearest to {entry.name}’s.">
+			<TwinList twins={detail.twins} slug={entry.slug} />
 		</DetailSection>
 
 		{#if detail.evolution}

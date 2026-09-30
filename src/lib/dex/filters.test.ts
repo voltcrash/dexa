@@ -110,6 +110,12 @@ describe("matchesFilters", () => {
     expect(pick("ability:roughskin")).toEqual([garchomp]);
   });
 
+  it("filters by role from base stats", () => {
+    expect(pick("role:physical-sweeper")).toEqual([garchomp]);
+    expect(pick("role:special")).toEqual([gengar, megaGengar]);
+    expect(parseSearch("role:healer").invalid).toEqual(["role:healer"]);
+  });
+
   it("negates filters with a leading minus", () => {
     expect(pick("-type:ghost")).toEqual([alolanRaichu, garchomp]);
     expect(pick("!is:form")).toEqual([gengar, garchomp]);

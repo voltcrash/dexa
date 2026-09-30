@@ -3,7 +3,7 @@
 	import { MAX_BASE_STAT, statBand, statRanges } from "$lib/pokemon/stats.js";
 	import { STAT_KEYS, STAT_LABELS, type BaseStats } from "$lib/pokemon/types.js";
 
-	let { stats }: { stats: BaseStats } = $props();
+	let { stats, percentiles }: { stats: BaseStats; percentiles?: number[] } = $props();
 
 	let level = $state("100");
 	const ranges = $derived(statRanges(stats, Number(level)));
@@ -32,6 +32,7 @@
 				<th scope="col">Stat</th>
 				<th scope="col">Base</th>
 				<th scope="col">Distribution</th>
+				{#if percentiles}<th scope="col">Share of species with a lower base stat</th>{/if}
 				<th scope="col">Range at level {level}</th>
 			</tr>
 		</thead>
@@ -51,6 +52,12 @@
 							></div>
 						</div>
 					</td>
+					{#if percentiles}
+						<td class="w-24 pl-4 text-right tabular">
+							<span class="text-muted-foreground">beats</span>
+							{percentiles[i]}%
+						</td>
+					{/if}
 					<td class="w-24 pl-4 text-right text-muted-foreground tabular">
 						{ranges[i][0]}–{ranges[i][1]}
 					</td>
@@ -59,11 +66,19 @@
 			<tr>
 				<th scope="row" class="py-2 pr-3 text-left font-medium">Total</th>
 				<td class="py-2 pr-3 text-right font-semibold tabular">{total}</td>
-				<td colspan="2"></td>
+				<td></td>
+				{#if percentiles}
+					<td class="py-2 pl-4 text-right font-medium tabular">
+						<span class="font-normal text-muted-foreground">beats</span>
+						{percentiles[6]}%
+					</td>
+				{/if}
+				<td></td>
 			</tr>
 		</tbody>
 	</table>
 	<p class="text-xs text-muted-foreground">
+		{#if percentiles}“Beats” is the share of all species with a lower base stat.{/if}
 		Ranges assume 0 IVs, 0 EVs and a hindering nature at the low end, and 31 IVs, 252 EVs and a
 		helpful nature at the high end.
 	</p>

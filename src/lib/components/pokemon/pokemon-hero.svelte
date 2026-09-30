@@ -8,18 +8,23 @@
 	import { Toggle } from "$lib/components/ui/toggle/index.js";
 	import type { PokemonDetail } from "$lib/pokemon/detail.js";
 	import { dexNumber } from "$lib/pokemon/format.js";
+	import { statRole } from "$lib/pokemon/role.js";
 	import CollectionButtons from "./collection-buttons.svelte";
 	import CryButton from "./cry-button.svelte";
+	import FittedName from "./fitted-name.svelte";
 	import PokemonArt from "./pokemon-art.svelte";
+	import ShapePortrait from "./shape-portrait.svelte";
 	import TypeBadge from "./type-badge.svelte";
 
 	let { detail }: { detail: PokemonDetail } = $props();
 
 	let shiny = $state(false);
 	const entry = $derived(detail.entry);
+	const role = $derived(statRole(entry.stats));
+	const roleQuery = $derived(`role:${role.label.toLowerCase().replaceAll(" ", "-")}`);
 </script>
 
-<div class="dark type-band">
+<div class="dark type-band overflow-hidden">
 	<div class="mx-auto max-w-7xl px-4 sm:px-6">
 		<nav aria-label="Adjacent Pokémon" class="flex items-center justify-between gap-4 pt-4 text-sm">
 			{#if detail.prev}
@@ -40,12 +45,10 @@
 			{/if}
 		</nav>
 
-		<div class="grid items-center gap-6 pt-4 pb-8 md:grid-cols-[minmax(0,1fr)_20rem] lg:grid-cols-[minmax(0,1fr)_26rem] lg:pb-10">
-			<div class="order-2 md:order-1">
+		<div class="grid items-center gap-x-10 gap-y-4 pt-2 pb-8 md:grid-cols-[minmax(0,1fr)_22rem] lg:grid-cols-[minmax(0,1fr)_28rem] lg:pb-10">
+			<div class="order-2 min-w-0 md:order-1">
 				<p class="font-display text-xl font-medium text-muted-foreground">{dexNumber(entry.speciesId)}</p>
-				<h1 class="mt-1 font-display text-5xl leading-[0.95] font-bold tracking-tight text-balance sm:text-7xl">
-					{entry.name}
-				</h1>
+				<FittedName name={entry.name} />
 				{#if detail.genus}
 					<p class="mt-3 text-lg text-muted-foreground">{detail.genus}</p>
 				{/if}
@@ -55,7 +58,12 @@
 					{/each}
 				</div>
 
-				<div class="mt-8 flex flex-wrap gap-2">
+				<p class="mt-6 max-w-md text-pretty">
+					<a href="/?q={encodeURIComponent(roleQuery)}" class="font-semibold underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground" title="Find every {role.label.toLowerCase()}">{role.label}.</a>
+					<span class="text-muted-foreground">{role.description}</span>
+				</p>
+
+				<div class="mt-6 flex flex-wrap gap-2">
 					<Button href="/compare?p={entry.slug}" variant="outline" size="sm">
 						<ScaleIcon />
 						Compare
@@ -70,20 +78,22 @@
 				</div>
 			</div>
 
-			<div class="order-1 mx-auto w-full max-w-72 md:order-2 md:max-w-none">
-				{#key `${entry.id}-${shiny}`}
-					<PokemonArt
-						id={entry.id}
-						name={shiny ? `Shiny ${entry.name}` : entry.name}
-						{shiny}
-						eager
-						width={512}
-						widths={[384, 512, 768]}
-						sizes="(min-width: 1024px) 26rem, (min-width: 768px) 20rem, 18rem"
-						class="hero-art drop-shadow-[0_16px_24px_rgb(0_0_0/0.35)]"
-					/>
-				{/key}
-				<div class="mt-2 flex justify-center gap-2">
+			<div class="order-1 mx-auto w-full max-w-80 md:order-2 md:max-w-none">
+				<ShapePortrait stats={entry.stats}>
+					{#key `${entry.id}-${shiny}`}
+						<PokemonArt
+							id={entry.id}
+							name={shiny ? `Shiny ${entry.name}` : entry.name}
+							{shiny}
+							eager
+							width={384}
+							widths={[256, 384, 512]}
+							sizes="(min-width: 1024px) 15rem, (min-width: 768px) 12rem, 11rem"
+							class="hero-art drop-shadow-[0_12px_18px_rgb(0_0_0/0.4)]"
+						/>
+					{/key}
+				</ShapePortrait>
+				<div class="mt-3 flex justify-center gap-2">
 					<Toggle bind:pressed={shiny} variant="outline" size="sm" aria-label="Show shiny coloring">
 						<SparklesIcon />
 						Shiny
