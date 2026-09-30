@@ -8,11 +8,13 @@
 	import { page } from "$app/state";
 	import DexTable from "$lib/components/dex/dex-table.svelte";
 	import DexTile from "$lib/components/dex/dex-tile.svelte";
+	import DexWall from "$lib/components/dex/dex-wall.svelte";
 	import FilterControls from "$lib/components/dex/filter-controls.svelte";
 	import TypeFilter from "$lib/components/dex/type-filter.svelte";
 	import { Button } from "$lib/components/ui/button/index.js";
 	import * as Empty from "$lib/components/ui/empty/index.js";
 	import { Input } from "$lib/components/ui/input/index.js";
+	import * as Select from "$lib/components/ui/select/index.js";
 	import * as ToggleGroup from "$lib/components/ui/toggle-group/index.js";
 	import { loadDexList } from "$lib/dex/client.js";
 	import {
@@ -24,6 +26,7 @@
 		type DexListEntry,
 		type DexQuery,
 	} from "$lib/dex/list.js";
+	import { WALL_COLORS, decodeWallTypes, heatThresholds, type WallColor } from "$lib/dex/wall.js";
 	import { STAT_KEYS, STAT_LABELS, type StatKey } from "$lib/pokemon/types.js";
 
 	let { data } = $props();
@@ -35,11 +38,25 @@
 	let all = $state<DexListEntry[] | null>(null);
 	let limit = $state(PAGE_SIZE);
 	let view = $derived(data.view);
+	let color = $derived<WallColor>(data.color);
 
 	const results = $derived(all ? queryDex(all, query) : data.initial);
 	const total = $derived(all ? results.length : data.total);
 	const visible = $derived(results.slice(0, limit));
 	const count = new Intl.NumberFormat("en");
+
+	const wallTypes = $derived(decodeWallTypes(data.wallTypes));
+	const species = $derived(all ? all.filter((e) => e.isDefault) : null);
+	const matches = $derived.by(() => {
+		if (!all) return data.wallMatches ? new Set(data.wallMatches) : null;
+		return isFiltered(query) ? new Set(results.map((e) => e.speciesId)) : null;
+	});
+
+	const colorLabels: Record<WallColor, string> = {
+		type: "Type",
+		total: "Base stat total",
+		...(Object.fromEntries(STAT_KEYS.map((key) => [key, STAT_LABELS[key].long])) as Record<StatKey, string>),
+	};
 
 	onMount(() => {
 		loadDexList().then((entries) => (all = entries));
@@ -48,6 +65,7 @@
 	function syncUrl() {
 		const params = toSearchParams(query);
 		if (view === "grid") params.set("view", "grid");
+		if (color !== "type") params.set("color", color);
 		const search = params.toString().replaceAll("%2C", ",");
 		replaceState(search ? `?${search}` : page.url.pathname, page.state);
 	}
@@ -61,6 +79,11 @@
 	function setView(next: string) {
 		if (next !== "list" && next !== "grid") return;
 		view = next;
+		syncUrl();
+	}
+
+	function setColor(next: string) {
+		color = next as WallColor;
 		syncUrl();
 	}
 
@@ -88,36 +111,72 @@
 </svelte:head>
 
 <div class="mx-auto max-w-7xl px-4 pt-10 pb-8 sm:px-6">
-	<div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
-		<h1 class="page-title">Pokédex</h1>
-		<p class="text-muted-foreground tabular">{count.format(data.speciesCount)} species across nine generations</p>
+	<h1 class="page-title">Pokédex</h1>
+	<p class="mt-2 max-w-prose text-muted-foreground">
+		All {count.format(data.speciesCount)} species, one square each, in National Dex order. Search or filter to light them up.
+	</p>
+
+	<div class="relative mt-6">
+		<SearchIcon class="pointer-events-none absolute top-1/2 left-3.5 size-5 -translate-y-1/2 text-muted-foreground" />
+		<Input
+			type="search"
+			value={query.q}
+			oninput={(event) => update({ q: event.currentTarget.value })}
+			placeholder="Search by name or number"
+			aria-label="Search Pokémon"
+			autocomplete="off"
+			spellcheck={false}
+			class="h-11 rounded-lg bg-card pr-10 pl-11 text-base md:text-base"
+		/>
+		{#if query.q}
+			<button
+				type="button"
+				onclick={() => update({ q: "" })}
+				class="absolute top-1/2 right-3 -translate-y-1/2 rounded-md p-1 text-muted-foreground hover:text-foreground"
+				aria-label="Clear search"
+			>
+				<XIcon class="size-4" />
+			</button>
+		{/if}
 	</div>
 
-	<div class="mt-8 grid gap-4">
-		<div class="relative">
-			<SearchIcon class="pointer-events-none absolute top-1/2 left-3.5 size-5 -translate-y-1/2 text-muted-foreground" />
-			<Input
-				type="search"
-				value={query.q}
-				oninput={(event) => update({ q: event.currentTarget.value })}
-				placeholder="Search by name or number"
-				aria-label="Search Pokémon"
-				autocomplete="off"
-				spellcheck={false}
-				class="h-11 rounded-lg bg-card pr-10 pl-11 text-base md:text-base"
-			/>
-			{#if query.q}
-				<button
-					type="button"
-					onclick={() => update({ q: "" })}
-					class="absolute top-1/2 right-3 -translate-y-1/2 rounded-md p-1 text-muted-foreground hover:text-foreground"
-					aria-label="Clear search"
-				>
-					<XIcon class="size-4" />
-				</button>
-			{/if}
+	<section aria-label="Dex wall" class="mt-4 rounded-lg border bg-card p-4 sm:p-5">
+		<div class="mb-4 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
+			<p class="text-muted-foreground tabular" aria-live="polite">
+				{#if matches}
+					<span class="font-medium text-foreground">{count.format(matches.size)}</span> of {count.format(data.speciesCount)} species match
+				{:else}
+					Hover a square to preview it, or click to open.
+				{/if}
+			</p>
+			<div class="ml-auto flex flex-wrap items-center gap-x-4 gap-y-2">
+				{#if color !== "type"}
+					{@const thresholds = heatThresholds(color)}
+					<ol class="flex items-center gap-2 text-xs text-muted-foreground tabular" aria-label="{colorLabels[color]} bands">
+						{#each thresholds as low, i (low)}
+							<li class="flex items-center gap-1">
+								<span class="size-2.5 rounded-[2px]" style:background="var(--stat-{i + 1})"></span>
+								{i === thresholds.length - 1 ? `${low}+` : low}
+							</li>
+						{/each}
+					</ol>
+				{/if}
+				<Select.Root type="single" value={color} onValueChange={setColor}>
+					<Select.Trigger size="sm" class="w-48" aria-label="Color squares by">
+						Color: {colorLabels[color]}
+					</Select.Trigger>
+					<Select.Content align="end">
+						{#each WALL_COLORS as key (key)}
+							<Select.Item value={key} label={colorLabels[key]} />
+						{/each}
+					</Select.Content>
+				</Select.Root>
+			</div>
 		</div>
+		<DexWall types={wallTypes} entries={species} {matches} {color} />
+	</section>
 
+	<div class="mt-8 grid gap-4">
 		<TypeFilter selected={query.types} onchange={(types) => update({ types })} />
 		<FilterControls {query} onchange={update} />
 	</div>

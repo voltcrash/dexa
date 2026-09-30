@@ -2,6 +2,7 @@
 	import ArrowDownIcon from "@lucide/svelte/icons/arrow-down";
 	import ArrowUpIcon from "@lucide/svelte/icons/arrow-up";
 	import PokemonArt from "$lib/components/pokemon/pokemon-art.svelte";
+	import StatShape from "$lib/components/pokemon/stat-shape.svelte";
 	import TypeBadge from "$lib/components/pokemon/type-badge.svelte";
 	import { statTotal, type DexListEntry, type DexQuery, type SortKey } from "$lib/dex/list.js";
 	import { dexNumber } from "$lib/pokemon/format.js";
@@ -73,6 +74,7 @@
 				{@render header("dex", "No.", "Sort by dex number", "hidden w-20 pl-2 sm:table-cell")}
 				{@render header("name", "Pokémon", "Sort by name", "pl-2 text-left sm:pl-0")}
 				<th scope="col" class="hidden w-40 px-2 text-left font-medium md:table-cell">Type</th>
+				<th scope="col" class="hidden w-14 px-2 text-left font-medium md:table-cell">Shape</th>
 				{#each STAT_KEYS as key (key)}
 					{@render header(key, STAT_LABELS[key].short, `Sort by ${STAT_LABELS[key].long}`, "hidden w-14 lg:table-cell")}
 				{/each}
@@ -121,6 +123,9 @@
 								<TypeBadge {type} size="sm" />
 							{/each}
 						</div>
+					</td>
+					<td class="hidden px-2 md:table-cell">
+						<StatShape stats={entry.stats} class="size-9" />
 					</td>
 					{#each STAT_KEYS as key, i (key)}
 						<td class={cn("hidden px-2 text-right tabular lg:table-cell", query.sort === key ? "font-semibold" : "text-muted-foreground")}>
