@@ -8,6 +8,7 @@
 	import TypeBadge from "$lib/components/pokemon/type-badge.svelte";
 	import DefenseTable from "$lib/components/team/defense-table.svelte";
 	import SavedTeams from "$lib/components/team/saved-teams.svelte";
+	import SuggestedTeammates from "$lib/components/team/suggested-teammates.svelte";
 	import TeamSlot from "$lib/components/team/team-slot.svelte";
 	import { Button } from "$lib/components/ui/button/index.js";
 	import { loadDexList } from "$lib/dex/client.js";
@@ -19,6 +20,7 @@
 		averageStats,
 		parseTeam,
 		sharedWeaknesses,
+		suggestTeammates,
 		teamDefense,
 		teamOffense,
 		type TeamMember,
@@ -38,6 +40,14 @@
 	const uncovered = $derived(offense.filter((o) => o.hitters.length === 0).map((o) => o.defend));
 	const averages = $derived(averageStats(team));
 	const slots = $derived(Array.from({ length: TEAM_SIZE }, (_, i) => team[i]));
+
+	// Suggestions come from fully evolved, everyday Pokémon, the same pool as page counters.
+	const pool = $derived(
+		[...dex.values()].filter(
+			(e) => e.isDefault && e.final && !e.legendary && !e.mythical && e.stats.reduce((a, b) => a + b, 0) >= 450,
+		),
+	);
+	const suggestions = $derived(suggestTeammates(team, pool));
 
 	const STORAGE_KEY = "dexa:team";
 
@@ -194,6 +204,18 @@
 					</div>
 				</div>
 			</section>
+
+			{#if suggestions.length}
+				<section aria-labelledby="suggest-title">
+					<h2 id="suggest-title" class="section-title">Suggested teammates</h2>
+					<p class="mt-1 max-w-prose text-sm text-muted-foreground">
+						Fully evolved Pokémon that resist the attacks your team is most exposed to or hit types it can’t, judged on types.
+					</p>
+					<div class="mt-5">
+						<SuggestedTeammates {suggestions} onadd={add} />
+					</div>
+				</section>
+			{/if}
 
 			<section aria-labelledby="defense-title">
 				<h2 id="defense-title" class="section-title">Defensive matchups</h2>
