@@ -1,7 +1,7 @@
-import { error, json } from "@sveltejs/kit";
-import { parseFlags } from "$lib/collection/types.js";
-import { updateCollection } from "$lib/server/collection.js";
-import { pokemonById } from "$lib/server/dex.js";
+import { error } from "@sveltejs/kit";
+import { parseFlags } from "#lib/collection/types.js";
+import { updateCollection } from "#lib/server/collection.js";
+import { pokemonById } from "#lib/server/dex.js";
 import type { RequestHandler } from "./$types";
 
 export const PUT: RequestHandler = async ({ locals, params, request }) => {
@@ -11,5 +11,5 @@ export const PUT: RequestHandler = async ({ locals, params, request }) => {
   const flags = parseFlags(await request.json().catch(() => null));
   if (Object.keys(flags).length === 0)
     error(400, "Send caught, shiny or favorite as true or false");
-  return json(await updateCollection(locals.user.id, pokemonId, flags));
+  return Response.json(await updateCollection(locals.user.id, pokemonId, flags));
 };
