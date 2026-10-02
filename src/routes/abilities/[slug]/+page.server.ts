@@ -1,10 +1,10 @@
 import { error } from "@sveltejs/kit";
 import type { Config } from "@sveltejs/adapter-vercel";
-import { toListEntry } from "$lib/dex/list.js";
-import { pokeapi } from "$lib/pokeapi/client.js";
-import type { ApiAbility } from "$lib/pokeapi/types.js";
-import { cleanFlavorText } from "$lib/pokemon/format.js";
-import { abilitiesBySlug, pokemonWithAbility } from "$lib/server/dex.js";
+import { toListEntry } from "#lib/dex/list.js";
+import { pokeapi } from "#lib/pokeapi/client.js";
+import type { ApiAbility } from "#lib/pokeapi/types.js";
+import { cleanFlavorText } from "#lib/pokemon/format.js";
+import { abilitiesBySlug, pokemonWithAbility } from "#lib/server/dex.js";
 import type { PageServerLoad } from "./$types";
 
 export const config: Config = { isr: { expiration: 60 * 60 * 24 * 7 } };
