@@ -1,9 +1,9 @@
 import { error } from "@sveltejs/kit";
-import { fillEffectChance } from "$lib/data/transform.js";
-import { toListEntry } from "$lib/dex/list.js";
-import { pokeapi } from "$lib/pokeapi/client.js";
-import type { ApiMove } from "$lib/pokeapi/types.js";
-import { cleanFlavorText, titleCase } from "$lib/pokemon/format.js";
+import { fillEffectChance } from "#lib/data/transform.js";
+import { toListEntry } from "#lib/dex/list.js";
+import { pokeapi } from "#lib/pokeapi/client.js";
+import type { ApiMove } from "#lib/pokeapi/types.js";
+import { cleanFlavorText, titleCase } from "#lib/pokemon/format.js";
 import { movesBySlug, pokemonBySlug } from "./dex.js";
 
 export async function getMoveDetail(slug: string, fetchFn: typeof fetch) {
