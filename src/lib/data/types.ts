@@ -1,4 +1,4 @@
-import type { BaseStats, TypeName } from "$lib/pokemon/types.js";
+import type { BaseStats, TypeName } from "#lib/pokemon/types.js";
 
 export interface DexEntry {
   /** Pokémon id; default forms share their species' National Dex number. */
