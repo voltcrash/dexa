@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vite-plus/test";
-import type { ApiPokemon, ApiPokemonForm, ApiPokemonSpecies } from "$lib/pokeapi/types.js";
+import type { ApiPokemon, ApiPokemonForm, ApiPokemonSpecies } from "#lib/pokeapi/types.js";
 import { fillEffectChance, formLabel, toDexEntry } from "./transform.js";
 
 const ref = (name: string, id = 1) => ({ name, url: `https://pokeapi.co/api/v2/x/${id}/` });
