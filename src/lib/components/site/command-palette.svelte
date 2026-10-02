@@ -9,7 +9,7 @@
 	import { parseSearch } from "#lib/dex/filters.js";
 	import { DEFAULT_QUERY, queryDex, type DexListEntry } from "#lib/dex/list.js";
 	import { matchScore } from "#lib/dex/search.js";
-	import { optimizedImage } from "#lib/images.js";
+	import { optimizedImage, retryOriginalImage } from "#lib/images.js";
 	import { navItems } from "#lib/nav.js";
 	import { dexNumber, titleCase } from "#lib/pokemon/format.js";
 	import { artworkUrl } from "#lib/pokemon/sprites.js";
@@ -84,6 +84,7 @@
 					<Command.Item value="pokemon-{entry.slug}" onSelect={() => open(`/pokemon/${entry.slug}`)} class="gap-3">
 						<img
 							src={optimizedImage(artworkUrl(entry.id), 96)}
+							onerror={(event) => retryOriginalImage(event.currentTarget as HTMLImageElement, artworkUrl(entry.id))}
 							alt=""
 							width="36"
 							height="36"

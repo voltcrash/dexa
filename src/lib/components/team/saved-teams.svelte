@@ -9,7 +9,7 @@
 	import * as Dialog from "#lib/components/ui/dialog/index.js";
 	import { Input } from "#lib/components/ui/input/index.js";
 	import { Label } from "#lib/components/ui/label/index.js";
-	import { optimizedImage } from "#lib/images.js";
+	import { optimizedImage, retryOriginalImage } from "#lib/images.js";
 	import { artworkUrl } from "#lib/pokemon/sprites.js";
 	import type { TeamMember } from "#lib/team/analysis.js";
 	import { MAX_TEAM_NAME } from "#lib/team/validate.js";
@@ -139,6 +139,7 @@
 									{#if id}
 										<img
 											src={optimizedImage(artworkUrl(id), 96)}
+											onerror={(event) => retryOriginalImage(event.currentTarget as HTMLImageElement, artworkUrl(id))}
 											alt=""
 											width="32"
 											height="32"

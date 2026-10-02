@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { imageSrcset, optimizedImage, type ImageWidth } from "#lib/images.js";
+	import { imageSrcset, optimizedImage, retryOriginalImage, type ImageWidth } from "#lib/images.js";
 	import { artworkUrl } from "#lib/pokemon/sprites.js";
 	import { cn } from "#lib/utils.js";
 
@@ -55,7 +55,9 @@
 		loading={eager ? "eager" : "lazy"}
 		fetchpriority={eager ? "high" : undefined}
 		decoding="async"
-		onerror={() => (failed = true)}
+		onerror={(event) => {
+			if (!retryOriginalImage(event.currentTarget as HTMLImageElement, url)) failed = true;
+		}}
 		class={cn("aspect-square h-auto w-full object-contain", className)}
 	/>
 {/if}

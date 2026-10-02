@@ -11,3 +11,13 @@ export function imageSrcset(url: string, widths: readonly ImageWidth[]): string 
   if (!__VERCEL_IMAGES__) return undefined;
   return widths.map((w) => `${optimizedImage(url, w)} ${w}w`).join(", ");
 }
+
+export function retryOriginalImage(
+  image: Pick<HTMLImageElement, "src" | "srcset">,
+  url: string,
+): boolean {
+  if (image.src === url) return false;
+  image.srcset = "";
+  image.src = url;
+  return true;
+}
