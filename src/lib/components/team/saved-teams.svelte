@@ -3,17 +3,17 @@
 	import Trash2Icon from "@lucide/svelte/icons/trash-2";
 	import { toast } from "svelte-sonner";
 	import { page } from "$app/state";
-	import { authClient } from "$lib/auth-client.js";
-	import * as AlertDialog from "$lib/components/ui/alert-dialog/index.js";
-	import { Button } from "$lib/components/ui/button/index.js";
-	import * as Dialog from "$lib/components/ui/dialog/index.js";
-	import { Input } from "$lib/components/ui/input/index.js";
-	import { Label } from "$lib/components/ui/label/index.js";
-	import { optimizedImage } from "$lib/images.js";
-	import { artworkUrl } from "$lib/pokemon/sprites.js";
-	import type { TeamMember } from "$lib/team/analysis.js";
-	import { MAX_TEAM_NAME } from "$lib/team/validate.js";
-	import type { SavedTeam } from "$lib/team/saved.js";
+	import { authClient } from "#lib/auth-client.js";
+	import * as AlertDialog from "#lib/components/ui/alert-dialog/index.js";
+	import { Button } from "#lib/components/ui/button/index.js";
+	import * as Dialog from "#lib/components/ui/dialog/index.js";
+	import { Input } from "#lib/components/ui/input/index.js";
+	import { Label } from "#lib/components/ui/label/index.js";
+	import { optimizedImage } from "#lib/images.js";
+	import { artworkUrl } from "#lib/pokemon/sprites.js";
+	import type { TeamMember } from "#lib/team/analysis.js";
+	import { MAX_TEAM_NAME } from "#lib/team/validate.js";
+	import type { SavedTeam } from "#lib/team/saved.js";
 
 	let {
 		team,
