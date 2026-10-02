@@ -1,9 +1,9 @@
 <script lang="ts">
-	import PokemonArt from "$lib/components/pokemon/pokemon-art.svelte";
-	import StatShape from "$lib/components/pokemon/stat-shape.svelte";
-	import TypeBadge from "$lib/components/pokemon/type-badge.svelte";
-	import type { DexListEntry } from "$lib/dex/list.js";
-	import { dexNumber } from "$lib/pokemon/format.js";
+	import PokemonArt from "#lib/components/pokemon/pokemon-art.svelte";
+	import StatShape from "#lib/components/pokemon/stat-shape.svelte";
+	import TypeBadge from "#lib/components/pokemon/type-badge.svelte";
+	import type { DexListEntry } from "#lib/dex/list.js";
+	import { dexNumber } from "#lib/pokemon/format.js";
 
 	let {
 		entry,
