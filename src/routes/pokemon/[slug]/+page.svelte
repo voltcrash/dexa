@@ -1,17 +1,17 @@
 <script lang="ts">
-	import CounterList from "$lib/components/pokemon/counter-list.svelte";
-	import DetailSection from "$lib/components/pokemon/detail-section.svelte";
-	import EvolutionChain from "$lib/components/pokemon/evolution-chain.svelte";
-	import FormList from "$lib/components/pokemon/form-list.svelte";
-	import LearnsetTable from "$lib/components/pokemon/learnset-table.svelte";
-	import PokemonAbout from "$lib/components/pokemon/pokemon-about.svelte";
-	import PokemonHero from "$lib/components/pokemon/pokemon-hero.svelte";
-	import StatBars from "$lib/components/pokemon/stat-bars.svelte";
-	import TrainingBreeding from "$lib/components/pokemon/training-breeding.svelte";
-	import TwinList from "$lib/components/pokemon/twin-list.svelte";
-	import TypeMatchups from "$lib/components/pokemon/type-matchups.svelte";
-	import { dexNumber } from "$lib/pokemon/format.js";
-	import { artworkUrl } from "$lib/pokemon/sprites.js";
+	import CounterList from "#lib/components/pokemon/counter-list.svelte";
+	import DetailSection from "#lib/components/pokemon/detail-section.svelte";
+	import EvolutionChain from "#lib/components/pokemon/evolution-chain.svelte";
+	import FormList from "#lib/components/pokemon/form-list.svelte";
+	import LearnsetTable from "#lib/components/pokemon/learnset-table.svelte";
+	import PokemonAbout from "#lib/components/pokemon/pokemon-about.svelte";
+	import PokemonHero from "#lib/components/pokemon/pokemon-hero.svelte";
+	import StatBars from "#lib/components/pokemon/stat-bars.svelte";
+	import TrainingBreeding from "#lib/components/pokemon/training-breeding.svelte";
+	import TwinList from "#lib/components/pokemon/twin-list.svelte";
+	import TypeMatchups from "#lib/components/pokemon/type-matchups.svelte";
+	import { dexNumber } from "#lib/pokemon/format.js";
+	import { artworkUrl } from "#lib/pokemon/sprites.js";
 
 	let { data } = $props();
 
