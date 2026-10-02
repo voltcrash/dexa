@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { ringPoints, shapePoints, toPath } from "$lib/pokemon/shape.js";
-	import { STAT_KEYS, STAT_LABELS, type BaseStats } from "$lib/pokemon/types.js";
-	import { cn } from "$lib/utils.js";
+	import { ringPoints, shapePoints, toPath } from "#lib/pokemon/shape.js";
+	import { STAT_KEYS, STAT_LABELS, type BaseStats } from "#lib/pokemon/types.js";
+	import { cn } from "#lib/utils.js";
 
 	let {
 		stats,
