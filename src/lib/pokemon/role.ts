@@ -1,4 +1,4 @@
-import { normalize } from "$lib/dex/search.js";
+import { normalize } from "#lib/dex/search.js";
 import type { BaseStats } from "./types.js";
 
 export type RoleKind =
