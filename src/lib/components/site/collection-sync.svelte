@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { authClient } from "$lib/auth-client.js";
-	import { collection } from "$lib/collection/store.svelte.js";
+	import { authClient } from "#lib/auth-client.js";
+	import { collection } from "#lib/collection/store.svelte.js";
 
 	const session = authClient.useSession();
 
