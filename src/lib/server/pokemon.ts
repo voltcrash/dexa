@@ -1,19 +1,19 @@
 import { error } from "@sveltejs/kit";
-import type { DexEntry } from "$lib/data/types.js";
-import { toListEntry } from "$lib/dex/list.js";
-import { pokeapi } from "$lib/pokeapi/client.js";
-import type { ApiEvolutionChain, ApiPokemon, ApiPokemonSpecies } from "$lib/pokeapi/types.js";
-import { buildEvolutionTree } from "$lib/pokemon/evolution-tree.js";
-import { buildLearnset, type Learnset } from "$lib/pokemon/learnset.js";
-import { cleanFlavorText, titleCase, versionName } from "$lib/pokemon/format.js";
-import type { FlavorEntry, PokemonDetail } from "$lib/pokemon/detail.js";
+import type { DexEntry } from "#lib/data/types.js";
+import { toListEntry } from "#lib/dex/list.js";
+import { pokeapi } from "#lib/pokeapi/client.js";
+import type { ApiEvolutionChain, ApiPokemon, ApiPokemonSpecies } from "#lib/pokeapi/types.js";
+import { buildEvolutionTree } from "#lib/pokemon/evolution-tree.js";
+import { buildLearnset, type Learnset } from "#lib/pokemon/learnset.js";
+import { cleanFlavorText, titleCase, versionName } from "#lib/pokemon/format.js";
+import type { FlavorEntry, PokemonDetail } from "#lib/pokemon/detail.js";
 import {
   closestStats,
   findCounters,
   statDistribution,
   statPercentiles,
-} from "$lib/pokemon/insights.js";
-import { STAT_KEYS } from "$lib/pokemon/types.js";
+} from "#lib/pokemon/insights.js";
+import { STAT_KEYS } from "#lib/pokemon/types.js";
 import {
   abilitiesBySlug,
   formsOfSpecies,
