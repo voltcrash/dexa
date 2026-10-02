@@ -1,5 +1,5 @@
-import type { MoveEntry } from "$lib/data/types.js";
-import type { ApiPokemon } from "$lib/pokeapi/types.js";
+import type { MoveEntry } from "#lib/data/types.js";
+import type { ApiPokemon } from "#lib/pokeapi/types.js";
 import { titleCase } from "./format.js";
 
 export const LEARN_METHODS = ["level-up", "machine", "egg", "tutor"] as const;
