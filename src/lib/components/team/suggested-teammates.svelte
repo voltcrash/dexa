@@ -1,11 +1,11 @@
 <script lang="ts">
 	import PlusIcon from "@lucide/svelte/icons/plus";
-	import PokemonArt from "$lib/components/pokemon/pokemon-art.svelte";
-	import TypeBadge from "$lib/components/pokemon/type-badge.svelte";
-	import { Button } from "$lib/components/ui/button/index.js";
-	import type { DexListEntry } from "$lib/dex/list.js";
-	import { titleCase } from "$lib/pokemon/format.js";
-	import type { Suggestion } from "$lib/team/analysis.js";
+	import PokemonArt from "#lib/components/pokemon/pokemon-art.svelte";
+	import TypeBadge from "#lib/components/pokemon/type-badge.svelte";
+	import { Button } from "#lib/components/ui/button/index.js";
+	import type { DexListEntry } from "#lib/dex/list.js";
+	import { titleCase } from "#lib/pokemon/format.js";
+	import type { Suggestion } from "#lib/team/analysis.js";
 
 	let {
 		suggestions,
