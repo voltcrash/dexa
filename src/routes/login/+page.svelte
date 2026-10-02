@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { goto, invalidateAll } from "$app/navigation";
-	import { authClient } from "$lib/auth-client.js";
-	import { Button } from "$lib/components/ui/button/index.js";
-	import { Input } from "$lib/components/ui/input/index.js";
-	import { Label } from "$lib/components/ui/label/index.js";
-	import { Spinner } from "$lib/components/ui/spinner/index.js";
-	import * as Tabs from "$lib/components/ui/tabs/index.js";
+	import { goto, refreshAll } from "$app/navigation";
+	import { authClient } from "#lib/auth-client.js";
+	import { Button } from "#lib/components/ui/button/index.js";
+	import { Input } from "#lib/components/ui/input/index.js";
+	import { Label } from "#lib/components/ui/label/index.js";
+	import { Spinner } from "#lib/components/ui/spinner/index.js";
+	import * as Tabs from "#lib/components/ui/tabs/index.js";
 
 	let { data } = $props();
 
@@ -17,8 +17,10 @@
 	let error = $state("");
 
 	async function finish() {
-		await invalidateAll();
-		await goto(data.redirectTo);
+		await refreshAll();
+		await goto(data.redirectTo).catch(() => {
+			window.location.href = data.redirectTo;
+		});
 	}
 
 	async function submit(event: SubmitEvent) {
