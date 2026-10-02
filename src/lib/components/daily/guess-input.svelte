@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { Input } from "$lib/components/ui/input/index.js";
-	import { DEFAULT_QUERY, queryDex, type DexListEntry } from "$lib/dex/list.js";
-	import { cn } from "$lib/utils.js";
+	import { Input } from "#lib/components/ui/input/index.js";
+	import { DEFAULT_QUERY, queryDex, type DexListEntry } from "#lib/dex/list.js";
+	import { cn } from "#lib/utils.js";
 
 	let {
 		pool,
