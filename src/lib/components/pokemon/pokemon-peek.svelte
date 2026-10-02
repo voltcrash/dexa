@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { statTotal, type DexListEntry } from "$lib/dex/list.js";
-	import { dexNumber } from "$lib/pokemon/format.js";
-	import { STAT_KEYS, STAT_LABELS } from "$lib/pokemon/types.js";
-	import { cn } from "$lib/utils.js";
+	import { statTotal, type DexListEntry } from "#lib/dex/list.js";
+	import { dexNumber } from "#lib/pokemon/format.js";
+	import { STAT_KEYS, STAT_LABELS } from "#lib/pokemon/types.js";
+	import { cn } from "#lib/utils.js";
 	import PokemonArt from "./pokemon-art.svelte";
 	import StatShape from "./stat-shape.svelte";
 	import TypeBadge from "./type-badge.svelte";
