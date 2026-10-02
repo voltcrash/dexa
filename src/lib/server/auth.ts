@@ -2,20 +2,30 @@ import { drizzleAdapter } from "@better-auth/drizzle-adapter";
 import { betterAuth } from "better-auth";
 import { sveltekitCookies } from "better-auth/svelte-kit";
 import { getRequestEvent } from "$app/server";
-import { env } from "$env/dynamic/private";
+
+import {
+  GITHUB_CLIENT_ID,
+  GITHUB_CLIENT_SECRET,
+  BETTER_AUTH_URL,
+  BETTER_AUTH_SECRET,
+} from "$app/env/private";
+
 import { getDb, isDatabaseConfigured } from "./db/index.js";
 import * as schema from "./db/schema.js";
 
 function createAuth() {
   const github =
-    env.GITHUB_CLIENT_ID && env.GITHUB_CLIENT_SECRET
-      ? { clientId: env.GITHUB_CLIENT_ID, clientSecret: env.GITHUB_CLIENT_SECRET }
+    GITHUB_CLIENT_ID && GITHUB_CLIENT_SECRET
+      ? {
+          clientId: GITHUB_CLIENT_ID,
+          clientSecret: GITHUB_CLIENT_SECRET,
+        }
       : undefined;
 
   return betterAuth({
     appName: "Dexa",
-    baseURL: env.BETTER_AUTH_URL,
-    secret: env.BETTER_AUTH_SECRET,
+    baseURL: BETTER_AUTH_URL,
+    secret: BETTER_AUTH_SECRET,
     database: drizzleAdapter(getDb(), { provider: "pg", schema }),
     emailAndPassword: { enabled: true, minPasswordLength: 8, autoSignIn: true },
     socialProviders: github ? { github } : {},
@@ -31,7 +41,7 @@ let auth: Auth | undefined;
 
 /** Accounts need a database and a secret; without them the app runs signed out. */
 export function isAuthConfigured(): boolean {
-  return isDatabaseConfigured() && Boolean(env.BETTER_AUTH_SECRET);
+  return isDatabaseConfigured() && Boolean(BETTER_AUTH_SECRET);
 }
 
 export function getAuth(): Auth {
@@ -40,5 +50,5 @@ export function getAuth(): Auth {
 }
 
 export function enabledSocialProviders(): string[] {
-  return env.GITHUB_CLIENT_ID && env.GITHUB_CLIENT_SECRET ? ["github"] : [];
+  return GITHUB_CLIENT_ID && GITHUB_CLIENT_SECRET ? ["github"] : [];
 }
