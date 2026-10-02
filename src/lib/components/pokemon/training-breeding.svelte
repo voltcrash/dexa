@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { PokemonDetail } from "$lib/pokemon/detail.js";
-	import { STAT_LABELS, type StatKey } from "$lib/pokemon/types.js";
+	import type { PokemonDetail } from "#lib/pokemon/detail.js";
+	import { STAT_LABELS, type StatKey } from "#lib/pokemon/types.js";
 
 	let { detail }: { detail: PokemonDetail } = $props();
 
