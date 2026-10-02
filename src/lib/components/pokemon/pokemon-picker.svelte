@@ -2,7 +2,7 @@
 	import * as Command from "#lib/components/ui/command/index.js";
 	import { loadDexList } from "#lib/dex/client.js";
 	import { DEFAULT_QUERY, queryDex, type DexListEntry } from "#lib/dex/list.js";
-	import { optimizedImage } from "#lib/images.js";
+	import { optimizedImage, retryOriginalImage } from "#lib/images.js";
 	import { dexNumber } from "#lib/pokemon/format.js";
 	import { artworkUrl } from "#lib/pokemon/sprites.js";
 	import TypeBadge from "./type-badge.svelte";
@@ -37,7 +37,7 @@
 		<Command.Empty>{entries.length ? "No Pokémon match that search." : "Loading the Pokédex…"}</Command.Empty>
 		{#each results as entry (entry.id)}
 			<Command.Item value="pick-{entry.slug}" onSelect={() => pick(entry)} class="gap-3">
-				<img src={optimizedImage(artworkUrl(entry.id), 96)} alt="" width="36" height="36" loading="lazy" class="size-9 object-contain" />
+			<img src={optimizedImage(artworkUrl(entry.id), 96)} onerror={(event) => retryOriginalImage(event.currentTarget as HTMLImageElement, artworkUrl(entry.id))} alt="" width="36" height="36" loading="lazy" class="size-9 object-contain" />
 				<span class="flex min-w-0 flex-1 flex-col">
 					<span class="truncate font-medium">{entry.name}</span>
 					<span class="text-xs text-muted-foreground tabular">{dexNumber(entry.speciesId)}</span>
