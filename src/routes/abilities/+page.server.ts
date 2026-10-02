@@ -1,4 +1,4 @@
-import { abilities, pokemon } from "$lib/server/dex.js";
+import { abilities, pokemon } from "#lib/server/dex.js";
 import type { PageServerLoad } from "./$types";
 
 const holders = new Map<string, number>();
