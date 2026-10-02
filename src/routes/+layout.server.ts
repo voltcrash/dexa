@@ -1,4 +1,4 @@
-import { isAuthConfigured } from "$lib/server/auth.js";
+import { isAuthConfigured } from "#lib/server/auth.js";
 import type { LayoutServerLoad } from "./$types";
 
 // Pages are cached by the CDN and ISR, so nothing user-specific may be returned here;
