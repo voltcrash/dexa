@@ -1,8 +1,8 @@
-import abilitiesJson from "$lib/data/abilities.json";
-import movesJson from "$lib/data/moves.json";
-import pokemonJson from "$lib/data/pokemon.json";
-import type { AbilityEntry, DexEntry, MoveEntry } from "$lib/data/types.js";
-import { toListEntry } from "$lib/dex/list.js";
+import abilitiesJson from "#lib/data/abilities.json";
+import movesJson from "#lib/data/moves.json";
+import pokemonJson from "#lib/data/pokemon.json";
+import type { AbilityEntry, DexEntry, MoveEntry } from "#lib/data/types.js";
+import { toListEntry } from "#lib/dex/list.js";
 
 export const pokemon = pokemonJson as DexEntry[];
 export const moves = movesJson as MoveEntry[];
