@@ -1,9 +1,9 @@
 <script lang="ts">
 	import SearchIcon from "@lucide/svelte/icons/search";
-	import { replaceState } from "$app/navigation";
+	import { goto } from "$app/navigation";
 	import { page } from "$app/state";
-	import { Input } from "$lib/components/ui/input/index.js";
-	import { matchScore } from "$lib/dex/search.js";
+	import { Input } from "#lib/components/ui/input/index.js";
+	import { matchScore } from "#lib/dex/search.js";
 
 	let { data } = $props();
 
@@ -21,7 +21,7 @@
 
 	function search(value: string) {
 		q = value;
-		replaceState(value ? `?q=${encodeURIComponent(value)}` : page.url.pathname, page.state);
+		goto(value ? `?q=${encodeURIComponent(value)}` : page.url.pathname, { shallow: true, replace: true, state: page.state });
 	}
 </script>
 
