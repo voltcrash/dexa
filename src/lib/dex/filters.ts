@@ -1,14 +1,14 @@
-import { effectiveness } from "$lib/pokemon/matchups.js";
-import { isRoleTerm, roleMatches, statRole } from "$lib/pokemon/role.js";
-import { GENERATIONS } from "$lib/pokemon/generations.js";
-import { titleCase } from "$lib/pokemon/format.js";
+import { effectiveness } from "#lib/pokemon/matchups.js";
+import { isRoleTerm, roleMatches, statRole } from "#lib/pokemon/role.js";
+import { GENERATIONS } from "#lib/pokemon/generations.js";
+import { titleCase } from "#lib/pokemon/format.js";
 import {
   STAT_KEYS,
   STAT_LABELS,
   isTypeName,
   type StatKey,
   type TypeName,
-} from "$lib/pokemon/types.js";
+} from "#lib/pokemon/types.js";
 import type { DexListEntry } from "./list.js";
 import { normalize } from "./search.js";
 
