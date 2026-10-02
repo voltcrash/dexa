@@ -1,10 +1,10 @@
 <script lang="ts">
-	import * as Command from "$lib/components/ui/command/index.js";
-	import { loadDexList } from "$lib/dex/client.js";
-	import { DEFAULT_QUERY, queryDex, type DexListEntry } from "$lib/dex/list.js";
-	import { optimizedImage } from "$lib/images.js";
-	import { dexNumber } from "$lib/pokemon/format.js";
-	import { artworkUrl } from "$lib/pokemon/sprites.js";
+	import * as Command from "#lib/components/ui/command/index.js";
+	import { loadDexList } from "#lib/dex/client.js";
+	import { DEFAULT_QUERY, queryDex, type DexListEntry } from "#lib/dex/list.js";
+	import { optimizedImage } from "#lib/images.js";
+	import { dexNumber } from "#lib/pokemon/format.js";
+	import { artworkUrl } from "#lib/pokemon/sprites.js";
 	import TypeBadge from "./type-badge.svelte";
 
 	let {
