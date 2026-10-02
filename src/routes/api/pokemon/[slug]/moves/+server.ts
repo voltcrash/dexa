@@ -1,5 +1,4 @@
-import { json } from "@sveltejs/kit";
-import { findEntry, getLearnset } from "$lib/server/pokemon.js";
+import { findEntry, getLearnset } from "#lib/server/pokemon.js";
 import type { RequestHandler } from "./$types";
 
 export const GET: RequestHandler = async ({ params, url, fetch }) => {
@@ -8,7 +7,7 @@ export const GET: RequestHandler = async ({ params, url, fetch }) => {
     url.searchParams.get("vg") ?? undefined,
     fetch,
   );
-  return json(learnset, {
+  return Response.json(learnset, {
     headers: {
       "cache-control": "public, max-age=3600, s-maxage=604800, stale-while-revalidate=86400",
     },
