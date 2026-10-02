@@ -1,8 +1,8 @@
 <script lang="ts">
-	import PokemonPeek from "$lib/components/pokemon/pokemon-peek.svelte";
-	import { AXIS_LABELS, axisValue, isLog, makeScale, type Axis } from "$lib/dex/atlas.js";
-	import type { DexListEntry } from "$lib/dex/list.js";
-	import { STAT_KEYS } from "$lib/pokemon/types.js";
+	import PokemonPeek from "#lib/components/pokemon/pokemon-peek.svelte";
+	import { AXIS_LABELS, axisValue, isLog, makeScale, type Axis } from "#lib/dex/atlas.js";
+	import type { DexListEntry } from "#lib/dex/list.js";
+	import { STAT_KEYS } from "#lib/pokemon/types.js";
 
 	let {
 		entries,
