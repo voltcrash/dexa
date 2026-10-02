@@ -1,5 +1,5 @@
-import { navItems } from "$lib/nav.js";
-import { abilities, moves, pokemon } from "$lib/server/dex.js";
+import { navItems } from "#lib/nav.js";
+import { abilities, moves, pokemon } from "#lib/server/dex.js";
 import type { RequestHandler } from "./$types";
 
 export const GET: RequestHandler = ({ url }) => {
