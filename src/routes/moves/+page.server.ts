@@ -1,4 +1,4 @@
-import { moves } from "$lib/server/dex.js";
+import { moves } from "#lib/server/dex.js";
 import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = ({ setHeaders }) => {
