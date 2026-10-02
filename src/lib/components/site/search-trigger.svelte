@@ -1,8 +1,8 @@
 <script lang="ts">
 	import SearchIcon from "@lucide/svelte/icons/search";
 	import { onMount } from "svelte";
-	import { Button } from "$lib/components/ui/button/index.js";
-	import { Kbd } from "$lib/components/ui/kbd/index.js";
+	import { Button } from "#lib/components/ui/button/index.js";
+	import { Kbd } from "#lib/components/ui/kbd/index.js";
 	import { palette } from "./palette-state.svelte.js";
 
 	let modifier = $state("⌘");
