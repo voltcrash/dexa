@@ -1,5 +1,5 @@
-import type { DexEntry } from "$lib/data/types.js";
-import type { DexListEntry } from "$lib/dex/list.js";
+import type { DexEntry } from "#lib/data/types.js";
+import type { DexListEntry } from "#lib/dex/list.js";
 import type { EvolutionNode } from "./evolution-tree.js";
 import type { Counter, StatTwin } from "./insights.js";
 import type { Learnset } from "./learnset.js";
