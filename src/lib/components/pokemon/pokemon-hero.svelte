@@ -4,11 +4,11 @@
 	import ScaleIcon from "@lucide/svelte/icons/scale";
 	import SparklesIcon from "@lucide/svelte/icons/sparkles";
 	import UsersIcon from "@lucide/svelte/icons/users";
-	import { Button } from "$lib/components/ui/button/index.js";
-	import { Toggle } from "$lib/components/ui/toggle/index.js";
-	import type { PokemonDetail } from "$lib/pokemon/detail.js";
-	import { dexNumber } from "$lib/pokemon/format.js";
-	import { statRole } from "$lib/pokemon/role.js";
+	import { Button } from "#lib/components/ui/button/index.js";
+	import { Toggle } from "#lib/components/ui/toggle/index.js";
+	import type { PokemonDetail } from "#lib/pokemon/detail.js";
+	import { dexNumber } from "#lib/pokemon/format.js";
+	import { statRole } from "#lib/pokemon/role.js";
 	import CollectionButtons from "./collection-buttons.svelte";
 	import CryButton from "./cry-button.svelte";
 	import FittedName from "./fitted-name.svelte";
