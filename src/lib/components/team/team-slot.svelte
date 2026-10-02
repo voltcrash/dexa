@@ -1,9 +1,9 @@
 <script lang="ts">
 	import PlusIcon from "@lucide/svelte/icons/plus";
 	import XIcon from "@lucide/svelte/icons/x";
-	import PokemonArt from "$lib/components/pokemon/pokemon-art.svelte";
-	import TypeBadge from "$lib/components/pokemon/type-badge.svelte";
-	import type { TeamMember } from "$lib/team/analysis.js";
+	import PokemonArt from "#lib/components/pokemon/pokemon-art.svelte";
+	import TypeBadge from "#lib/components/pokemon/type-badge.svelte";
+	import type { TeamMember } from "#lib/team/analysis.js";
 
 	let {
 		member,
