@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { titleCase } from "$lib/pokemon/format.js";
-	import { TYPES, typeTextClass, type TypeName } from "$lib/pokemon/types.js";
-	import { cn } from "$lib/utils.js";
+	import { titleCase } from "#lib/pokemon/format.js";
+	import { TYPES, typeTextClass, type TypeName } from "#lib/pokemon/types.js";
+	import { cn } from "#lib/utils.js";
 
 	let { selected, onchange }: { selected: TypeName[]; onchange: (types: TypeName[]) => void } =
 		$props();
