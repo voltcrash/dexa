@@ -6,10 +6,10 @@
 	import XIcon from "@lucide/svelte/icons/x";
 	import { onMount } from "svelte";
 	import { toast } from "svelte-sonner";
-	import GuessInput from "$lib/components/daily/guess-input.svelte";
-	import PokemonArt from "$lib/components/pokemon/pokemon-art.svelte";
-	import StatShape from "$lib/components/pokemon/stat-shape.svelte";
-	import { Button } from "$lib/components/ui/button/index.js";
+	import GuessInput from "#lib/components/daily/guess-input.svelte";
+	import PokemonArt from "#lib/components/pokemon/pokemon-art.svelte";
+	import StatShape from "#lib/components/pokemon/stat-shape.svelte";
+	import { Button } from "#lib/components/ui/button/index.js";
 	import {
 		MAX_GUESSES,
 		answerFor,
@@ -18,11 +18,11 @@
 		puzzleNumber,
 		shareText,
 		type Hint,
-	} from "$lib/daily/game.js";
-	import { loadDexList } from "$lib/dex/client.js";
-	import type { DexListEntry } from "$lib/dex/list.js";
-	import { dexNumber } from "$lib/pokemon/format.js";
-	import { cn } from "$lib/utils.js";
+	} from "#lib/daily/game.js";
+	import { loadDexList } from "#lib/dex/client.js";
+	import type { DexListEntry } from "#lib/dex/list.js";
+	import { dexNumber } from "#lib/pokemon/format.js";
+	import { cn } from "#lib/utils.js";
 
 	const STORAGE_KEY = "dexa:daily";
 	/** Misses before the answer's stat shape is shown as a hint. */
