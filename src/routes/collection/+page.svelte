@@ -9,7 +9,7 @@
 	import { Skeleton } from "#lib/components/ui/skeleton/index.js";
 	import { loadDexList } from "#lib/dex/client.js";
 	import type { DexListEntry } from "#lib/dex/list.js";
-	import { optimizedImage } from "#lib/images.js";
+	import { optimizedImage, retryOriginalImage } from "#lib/images.js";
 	import { dexNumber } from "#lib/pokemon/format.js";
 	import { GENERATIONS } from "#lib/pokemon/generations.js";
 	import { artworkUrl } from "#lib/pokemon/sprites.js";
@@ -148,6 +148,7 @@
 						>
 							<img
 								src={optimizedImage(artworkUrl(entry.id), 96)}
+								onerror={(event) => retryOriginalImage(event.currentTarget as HTMLImageElement, artworkUrl(entry.id))}
 								alt=""
 								width="72"
 								height="72"
