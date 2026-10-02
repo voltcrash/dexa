@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Volume2Icon from "@lucide/svelte/icons/volume-2";
 	import { toast } from "svelte-sonner";
-	import { Button } from "$lib/components/ui/button/index.js";
+	import { Button } from "#lib/components/ui/button/index.js";
 
 	let { url, name }: { url: string | null; name: string } = $props();
 
