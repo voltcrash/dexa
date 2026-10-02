@@ -1,12 +1,12 @@
 <script lang="ts">
 	import "./layout.css";
 	import { ModeWatcher } from "mode-watcher";
-	import favicon from "$lib/assets/favicon.svg";
-	import CollectionSync from "$lib/components/site/collection-sync.svelte";
-	import CommandPalette from "$lib/components/site/command-palette.svelte";
-	import SiteFooter from "$lib/components/site/site-footer.svelte";
-	import SiteHeader from "$lib/components/site/site-header.svelte";
-	import { Toaster } from "$lib/components/ui/sonner/index.js";
+	import favicon from "#lib/assets/favicon.svg";
+	import CollectionSync from "#lib/components/site/collection-sync.svelte";
+	import CommandPalette from "#lib/components/site/command-palette.svelte";
+	import SiteFooter from "#lib/components/site/site-footer.svelte";
+	import SiteHeader from "#lib/components/site/site-header.svelte";
+	import { Toaster } from "#lib/components/ui/sonner/index.js";
 
 	let { children, data } = $props();
 </script>
