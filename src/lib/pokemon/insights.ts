@@ -1,4 +1,4 @@
-import type { DexListEntry } from "$lib/dex/list.js";
+import type { DexListEntry } from "#lib/dex/list.js";
 import { effectiveness } from "./matchups.js";
 import type { BaseStats, TypeName } from "./types.js";
 
