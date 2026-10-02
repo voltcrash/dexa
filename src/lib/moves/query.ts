@@ -1,6 +1,6 @@
-import type { DamageClass, MoveEntry } from "$lib/data/types.js";
-import { matchScore } from "$lib/dex/search.js";
-import { isTypeName, type TypeName } from "$lib/pokemon/types.js";
+import type { DamageClass, MoveEntry } from "#lib/data/types.js";
+import { matchScore } from "#lib/dex/search.js";
+import { isTypeName, type TypeName } from "#lib/pokemon/types.js";
 
 export const MOVE_SORTS = ["name", "power", "accuracy", "pp", "priority"] as const;
 export type MoveSort = (typeof MOVE_SORTS)[number];
@@ -22,7 +22,7 @@ export const DEFAULT_MOVE_QUERY: MoveQuery = {
   desc: false,
 };
 
-export function parseMoveQuery(params: URLSearchParams): MoveQuery {
+export function parseMoveQuery(params: Pick<URLSearchParams, "get">): MoveQuery {
   const sort = params.get("sort") ?? "name";
   return {
     q: params.get("q") ?? "",
