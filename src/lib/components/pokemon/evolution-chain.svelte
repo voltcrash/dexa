@@ -1,8 +1,8 @@
 <script lang="ts">
 	import ArrowRightIcon from "@lucide/svelte/icons/arrow-right";
-	import type { EvolutionNode } from "$lib/pokemon/evolution-tree.js";
-	import { dexNumber } from "$lib/pokemon/format.js";
-	import { cn } from "$lib/utils.js";
+	import type { EvolutionNode } from "#lib/pokemon/evolution-tree.js";
+	import { dexNumber } from "#lib/pokemon/format.js";
+	import { cn } from "#lib/utils.js";
 	import PokemonArt from "./pokemon-art.svelte";
 	import TypeBadge from "./type-badge.svelte";
 
