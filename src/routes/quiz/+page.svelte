@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { onMount, tick } from "svelte";
-	import PokemonArt from "$lib/components/pokemon/pokemon-art.svelte";
-	import TypeBadge from "$lib/components/pokemon/type-badge.svelte";
-	import CryButton from "$lib/components/pokemon/cry-button.svelte";
-	import { Button } from "$lib/components/ui/button/index.js";
-	import { Input } from "$lib/components/ui/input/index.js";
-	import * as ToggleGroup from "$lib/components/ui/toggle-group/index.js";
-	import { loadDexList } from "$lib/dex/client.js";
-	import type { DexListEntry } from "$lib/dex/list.js";
-	import { dexNumber } from "$lib/pokemon/format.js";
-	import { GENERATIONS } from "$lib/pokemon/generations.js";
-	import { cryUrl } from "$lib/pokemon/sprites.js";
-	import { isCorrectGuess, nameHint, pickRandom } from "$lib/quiz/game.js";
+	import PokemonArt from "#lib/components/pokemon/pokemon-art.svelte";
+	import TypeBadge from "#lib/components/pokemon/type-badge.svelte";
+	import CryButton from "#lib/components/pokemon/cry-button.svelte";
+	import { Button } from "#lib/components/ui/button/index.js";
+	import { Input } from "#lib/components/ui/input/index.js";
+	import * as ToggleGroup from "#lib/components/ui/toggle-group/index.js";
+	import { loadDexList } from "#lib/dex/client.js";
+	import type { DexListEntry } from "#lib/dex/list.js";
+	import { dexNumber } from "#lib/pokemon/format.js";
+	import { GENERATIONS } from "#lib/pokemon/generations.js";
+	import { cryUrl } from "#lib/pokemon/sprites.js";
+	import { isCorrectGuess, nameHint, pickRandom } from "#lib/quiz/game.js";
 
 	const BEST_KEY = "dexa:quiz-best";
 
