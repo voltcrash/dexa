@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { imageSrcset, optimizedImage, type ImageWidth } from "$lib/images.js";
-	import { artworkUrl } from "$lib/pokemon/sprites.js";
-	import { cn } from "$lib/utils.js";
+	import { imageSrcset, optimizedImage, type ImageWidth } from "#lib/images.js";
+	import { artworkUrl } from "#lib/pokemon/sprites.js";
+	import { cn } from "#lib/utils.js";
 
 	let {
 		id,
