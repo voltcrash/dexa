@@ -1,11 +1,11 @@
 <script lang="ts">
 	import LibraryIcon from "@lucide/svelte/icons/library-big";
 	import LogOutIcon from "@lucide/svelte/icons/log-out";
-	import { goto, invalidateAll } from "$app/navigation";
-	import { authClient } from "$lib/auth-client.js";
-	import * as Avatar from "$lib/components/ui/avatar/index.js";
-	import { Button } from "$lib/components/ui/button/index.js";
-	import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
+	import { goto, refreshAll } from "$app/navigation";
+	import { authClient } from "#lib/auth-client.js";
+	import * as Avatar from "#lib/components/ui/avatar/index.js";
+	import { Button } from "#lib/components/ui/button/index.js";
+	import * as DropdownMenu from "#lib/components/ui/dropdown-menu/index.js";
 
 	const session = authClient.useSession();
 
@@ -21,7 +21,7 @@
 
 	async function signOut() {
 		await authClient.signOut();
-		await invalidateAll();
+		await refreshAll();
 		goto("/");
 	}
 </script>
