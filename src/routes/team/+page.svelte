@@ -2,19 +2,19 @@
 	import LinkIcon from "@lucide/svelte/icons/link";
 	import { onMount, untrack } from "svelte";
 	import { toast } from "svelte-sonner";
-	import { replaceState } from "$app/navigation";
+	import { goto } from "$app/navigation";
 	import { page } from "$app/state";
-	import PokemonPicker from "$lib/components/pokemon/pokemon-picker.svelte";
-	import TypeBadge from "$lib/components/pokemon/type-badge.svelte";
-	import DefenseTable from "$lib/components/team/defense-table.svelte";
-	import SavedTeams from "$lib/components/team/saved-teams.svelte";
-	import SuggestedTeammates from "$lib/components/team/suggested-teammates.svelte";
-	import TeamSlot from "$lib/components/team/team-slot.svelte";
-	import { Button } from "$lib/components/ui/button/index.js";
-	import { loadDexList } from "$lib/dex/client.js";
-	import type { DexListEntry } from "$lib/dex/list.js";
-	import { STAT_KEYS, STAT_LABELS } from "$lib/pokemon/types.js";
-	import { MAX_BASE_STAT, statBand } from "$lib/pokemon/stats.js";
+	import PokemonPicker from "#lib/components/pokemon/pokemon-picker.svelte";
+	import TypeBadge from "#lib/components/pokemon/type-badge.svelte";
+	import DefenseTable from "#lib/components/team/defense-table.svelte";
+	import SavedTeams from "#lib/components/team/saved-teams.svelte";
+	import SuggestedTeammates from "#lib/components/team/suggested-teammates.svelte";
+	import TeamSlot from "#lib/components/team/team-slot.svelte";
+	import { Button } from "#lib/components/ui/button/index.js";
+	import { loadDexList } from "#lib/dex/client.js";
+	import type { DexListEntry } from "#lib/dex/list.js";
+	import { STAT_KEYS, STAT_LABELS } from "#lib/pokemon/types.js";
+	import { MAX_BASE_STAT, statBand } from "#lib/pokemon/stats.js";
 	import {
 		TEAM_SIZE,
 		averageStats,
@@ -24,8 +24,8 @@
 		teamDefense,
 		teamOffense,
 		type TeamMember,
-	} from "$lib/team/analysis.js";
-	import type { SavedTeam } from "$lib/team/saved.js";
+	} from "#lib/team/analysis.js";
+	import type { SavedTeam } from "#lib/team/saved.js";
 
 	let { data } = $props();
 
@@ -92,7 +92,7 @@
 		if (team.length) params.set("p", team.map((m) => m.slug).join(","));
 		if (savedId) params.set("t", savedId);
 		const search = params.toString().replaceAll("%2C", ",");
-		replaceState(search ? `?${search}` : page.url.pathname, page.state);
+		goto(search ? `?${search}` : page.url.pathname, { shallow: true, replace: true, state: page.state });
 	}
 
 	// Saving or deleting a team changes savedId from the child; mirror it into the URL.
