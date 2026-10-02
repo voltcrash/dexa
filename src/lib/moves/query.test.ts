@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vite-plus/test";
-import type { MoveEntry } from "$lib/data/types.js";
+import type { MoveEntry } from "#lib/data/types.js";
 import { DEFAULT_MOVE_QUERY, parseMoveQuery, queryMoves, toMoveSearchParams } from "./query.js";
 
 const move = (partial: Partial<MoveEntry> & Pick<MoveEntry, "name">): MoveEntry => ({
@@ -58,5 +58,18 @@ describe("queryMoves", () => {
       desc: true,
     };
     expect(parseMoveQuery(new URLSearchParams(toMoveSearchParams(query)))).toEqual(query);
+  });
+
+  it("ignores invalid filters from readonly search parameters", () => {
+    const params: Pick<URLSearchParams, "get"> = new URLSearchParams(
+      "q=fire&type=unknown,fire,water&class=unknown,special&sort=unknown&dir=desc",
+    );
+    expect(parseMoveQuery(params)).toEqual({
+      q: "fire",
+      types: ["fire"],
+      classes: ["special"],
+      sort: "name",
+      desc: true,
+    });
   });
 });

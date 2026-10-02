@@ -1,6 +1,6 @@
 import { and, count, desc, eq } from "drizzle-orm";
-import { MAX_SAVED_TEAMS, type SavedTeam } from "$lib/team/saved.js";
-import type { TeamInput } from "$lib/team/validate.js";
+import { MAX_SAVED_TEAMS, type SavedTeam } from "#lib/team/saved.js";
+import type { TeamInput } from "#lib/team/validate.js";
 import { getDb } from "./db/index.js";
 import { team } from "./db/schema.js";
 

@@ -1,5 +1,5 @@
 import { redirect } from "@sveltejs/kit";
-import { isAuthConfigured } from "$lib/server/auth.js";
+import { isAuthConfigured } from "#lib/server/auth.js";
 import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = ({ locals, setHeaders }) => {

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vite-plus/test";
 import { answerFor, compareGuess, dateKey, puzzleNumber, shareText } from "./game.js";
-import type { BaseStats, TypeName } from "$lib/pokemon/types.js";
+import type { BaseStats, TypeName } from "#lib/pokemon/types.js";
 
 const mon = (
   types: TypeName[],

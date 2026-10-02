@@ -1,5 +1,5 @@
-import type { DexListEntry } from "$lib/dex/list.js";
-import { normalize } from "$lib/dex/search.js";
+import type { DexListEntry } from "#lib/dex/list.js";
+import { normalize } from "#lib/dex/search.js";
 
 /** Accept the exact name, ignoring case, accents and punctuation ("mr mime", "flabebe"). */
 export function isCorrectGuess(guess: string, entry: Pick<DexListEntry, "name">): boolean {

@@ -1,6 +1,6 @@
 import { redirect } from "@sveltejs/kit";
-import { enabledSocialProviders, isAuthConfigured } from "$lib/server/auth.js";
-import { safeRedirect } from "$lib/safe-redirect.js";
+import { enabledSocialProviders, isAuthConfigured } from "#lib/server/auth.js";
+import { safeRedirect } from "#lib/safe-redirect.js";
 import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = ({ locals, url }) => {

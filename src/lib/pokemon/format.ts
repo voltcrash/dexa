@@ -1,4 +1,4 @@
-import type { LocalizedName } from "$lib/pokeapi/types.js";
+import type { LocalizedName } from "#lib/pokeapi/types.js";
 
 const SPECIAL_NAMES: Record<string, string> = {
   "nidoran-f": "Nidoran♀",

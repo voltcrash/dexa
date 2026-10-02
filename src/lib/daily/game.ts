@@ -1,6 +1,6 @@
-import type { DexListEntry } from "$lib/dex/list.js";
-import { statTotal } from "$lib/dex/list.js";
-import { titleCase } from "$lib/pokemon/format.js";
+import type { DexListEntry } from "#lib/dex/list.js";
+import { statTotal } from "#lib/dex/list.js";
+import { titleCase } from "#lib/pokemon/format.js";
 
 export const MAX_GUESSES = 8;
 

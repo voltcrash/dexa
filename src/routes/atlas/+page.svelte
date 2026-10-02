@@ -1,20 +1,20 @@
 <script lang="ts">
 	import SearchIcon from "@lucide/svelte/icons/search";
 	import { onMount } from "svelte";
-	import { goto, replaceState } from "$app/navigation";
+	import { goto } from "$app/navigation";
 	import { page } from "$app/state";
-	import AtlasChart from "$lib/components/atlas/atlas-chart.svelte";
-	import SearchFilters from "$lib/components/dex/search-filters.svelte";
-	import SearchTips from "$lib/components/dex/search-tips.svelte";
-	import { Input } from "$lib/components/ui/input/index.js";
-	import { Label } from "$lib/components/ui/label/index.js";
-	import * as Select from "$lib/components/ui/select/index.js";
-	import { Switch } from "$lib/components/ui/switch/index.js";
-	import * as ToggleGroup from "$lib/components/ui/toggle-group/index.js";
-	import { AXES, AXIS_LABELS, PRESETS, type Axis } from "$lib/dex/atlas.js";
-	import { loadDexList } from "$lib/dex/client.js";
-	import { DEFAULT_QUERY, queryDex, type DexListEntry } from "$lib/dex/list.js";
-	import { STAT_KEYS } from "$lib/pokemon/types.js";
+	import AtlasChart from "#lib/components/atlas/atlas-chart.svelte";
+	import SearchFilters from "#lib/components/dex/search-filters.svelte";
+	import SearchTips from "#lib/components/dex/search-tips.svelte";
+	import { Input } from "#lib/components/ui/input/index.js";
+	import { Label } from "#lib/components/ui/label/index.js";
+	import * as Select from "#lib/components/ui/select/index.js";
+	import { Switch } from "#lib/components/ui/switch/index.js";
+	import * as ToggleGroup from "#lib/components/ui/toggle-group/index.js";
+	import { AXES, AXIS_LABELS, PRESETS, type Axis } from "#lib/dex/atlas.js";
+	import { loadDexList } from "#lib/dex/client.js";
+	import { DEFAULT_QUERY, queryDex, type DexListEntry } from "#lib/dex/list.js";
+	import { STAT_KEYS } from "#lib/pokemon/types.js";
 
 	let { data } = $props();
 
@@ -54,7 +54,7 @@
 		if (q.trim()) params.set("q", q.trim());
 		if (forms) params.set("forms", "1");
 		const search = params.toString();
-		replaceState(search ? `?${search}` : page.url.pathname, page.state);
+		goto(search ? `?${search}` : page.url.pathname, { shallow: true, replace: true, state: page.state });
 	}
 
 	function setAxes(nextX: Axis, nextY: Axis) {

@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { defensiveProfile, formatMultiplier } from "$lib/pokemon/matchups.js";
-	import { titleCase } from "$lib/pokemon/format.js";
-	import { typeTextClass } from "$lib/pokemon/types.js";
-	import type { DefenseRow, TeamMember } from "$lib/team/analysis.js";
-	import { cn } from "$lib/utils.js";
+	import { defensiveProfile, formatMultiplier } from "#lib/pokemon/matchups.js";
+	import { titleCase } from "#lib/pokemon/format.js";
+	import { typeTextClass } from "#lib/pokemon/types.js";
+	import type { DefenseRow, TeamMember } from "#lib/team/analysis.js";
+	import { cn } from "#lib/utils.js";
 
 	let { team, rows }: { team: TeamMember[]; rows: DefenseRow[] } = $props();
 

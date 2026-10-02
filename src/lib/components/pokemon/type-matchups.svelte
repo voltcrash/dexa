@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as ToggleGroup from "$lib/components/ui/toggle-group/index.js";
+	import * as ToggleGroup from "#lib/components/ui/toggle-group/index.js";
 	import {
 		ABILITY_RULES,
 		defensiveProfile,
@@ -7,8 +7,8 @@
 		formatMultiplier,
 		groupProfile,
 		type DefensiveProfile,
-	} from "$lib/pokemon/matchups.js";
-	import { TYPES, type TypeName } from "$lib/pokemon/types.js";
+	} from "#lib/pokemon/matchups.js";
+	import { TYPES, type TypeName } from "#lib/pokemon/types.js";
 	import TypeBadge from "./type-badge.svelte";
 
 	let {

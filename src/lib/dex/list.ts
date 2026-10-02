@@ -1,5 +1,5 @@
-import type { DexEntry } from "$lib/data/types.js";
-import { STAT_KEYS, isTypeName, type StatKey, type TypeName } from "$lib/pokemon/types.js";
+import type { DexEntry } from "#lib/data/types.js";
+import { STAT_KEYS, isTypeName, type StatKey, type TypeName } from "#lib/pokemon/types.js";
 import { matchesFilters, parseSearch, wantsForms } from "./filters.js";
 import { matchScore, parseDexNumber } from "./search.js";
 

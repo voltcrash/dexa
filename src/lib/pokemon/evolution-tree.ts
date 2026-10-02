@@ -1,5 +1,5 @@
-import type { DexEntry } from "$lib/data/types.js";
-import type { ApiChainLink } from "$lib/pokeapi/types.js";
+import type { DexEntry } from "#lib/data/types.js";
+import type { ApiChainLink } from "#lib/pokeapi/types.js";
 import type { TypeName } from "./types.js";
 import { describeEvolution } from "./evolution.js";
 

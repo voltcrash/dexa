@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { DamageClass } from "$lib/data/types.js";
-	import { cn } from "$lib/utils.js";
+	import type { DamageClass } from "#lib/data/types.js";
+	import { cn } from "#lib/utils.js";
 
 	let { value, class: className }: { value: DamageClass; class?: string } = $props();
 

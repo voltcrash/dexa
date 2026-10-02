@@ -1,5 +1,5 @@
-import { pokemonBySlug } from "$lib/server/dex.js";
-import { parseTeam, type TeamMember } from "$lib/team/analysis.js";
+import { pokemonBySlug } from "#lib/server/dex.js";
+import { parseTeam, type TeamMember } from "#lib/team/analysis.js";
 import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = ({ url }) => {

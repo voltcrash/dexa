@@ -1,6 +1,6 @@
-import { isFiltered, parseQuery, queryDex } from "$lib/dex/list.js";
-import { encodeWallTypes, isWallColor } from "$lib/dex/wall.js";
-import { pokemonList } from "$lib/server/dex.js";
+import { isFiltered, parseQuery, queryDex } from "#lib/dex/list.js";
+import { encodeWallTypes, isWallColor } from "#lib/dex/wall.js";
+import { pokemonList } from "#lib/server/dex.js";
 import type { PageServerLoad } from "./$types";
 
 const INITIAL_COUNT = 48;

@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import PokemonPeek from "$lib/components/pokemon/pokemon-peek.svelte";
-	import type { DexListEntry } from "$lib/dex/list.js";
-	import { heatBand, type WallColor } from "$lib/dex/wall.js";
-	import { dexNumber, titleCase } from "$lib/pokemon/format.js";
-	import { GENERATIONS } from "$lib/pokemon/generations.js";
-	import type { TypeName } from "$lib/pokemon/types.js";
-	import { cn } from "$lib/utils.js";
+	import PokemonPeek from "#lib/components/pokemon/pokemon-peek.svelte";
+	import type { DexListEntry } from "#lib/dex/list.js";
+	import { heatBand, type WallColor } from "#lib/dex/wall.js";
+	import { dexNumber, titleCase } from "#lib/pokemon/format.js";
+	import { GENERATIONS } from "#lib/pokemon/generations.js";
+	import type { TypeName } from "#lib/pokemon/types.js";
+	import { cn } from "#lib/utils.js";
 
 	let {
 		types,

@@ -2,15 +2,15 @@
 	import ArrowDownWideNarrowIcon from "@lucide/svelte/icons/arrow-down-wide-narrow";
 	import ArrowUpNarrowWideIcon from "@lucide/svelte/icons/arrow-up-narrow-wide";
 	import SlidersHorizontalIcon from "@lucide/svelte/icons/sliders-horizontal";
-	import { Button } from "$lib/components/ui/button/index.js";
-	import { Label } from "$lib/components/ui/label/index.js";
-	import * as Popover from "$lib/components/ui/popover/index.js";
-	import * as Select from "$lib/components/ui/select/index.js";
-	import { Switch } from "$lib/components/ui/switch/index.js";
-	import * as ToggleGroup from "$lib/components/ui/toggle-group/index.js";
-	import { SORT_KEYS, TAGS, TAG_LABELS, type DexQuery, type SortKey, type Tag } from "$lib/dex/list.js";
-	import { GENERATIONS } from "$lib/pokemon/generations.js";
-	import { STAT_LABELS, type StatKey } from "$lib/pokemon/types.js";
+	import { Button } from "#lib/components/ui/button/index.js";
+	import { Label } from "#lib/components/ui/label/index.js";
+	import * as Popover from "#lib/components/ui/popover/index.js";
+	import * as Select from "#lib/components/ui/select/index.js";
+	import { Switch } from "#lib/components/ui/switch/index.js";
+	import * as ToggleGroup from "#lib/components/ui/toggle-group/index.js";
+	import { SORT_KEYS, TAGS, TAG_LABELS, type DexQuery, type SortKey, type Tag } from "#lib/dex/list.js";
+	import { GENERATIONS } from "#lib/pokemon/generations.js";
+	import { STAT_LABELS, type StatKey } from "#lib/pokemon/types.js";
 
 	let { query, onchange }: { query: DexQuery; onchange: (next: Partial<DexQuery>) => void } =
 		$props();

@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { DexListEntry } from "$lib/dex/list.js";
-	import { titleCase } from "$lib/pokemon/format.js";
-	import type { Counter } from "$lib/pokemon/insights.js";
-	import { formatMultiplier } from "$lib/pokemon/matchups.js";
-	import type { TypeName } from "$lib/pokemon/types.js";
+	import type { DexListEntry } from "#lib/dex/list.js";
+	import { titleCase } from "#lib/pokemon/format.js";
+	import type { Counter } from "#lib/pokemon/insights.js";
+	import { formatMultiplier } from "#lib/pokemon/matchups.js";
+	import type { TypeName } from "#lib/pokemon/types.js";
 	import PokemonArt from "./pokemon-art.svelte";
 	import TypeBadge from "./type-badge.svelte";
 

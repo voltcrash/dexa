@@ -2,16 +2,16 @@
 	import ArrowDownWideNarrowIcon from "@lucide/svelte/icons/arrow-down-wide-narrow";
 	import ArrowUpNarrowWideIcon from "@lucide/svelte/icons/arrow-up-narrow-wide";
 	import SearchIcon from "@lucide/svelte/icons/search";
-	import { replaceState } from "$app/navigation";
+	import { goto } from "$app/navigation";
 	import { page } from "$app/state";
-	import TypeFilter from "$lib/components/dex/type-filter.svelte";
-	import DamageClassIcon from "$lib/components/pokemon/damage-class-icon.svelte";
-	import TypeBadge from "$lib/components/pokemon/type-badge.svelte";
-	import { Button } from "$lib/components/ui/button/index.js";
-	import { Input } from "$lib/components/ui/input/index.js";
-	import * as Select from "$lib/components/ui/select/index.js";
-	import * as ToggleGroup from "$lib/components/ui/toggle-group/index.js";
-	import type { DamageClass } from "$lib/data/types.js";
+	import TypeFilter from "#lib/components/dex/type-filter.svelte";
+	import DamageClassIcon from "#lib/components/pokemon/damage-class-icon.svelte";
+	import TypeBadge from "#lib/components/pokemon/type-badge.svelte";
+	import { Button } from "#lib/components/ui/button/index.js";
+	import { Input } from "#lib/components/ui/input/index.js";
+	import * as Select from "#lib/components/ui/select/index.js";
+	import * as ToggleGroup from "#lib/components/ui/toggle-group/index.js";
+	import type { DamageClass } from "#lib/data/types.js";
 	import {
 		DAMAGE_CLASSES,
 		MOVE_SORTS,
@@ -20,7 +20,7 @@
 		toMoveSearchParams,
 		type MoveQuery,
 		type MoveSort,
-	} from "$lib/moves/query.js";
+	} from "#lib/moves/query.js";
 
 	let { data } = $props();
 
@@ -42,7 +42,7 @@
 		query = { ...query, ...next };
 		limit = PAGE_SIZE;
 		const search = toMoveSearchParams(query);
-		replaceState(search ? `?${search}` : page.url.pathname, page.state);
+		goto(search ? `?${search}` : page.url.pathname, { shallow: true, replace: true, state: page.state });
 	}
 
 	function loadMore(node: HTMLElement) {

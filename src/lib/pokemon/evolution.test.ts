@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vite-plus/test";
-import type { ApiEvolutionDetail } from "$lib/pokeapi/types.js";
+import type { ApiEvolutionDetail } from "#lib/pokeapi/types.js";
 import { describeEvolution } from "./evolution.js";
 import { statAt, statRanges } from "./stats.js";
 

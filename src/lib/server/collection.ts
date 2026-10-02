@@ -1,5 +1,5 @@
 import { and, eq } from "drizzle-orm";
-import { isEmpty, type CollectionFlag, type CollectionState } from "$lib/collection/types.js";
+import { isEmpty, type CollectionFlag, type CollectionState } from "#lib/collection/types.js";
 import { getDb } from "./db/index.js";
 import { collectionEntry } from "./db/schema.js";
 

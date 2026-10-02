@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { replaceState } from "$app/navigation";
+	import { goto } from "$app/navigation";
 	import { page } from "$app/state";
-	import TypeBadge from "$lib/components/pokemon/type-badge.svelte";
-	import TypeFilter from "$lib/components/dex/type-filter.svelte";
-	import TypeChart from "$lib/components/types/type-chart.svelte";
-	import { Button } from "$lib/components/ui/button/index.js";
-	import { defensiveProfile, formatMultiplier, groupProfile } from "$lib/pokemon/matchups.js";
-	import { isTypeName, type TypeName } from "$lib/pokemon/types.js";
+	import TypeBadge from "#lib/components/pokemon/type-badge.svelte";
+	import TypeFilter from "#lib/components/dex/type-filter.svelte";
+	import TypeChart from "#lib/components/types/type-chart.svelte";
+	import { Button } from "#lib/components/ui/button/index.js";
+	import { defensiveProfile, formatMultiplier, groupProfile } from "#lib/pokemon/matchups.js";
+	import { isTypeName, type TypeName } from "#lib/pokemon/types.js";
 
 	let defenders = $derived<TypeName[]>(
 		(page.url.searchParams.get("def") ?? "").split(",").filter(isTypeName).slice(0, 2),
@@ -16,7 +16,7 @@
 
 	function setDefenders(next: TypeName[]) {
 		defenders = next;
-		replaceState(next.length ? `?def=${next.join(",")}` : page.url.pathname, page.state);
+		goto(next.length ? `?def=${next.join(",")}` : page.url.pathname, { shallow: true, replace: true, state: page.state });
 	}
 
 	function pick(type: TypeName) {

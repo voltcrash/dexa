@@ -4,10 +4,10 @@ import type {
   ApiPokemon,
   ApiPokemonForm,
   ApiPokemonSpecies,
-} from "$lib/pokeapi/types.js";
-import { englishName } from "$lib/pokemon/format.js";
-import { generationFromName } from "$lib/pokemon/generations.js";
-import { STAT_KEYS, isTypeName, type BaseStats, type TypeName } from "$lib/pokemon/types.js";
+} from "#lib/pokeapi/types.js";
+import { englishName } from "#lib/pokemon/format.js";
+import { generationFromName } from "#lib/pokemon/generations.js";
+import { STAT_KEYS, isTypeName, type BaseStats, type TypeName } from "#lib/pokemon/types.js";
 import type { AbilityEntry, DamageClass, DexEntry, MoveEntry } from "./types.js";
 
 function idFromUrl(url: string) {

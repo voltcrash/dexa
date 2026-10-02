@@ -1,7 +1,7 @@
-import { error, json } from "@sveltejs/kit";
-import { pokemonBySlug } from "$lib/server/dex.js";
-import { deleteTeam, updateTeam } from "$lib/server/teams.js";
-import { validateTeamInput } from "$lib/team/validate.js";
+import { error } from "@sveltejs/kit";
+import { pokemonBySlug } from "#lib/server/dex.js";
+import { deleteTeam, updateTeam } from "#lib/server/teams.js";
+import { validateTeamInput } from "#lib/team/validate.js";
 import type { RequestHandler } from "./$types";
 
 export const PUT: RequestHandler = async ({ locals, params, request }) => {
@@ -14,7 +14,7 @@ export const PUT: RequestHandler = async ({ locals, params, request }) => {
   if (!result.ok) error(400, result.error);
   const saved = await updateTeam(locals.user.id, params.id, result.value);
   if (!saved) error(404, "That team doesn’t exist or isn’t yours");
-  return json(saved);
+  return Response.json(saved);
 };
 
 export const DELETE: RequestHandler = async ({ locals, params }) => {

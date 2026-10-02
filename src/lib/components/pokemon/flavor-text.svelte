@@ -1,8 +1,8 @@
 <script lang="ts">
 	import ChevronLeftIcon from "@lucide/svelte/icons/chevron-left";
 	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
-	import { Button } from "$lib/components/ui/button/index.js";
-	import type { FlavorEntry } from "$lib/pokemon/detail.js";
+	import { Button } from "#lib/components/ui/button/index.js";
+	import type { FlavorEntry } from "#lib/pokemon/detail.js";
 
 	let { entries }: { entries: FlavorEntry[] } = $props();
 

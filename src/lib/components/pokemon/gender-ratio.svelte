@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { formatPercent, genderRatio } from "$lib/pokemon/format.js";
+	import { formatPercent, genderRatio } from "#lib/pokemon/format.js";
 
 	let { rate }: { rate: number } = $props();
 	const ratio = $derived(genderRatio(rate));

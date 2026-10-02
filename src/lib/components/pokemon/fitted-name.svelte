@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { nameFit } from "$lib/pokemon/name-fit.js";
+	import { nameFit } from "#lib/pokemon/name-fit.js";
 
 	let { name }: { name: string } = $props();
 

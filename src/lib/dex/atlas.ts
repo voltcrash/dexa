@@ -1,4 +1,4 @@
-import { STAT_KEYS, STAT_LABELS, type StatKey } from "$lib/pokemon/types.js";
+import { STAT_KEYS, STAT_LABELS, type StatKey } from "#lib/pokemon/types.js";
 import type { DexListEntry } from "./list.js";
 
 export const AXES = [...STAT_KEYS, "total", "height", "weight"] as const;

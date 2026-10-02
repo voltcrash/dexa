@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { formatHeight, formatWeight } from "$lib/pokemon/format.js";
-	import { weightComparison } from "$lib/pokemon/insights.js";
+	import { formatHeight, formatWeight } from "#lib/pokemon/format.js";
+	import { weightComparison } from "#lib/pokemon/insights.js";
 	import PokemonArt from "./pokemon-art.svelte";
 
 	let { id, name, height, weight }: { id: number; name: string; height: number; weight: number } =

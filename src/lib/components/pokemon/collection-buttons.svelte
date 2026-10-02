@@ -3,10 +3,10 @@
 	import HeartIcon from "@lucide/svelte/icons/heart";
 	import SparklesIcon from "@lucide/svelte/icons/sparkles";
 	import { page } from "$app/state";
-	import { collection } from "$lib/collection/store.svelte.js";
-	import type { CollectionFlag } from "$lib/collection/types.js";
-	import { Button } from "$lib/components/ui/button/index.js";
-	import { cn } from "$lib/utils.js";
+	import { collection } from "#lib/collection/store.svelte.js";
+	import type { CollectionFlag } from "#lib/collection/types.js";
+	import { Button } from "#lib/components/ui/button/index.js";
+	import { cn } from "#lib/utils.js";
 
 	let { pokemonId, name }: { pokemonId: number; name: string } = $props();
 

@@ -1,7 +1,7 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "types": ["node"]
+    "types": ["node", "$app/types"]
   },
-  "include": ["./**/*.ts", "../src/lib/**/*.ts", "../.svelte-kit/ambient.d.ts"]
+  "include": ["./**/*.ts", "../src/lib/**/*.ts", "../src/app.d.ts"]
 }

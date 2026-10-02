@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { formatMultiplier, typeMultiplier } from "$lib/pokemon/matchups.js";
-	import { titleCase } from "$lib/pokemon/format.js";
-	import { TYPES, typeTextClass, type TypeName } from "$lib/pokemon/types.js";
-	import { cn } from "$lib/utils.js";
+	import { formatMultiplier, typeMultiplier } from "#lib/pokemon/matchups.js";
+	import { titleCase } from "#lib/pokemon/format.js";
+	import { TYPES, typeTextClass, type TypeName } from "#lib/pokemon/types.js";
+	import { cn } from "#lib/utils.js";
 
 	let {
 		highlightDefenders = [],

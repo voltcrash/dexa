@@ -1,4 +1,4 @@
-import type { ApiEvolutionDetail } from "$lib/pokeapi/types.js";
+import type { ApiEvolutionDetail } from "#lib/pokeapi/types.js";
 import { titleCase } from "./format.js";
 
 const TRIGGERS: Record<string, string> = {

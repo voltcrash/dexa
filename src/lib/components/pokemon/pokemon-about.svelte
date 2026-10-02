@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { PokemonDetail } from "$lib/pokemon/detail.js";
+	import type { PokemonDetail } from "#lib/pokemon/detail.js";
 	import FlavorText from "./flavor-text.svelte";
 	import GenderRatio from "./gender-ratio.svelte";
 	import SizeComparison from "./size-comparison.svelte";

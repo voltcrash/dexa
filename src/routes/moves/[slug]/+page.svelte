@@ -1,9 +1,9 @@
 <script lang="ts">
 	import ArrowLeftIcon from "@lucide/svelte/icons/arrow-left";
-	import DexTile from "$lib/components/dex/dex-tile.svelte";
-	import DamageClassIcon from "$lib/components/pokemon/damage-class-icon.svelte";
-	import TypeBadge from "$lib/components/pokemon/type-badge.svelte";
-	import { GENERATIONS } from "$lib/pokemon/generations.js";
+	import DexTile from "#lib/components/dex/dex-tile.svelte";
+	import DamageClassIcon from "#lib/components/pokemon/damage-class-icon.svelte";
+	import TypeBadge from "#lib/components/pokemon/type-badge.svelte";
+	import { GENERATIONS } from "#lib/pokemon/generations.js";
 
 	let { data } = $props();
 

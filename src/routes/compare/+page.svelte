@@ -2,14 +2,14 @@
 	import PlusIcon from "@lucide/svelte/icons/plus";
 	import XIcon from "@lucide/svelte/icons/x";
 	import { goto } from "$app/navigation";
-	import StatComparison from "$lib/components/compare/stat-comparison.svelte";
-	import PokemonArt from "$lib/components/pokemon/pokemon-art.svelte";
-	import PokemonPicker from "$lib/components/pokemon/pokemon-picker.svelte";
-	import TypeBadge from "$lib/components/pokemon/type-badge.svelte";
-	import DefenseTable from "$lib/components/team/defense-table.svelte";
-	import type { DexListEntry } from "$lib/dex/list.js";
-	import { dexNumber, formatHeight, formatWeight } from "$lib/pokemon/format.js";
-	import { teamDefense } from "$lib/team/analysis.js";
+	import StatComparison from "#lib/components/compare/stat-comparison.svelte";
+	import PokemonArt from "#lib/components/pokemon/pokemon-art.svelte";
+	import PokemonPicker from "#lib/components/pokemon/pokemon-picker.svelte";
+	import TypeBadge from "#lib/components/pokemon/type-badge.svelte";
+	import DefenseTable from "#lib/components/team/defense-table.svelte";
+	import type { DexListEntry } from "#lib/dex/list.js";
+	import { dexNumber, formatHeight, formatWeight } from "#lib/pokemon/format.js";
+	import { teamDefense } from "#lib/team/analysis.js";
 
 	let { data } = $props();
 
@@ -23,9 +23,8 @@
 
 	function setSlugs(slugs: string[]) {
 		goto(slugs.length ? `?p=${slugs.join(",")}` : "/compare", {
-			replaceState: true,
-			noScroll: true,
-			keepFocus: true,
+			replace: true,
+			reset: false,
 		});
 	}
 

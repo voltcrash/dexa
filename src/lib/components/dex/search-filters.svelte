@@ -1,6 +1,6 @@
 <script lang="ts">
 	import XIcon from "@lucide/svelte/icons/x";
-	import { describeFilter, parseSearch, removeToken } from "$lib/dex/filters.js";
+	import { describeFilter, parseSearch, removeToken } from "#lib/dex/filters.js";
 
 	let { q, onchange }: { q: string; onchange: (q: string) => void } = $props();
 

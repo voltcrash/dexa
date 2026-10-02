@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { DexListEntry } from "$lib/dex/list.js";
-	import { cn } from "$lib/utils.js";
+	import type { DexListEntry } from "#lib/dex/list.js";
+	import { cn } from "#lib/utils.js";
 	import PokemonArt from "./pokemon-art.svelte";
 	import TypeBadge from "./type-badge.svelte";
 

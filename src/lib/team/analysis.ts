@@ -1,6 +1,6 @@
-import type { DexListEntry } from "$lib/dex/list.js";
-import { defensiveProfile, effectiveness } from "$lib/pokemon/matchups.js";
-import { STAT_KEYS, TYPES, type TypeName } from "$lib/pokemon/types.js";
+import type { DexListEntry } from "#lib/dex/list.js";
+import { defensiveProfile, effectiveness } from "#lib/pokemon/matchups.js";
+import { STAT_KEYS, TYPES, type TypeName } from "#lib/pokemon/types.js";
 
 export const TEAM_SIZE = 6;
 

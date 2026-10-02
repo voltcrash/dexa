@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as ToggleGroup from "$lib/components/ui/toggle-group/index.js";
-	import { MAX_BASE_STAT, statBand, statRanges } from "$lib/pokemon/stats.js";
-	import { STAT_KEYS, STAT_LABELS, type BaseStats } from "$lib/pokemon/types.js";
+	import * as ToggleGroup from "#lib/components/ui/toggle-group/index.js";
+	import { MAX_BASE_STAT, statBand, statRanges } from "#lib/pokemon/stats.js";
+	import { STAT_KEYS, STAT_LABELS, type BaseStats } from "#lib/pokemon/types.js";
 
 	let { stats, percentiles }: { stats: BaseStats; percentiles?: number[] } = $props();
 

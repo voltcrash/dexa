@@ -2,11 +2,12 @@
 
 The last Pokédex you will ever need.
 
-Built with SvelteKit, Tailwind CSS, shadcn-svelte, and data from [PokéAPI](https://pokeapi.co). Deployed on Vercel.
+Built with SvelteKit 3, Tailwind CSS, shadcn-svelte, and data from [PokéAPI](https://pokeapi.co). Deployed on Vercel.
 
 ## Getting started
 
 This project uses [Vite+](https://viteplus.dev) (`vp`) with bun as the package manager.
+Node.js 22.17 or newer is required; CI and Vercel use Node.js 24.
 
 ```sh
 vp install
@@ -16,6 +17,7 @@ vp dev
 ## Database
 
 Accounts, collections and saved teams are stored in [Neon](https://neon.tech) Postgres through Drizzle ORM. Everything else works without a database.
+Server environment variables are declared in `src/env.ts` and read at runtime through `$app/env/private`. They remain optional so the public Pokédex can run without account credentials.
 
 1. Create a Neon project and copy its pooled connection string.
 2. `cp .env.example .env` and set `DATABASE_URL`.

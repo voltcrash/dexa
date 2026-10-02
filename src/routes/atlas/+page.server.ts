@@ -1,4 +1,4 @@
-import { isAxis } from "$lib/dex/atlas.js";
+import { isAxis } from "#lib/dex/atlas.js";
 import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = ({ url }) => {

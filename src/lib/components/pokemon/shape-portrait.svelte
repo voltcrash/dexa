@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from "svelte";
-	import { SHAPE_ORDER, ringPoints } from "$lib/pokemon/shape.js";
-	import { STAT_KEYS, STAT_LABELS, type BaseStats } from "$lib/pokemon/types.js";
+	import { SHAPE_ORDER, ringPoints } from "#lib/pokemon/shape.js";
+	import { STAT_KEYS, STAT_LABELS, type BaseStats } from "#lib/pokemon/types.js";
 	import StatShape from "./stat-shape.svelte";
 
 	let { stats, children }: { stats: BaseStats; children: Snippet } = $props();

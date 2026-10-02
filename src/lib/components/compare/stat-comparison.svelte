@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { MAX_BASE_STAT } from "$lib/pokemon/stats.js";
-	import { STAT_KEYS, STAT_LABELS, type BaseStats } from "$lib/pokemon/types.js";
+	import { MAX_BASE_STAT } from "#lib/pokemon/stats.js";
+	import { STAT_KEYS, STAT_LABELS, type BaseStats } from "#lib/pokemon/types.js";
 
 	let { series }: { series: { name: string; stats: BaseStats; color: string }[] } = $props();
 

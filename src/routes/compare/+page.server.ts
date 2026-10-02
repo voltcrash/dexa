@@ -1,5 +1,5 @@
-import { abilitiesBySlug, pokemonBySlug } from "$lib/server/dex.js";
-import { titleCase } from "$lib/pokemon/format.js";
+import { abilitiesBySlug, pokemonBySlug } from "#lib/server/dex.js";
+import { titleCase } from "#lib/pokemon/format.js";
 import type { PageServerLoad } from "./$types";
 
 const MAX_COMPARE = 4;

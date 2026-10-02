@@ -1,13 +1,13 @@
 <script lang="ts">
 	import ArrowDownIcon from "@lucide/svelte/icons/arrow-down";
 	import ArrowUpIcon from "@lucide/svelte/icons/arrow-up";
-	import PokemonArt from "$lib/components/pokemon/pokemon-art.svelte";
-	import StatShape from "$lib/components/pokemon/stat-shape.svelte";
-	import TypeBadge from "$lib/components/pokemon/type-badge.svelte";
-	import { statTotal, type DexListEntry, type DexQuery, type SortKey } from "$lib/dex/list.js";
-	import { dexNumber } from "$lib/pokemon/format.js";
-	import { STAT_KEYS, STAT_LABELS, type StatKey } from "$lib/pokemon/types.js";
-	import { cn } from "$lib/utils.js";
+	import PokemonArt from "#lib/components/pokemon/pokemon-art.svelte";
+	import StatShape from "#lib/components/pokemon/stat-shape.svelte";
+	import TypeBadge from "#lib/components/pokemon/type-badge.svelte";
+	import { statTotal, type DexListEntry, type DexQuery, type SortKey } from "#lib/dex/list.js";
+	import { dexNumber } from "#lib/pokemon/format.js";
+	import { STAT_KEYS, STAT_LABELS, type StatKey } from "#lib/pokemon/types.js";
+	import { cn } from "#lib/utils.js";
 
 	let {
 		entries,

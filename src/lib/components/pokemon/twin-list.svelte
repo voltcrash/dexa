@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { DexListEntry } from "$lib/dex/list.js";
-	import type { StatTwin } from "$lib/pokemon/insights.js";
+	import type { DexListEntry } from "#lib/dex/list.js";
+	import type { StatTwin } from "#lib/pokemon/insights.js";
 	import PokemonArt from "./pokemon-art.svelte";
 	import StatShape from "./stat-shape.svelte";
 
