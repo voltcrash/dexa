@@ -1,5 +1,5 @@
-import { STAT_KEYS, TYPES, type StatKey, type TypeName } from "$lib/pokemon/types.js";
-import { statBand } from "$lib/pokemon/stats.js";
+import { STAT_KEYS, TYPES, type StatKey, type TypeName } from "#lib/pokemon/types.js";
+import { statBand } from "#lib/pokemon/stats.js";
 import { statTotal, type DexListEntry } from "./list.js";
 
 export const WALL_COLORS = ["type", "total", ...STAT_KEYS] as const;
