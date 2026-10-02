@@ -1,15 +1,15 @@
 <script lang="ts">
 	import { toast } from "svelte-sonner";
-	import * as Select from "$lib/components/ui/select/index.js";
-	import { Spinner } from "$lib/components/ui/spinner/index.js";
-	import * as Tabs from "$lib/components/ui/tabs/index.js";
+	import * as Select from "#lib/components/ui/select/index.js";
+	import { Spinner } from "#lib/components/ui/spinner/index.js";
+	import * as Tabs from "#lib/components/ui/tabs/index.js";
 	import {
 		LEARN_METHOD_LABELS,
 		type LearnMethod,
 		type Learnset,
 		type LearnsetMove,
-	} from "$lib/pokemon/learnset.js";
-	import type { TypeName } from "$lib/pokemon/types.js";
+	} from "#lib/pokemon/learnset.js";
+	import type { TypeName } from "#lib/pokemon/types.js";
 	import DamageClassIcon from "./damage-class-icon.svelte";
 	import TypeBadge from "./type-badge.svelte";
 
