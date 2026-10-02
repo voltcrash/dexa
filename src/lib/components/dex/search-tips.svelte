@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { Button } from "$lib/components/ui/button/index.js";
-	import * as Popover from "$lib/components/ui/popover/index.js";
-	import { SEARCH_EXAMPLES } from "$lib/dex/filters.js";
+	import { Button } from "#lib/components/ui/button/index.js";
+	import * as Popover from "#lib/components/ui/popover/index.js";
+	import { SEARCH_EXAMPLES } from "#lib/dex/filters.js";
 
 	let { onpick }: { onpick: (query: string) => void } = $props();
 
