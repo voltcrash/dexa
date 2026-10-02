@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { Snippet } from "svelte";
 	import { page } from "$app/state";
-	import { navItems } from "$lib/nav.js";
-	import { cn } from "$lib/utils.js";
+	import { navItems } from "#lib/nav.js";
+	import { cn } from "#lib/utils.js";
 	import Logo from "./logo.svelte";
 	import SearchTrigger from "./search-trigger.svelte";
 	import ThemeToggle from "./theme-toggle.svelte";
