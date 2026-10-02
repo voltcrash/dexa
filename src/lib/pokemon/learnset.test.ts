@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vite-plus/test";
-import type { MoveEntry } from "$lib/data/types.js";
-import type { ApiPokemon } from "$lib/pokeapi/types.js";
+import type { MoveEntry } from "#lib/data/types.js";
+import type { ApiPokemon } from "#lib/pokeapi/types.js";
 import { buildLearnset, defaultVersionGroup, versionGroupName } from "./learnset.js";
 
 const vg = (name: string, id: number) => ({
