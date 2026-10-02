@@ -1,6 +1,6 @@
 import { redirect } from "@sveltejs/kit";
-import { pokemonById } from "$lib/server/dex.js";
-import { findEntry, getPokemonDetail } from "$lib/server/pokemon.js";
+import { pokemonById } from "#lib/server/dex.js";
+import { findEntry, getPokemonDetail } from "#lib/server/pokemon.js";
 import type { Config } from "@sveltejs/adapter-vercel";
 import type { PageServerLoad } from "./$types";
 
