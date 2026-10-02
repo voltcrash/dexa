@@ -4,21 +4,21 @@
 	import SearchIcon from "@lucide/svelte/icons/search";
 	import XIcon from "@lucide/svelte/icons/x";
 	import { onMount } from "svelte";
-	import { replaceState } from "$app/navigation";
+	import { goto } from "$app/navigation";
 	import { page } from "$app/state";
-	import DexTable from "$lib/components/dex/dex-table.svelte";
-	import DexTile from "$lib/components/dex/dex-tile.svelte";
-	import DexWall from "$lib/components/dex/dex-wall.svelte";
-	import FilterControls from "$lib/components/dex/filter-controls.svelte";
-	import SearchFilters from "$lib/components/dex/search-filters.svelte";
-	import SearchTips from "$lib/components/dex/search-tips.svelte";
-	import TypeFilter from "$lib/components/dex/type-filter.svelte";
-	import { Button } from "$lib/components/ui/button/index.js";
-	import * as Empty from "$lib/components/ui/empty/index.js";
-	import { Input } from "$lib/components/ui/input/index.js";
-	import * as Select from "$lib/components/ui/select/index.js";
-	import * as ToggleGroup from "$lib/components/ui/toggle-group/index.js";
-	import { loadDexList } from "$lib/dex/client.js";
+	import DexTable from "#lib/components/dex/dex-table.svelte";
+	import DexTile from "#lib/components/dex/dex-tile.svelte";
+	import DexWall from "#lib/components/dex/dex-wall.svelte";
+	import FilterControls from "#lib/components/dex/filter-controls.svelte";
+	import SearchFilters from "#lib/components/dex/search-filters.svelte";
+	import SearchTips from "#lib/components/dex/search-tips.svelte";
+	import TypeFilter from "#lib/components/dex/type-filter.svelte";
+	import { Button } from "#lib/components/ui/button/index.js";
+	import * as Empty from "#lib/components/ui/empty/index.js";
+	import { Input } from "#lib/components/ui/input/index.js";
+	import * as Select from "#lib/components/ui/select/index.js";
+	import * as ToggleGroup from "#lib/components/ui/toggle-group/index.js";
+	import { loadDexList } from "#lib/dex/client.js";
 	import {
 		DEFAULT_QUERY,
 		isFiltered,
@@ -27,9 +27,9 @@
 		toSearchParams,
 		type DexListEntry,
 		type DexQuery,
-	} from "$lib/dex/list.js";
-	import { WALL_COLORS, decodeWallTypes, heatThresholds, type WallColor } from "$lib/dex/wall.js";
-	import { STAT_KEYS, STAT_LABELS, type StatKey } from "$lib/pokemon/types.js";
+	} from "#lib/dex/list.js";
+	import { WALL_COLORS, decodeWallTypes, heatThresholds, type WallColor } from "#lib/dex/wall.js";
+	import { STAT_KEYS, STAT_LABELS, type StatKey } from "#lib/pokemon/types.js";
 
 	let { data } = $props();
 
@@ -69,7 +69,7 @@
 		if (view === "grid") params.set("view", "grid");
 		if (color !== "type") params.set("color", color);
 		const search = params.toString().replaceAll("%2C", ",");
-		replaceState(search ? `?${search}` : page.url.pathname, page.state);
+		goto(search ? `?${search}` : page.url.pathname, { shallow: true, replace: true, state: page.state });
 	}
 
 	function update(next: Partial<DexQuery>) {
